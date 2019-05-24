@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Namelivia\Fitbit\Api;
 
 use kamermans\OAuth2\GrantType\AuthorizationCode;
