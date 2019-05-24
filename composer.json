@@ -11,7 +11,10 @@
         }
     ],
     "require": {
-        "php": "^7.0"
+        "php": "^7.0",
+        "guzzlehttp/guzzle": "^6.3",
+        "kamermans/guzzle-oauth2-subscriber": "^1.0",
+        "nesbot/carbon": "^1.37"
     },
     "require-dev": {
         "mockery/mockery": "^1.0",

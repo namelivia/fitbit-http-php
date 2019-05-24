@@ -2,19 +2,36 @@
 
 namespace Namelivia\Fitbit;
 
-class Activitiy
+use GuzzleHttp\Client;
+use Carbon\Carbon;
+
+class Activity
 {
+	private $client;
+
+	public function __construct(Client $client)
+	{
+		$this->client = $client;
+	}
+
 	/**
 	 * The Get Daily Activity Summary endpoint retrieves a summary and list of a user's
 	 * activities and activity log entries for a given day in the format requested
 	 * using units in the unit system which corresponds to the Accept-Language header provided.
 	 *
-	 * @param int $userId
 	 * @param Carbon $date
+	 * @param int $userId
 	 */
-	public function getDailyActivitySummary(int $userId, Carbon $date)
+	public function getDailyActivitySummary(Carbon $date, int $userId = null)
 	{
-		//GET https://api.fitbit.com/1/user/[user-id]/activities/date/[date].json
+		$userString = is_null($userId) ? '-' : (string) $userId;
+		$formattedDate = $date->format('Y-m-d');
+		return $this->client->get(
+			'https://api.fitbit.com/1/user/' .
+			$userString .
+			'/activities/date/' .
+			$formattedDate . '.json'
+		)->getBody()->getContents();
 	}
 
 	//TODO: Create the period class
@@ -208,7 +225,7 @@ class Activitiy
 	 */
 	public function getFrequentActivities()
 	{
-		//GET https://api.fitbit.com/1/user/-/activities/frequent.json
+		return $this->client->get('https://api.fitbit.com/1/user/-/activities/frequent.json')->getBody()->getContents();
 	}
 
 	/**
@@ -219,15 +236,17 @@ class Activitiy
 	 */
 	public function getRecentActivityTypes()
 	{
-		//GET https://api.fitbit.com/1/user/-/activities/recent.json
+		return $this->client->get('https://api.fitbit.com/1/user/-/activities/recent.json')->getBody()->getContents();
 	}
 
 	/**
 	 * The Get Favorite Activities endpoint returns a list of a user's favorite activities.
 	 */
-	public function getFavoriteActivities()
+	public function getFavoriteActivities(int $userId = null)
 	{
-		//GET https://api.fitbit.com/1/user/[user-id]/activities/favorite.json
+		$userString = is_null($userId) ? '-' : (string) $userId;
+		$url = 'https://api.fitbit.com/1/user/' . $userString  . '/activities/favorite.json';
+		return $this->client->get($url)->getBody()->getContents();
 	}
 
 	/**
