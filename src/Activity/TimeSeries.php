@@ -6,7 +6,7 @@ namespace Namelivia\Fitbit\Activity;
 
 use GuzzleHttp\Client;
 use Carbon\Carbon;
-use Namelivia\Fitbit\Resource\AbstractResource;
+use Namelivia\Fitbit\Activity\Resource\AbstractResource;
 
 class TimeSeries
 {
@@ -104,5 +104,10 @@ class TimeSeries
 			$detailLevel->asUrlParam() .
 			'.json'
 		)->getBody()->getContents();
+	}
+
+	private function getUserUrlParam(int $userId = null)
+	{
+		return is_null($userId) ? '-' : (string) $userId;
 	}
 }

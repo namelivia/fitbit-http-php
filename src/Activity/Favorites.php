@@ -49,4 +49,9 @@ class Favorites
 			'https://api.fitbit.com/1/user/-/activities/favorite/' . $activityId . '.json',
 		)->getBody()->getContents();
 	}
+
+	private function getUserUrlParam(int $userId = null)
+	{
+		return is_null($userId) ? '-' : (string) $userId;
+	}
 }

@@ -61,4 +61,9 @@ class Goals
 			[ 'json' => []]//TODO: fill the body
 		)->getBody()->getContents();
 	}
+
+	private function getUserUrlParam(int $userId = null)
+	{
+		return is_null($userId) ? '-' : (string) $userId;
+	}
 }

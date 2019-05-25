@@ -6,7 +6,7 @@ namespace Namelivia\Fitbit\Activity;
 
 use GuzzleHttp\Client;
 
-class Type
+class Types
 {
 	private $client;
 

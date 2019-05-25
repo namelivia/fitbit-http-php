@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Namelivia\Fitbit;
+namespace Namelivia\Fitbit\Activity;
 
 class DetailLevel
 {

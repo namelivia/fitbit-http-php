@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Namelivia\Fitbit\Resource;
+namespace Namelivia\Fitbit\Activity\Resource;
 
 class TrackerResource extends AbstractResource
 {
