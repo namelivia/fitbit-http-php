@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Namelivia\Fitbit;
+namespace Namelivia\Fitbit\Activity;
 
 use GuzzleHttp\Client;
 use Carbon\Carbon;
@@ -289,89 +289,7 @@ class Activity
 	}
 
 	/**
-	 * Returns a list of a user's favorite activities.
-	 */
-	public function getFavoriteActivities(int $userId = null)
-	{
-		$url = 'https://api.fitbit.com/1/user/' .
-			$this->getUserUrlParam($userId) .
-			'/activities/favorite.json';
-		return $this->client->get($url)->getBody()->getContents();
-	}
-
-	/**
-	 * Adds the activity with the given ID to user's list of favorite activities.
-	 *
-	 * @param int $activityId
-	 */
-	public function addFavoriteActivity(int $activityId)
-	{
-		return $this->client->post(
-			'https://api.fitbit.com/1/user/-/activities/favorite/' . $activityId . '.json',
-		)->getBody()->getContents();
-	}
-
-	/**
-	 * Removes the activity with the given ID from a user's list of favorite activities.
-	 *
-	 * @param int $activityId
-	 */
-	public function deleteFavoriteActivity(int $activityId)
-	{
-		return $this->client->delete(
-			'https://api.fitbit.com/1/user/-/activities/favorite/' . $activityId . '.json',
-		)->getBody()->getContents();
-	}
-
-	//TODO: Create period class
-	/**
-	 * Retrieves a user's current daily or weekly activity goals using
-	 * measurement units as defined in the unit system, which corresponds to the Accept-Language header provided.
-	 *
-	 * @param string $period
-	 * @param int $userId
-	 */
-	public function getActivityGoals(string $period, int $userId = null)
-	{
-		$url = 'https://api.fitbit.com/1/user/' .
-			$this->getUserUrlParam($userId) .
-			'/activities/goals/' . $period . '.json';
-		return $this->client->get($url)->getBody()->getContents();
-	}
-
-	//TODO: Create period class
-	/**
-	 * The Update Activity Goals endpoint creates or updates a user's daily activity goals and returns a
-	 * response using units in the unit system which corresponds to the Accept-Language header provided.
-	 *
-	 * @param string $period
-	 * @param int $userId
-	 * @param int $caloriesOut
-	 * @param int $activeMinutes
-	 * @param int $floors
-	 * @param int $distance
-	 * @param int $steps
-	 */
-	public function updateActivityGoals(
-		string $period,
-		int $userId = null,
-		int $caloriesOut = null,
-		int $activeMinutes = null,
-		int $floors = null,
-		int $distance = null,
-		int $steps = null
-	) {
-		$url = 'https://api.fitbit.com/1/user/' .
-			$this->getUserUrlParam($userId) .
-			'/activities/goals/' . $period . '.json';
-		return $this->client->post(
-			$url,
-			[ 'json' => []]//TODO: fill the body
-		)->getBody()->getContents();
-	}
-
-	/**
-	 * The Get Lifetime Stats endpoint retrieves the user's activity statistics in the format requested
+	 * Retrieves the user's activity statistics in the format requested
 	 * using units in the unit system which corresponds to the Accept-Language header provided. Activity
 	 * statistics includes Lifetime and Best achievement values from the My Achievements tile on the website
 	 * dashboard. Response contains both statistics from the tracker device and total numbers including
