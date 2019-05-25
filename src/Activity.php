@@ -93,11 +93,11 @@ class Activity
 		)->getBody()->getContents();
 	}
 
-	//TODO: Create the detail level class
 	//TODO: This endpoint has a disclaimer that I should carefully read:
 	// https://dev.fitbit.com/build/reference/web-api/activity/#get-activity-intraday-time-series
+	//TODO: There are four posible endpoints for this one
 	/**
-	 * This endpoint returns the Intraday Time Series for a given resource in the format requested.
+	 * Returns the Intraday Time Series for a given resource in the format requested.
 	 * The endpoint mimics the Get Activity Time Series endpoint. If your application has the appropriate access,
 	 * your calls to a time series endpoint for a specific day (by using start and end dates on the same day or a
 	 * period of 1d), the response will include extended intraday values with a 1-minute detail level for that day.
@@ -110,109 +110,136 @@ class Activity
 	 */
 	public function getActivityIntradayTimeSeriesByDateAndDetailLevel(
 		Carbon $date,
-		string $resourcePath,
+		AbstractResource $resource,
 		DetailLevel $detailLevel = null
 	) {
-		//GET https://api.fitbit.com/1/user/-/[resource-path]/date/[date]/[date]/[detail-level].json
+		$formattedDate = $date->format('Y-m-d');
+		return $this->client->get(
+			'https://api.fitbit.com/1/user/-/' .
+			$resource->asUrlParam() .
+			'/date/' .
+			$formattedDate .
+			'/1d/' .
+			$detailLevel->asUrlParam() .
+			'.json'
+		)->getBody()->getContents();
 	}
 
-	//TODO: Create the detail level class
-	//TODO: This endpoint has a disclaimer that I should carefully read:
-	// https://dev.fitbit.com/build/reference/web-api/activity/#get-activity-intraday-time-series
+	//TODO: Create distance and distance unit classes?
 	/**
-	 * This endpoint returns the Intraday Time Series for a given resource in the format requested.
-	 * The endpoint mimics the Get Activity Time Series endpoint. If your application has the appropriate access,
-	 * your calls to a time series endpoint for a specific day (by using start and end dates on the same day or a
-	 * period of 1d), the response will include extended intraday values with a 1-minute detail level for that day.
-	 * Unlike other time series calls that allow fetching data of other users,
-	 * intraday data is available only for and to the authorized user.
-	 *
-	 * @param Carbon $date
-	 * @param Carbon $startDate
-	 * @param Carbon $endDate
-	 * @param DetailLevel $detailLevel
-	 */
-	public function getActivityIntradayTimeSeriesByDateRangeAndDetailLevel(
-		Carbon $date,
-		Carbon $startDate = null,
-		Carbon $endDate = null,
-		DetailLevel $detailLevel = null
-	) {
-		//GET https://api.fitbit.com/1/user/-/[resource-path]/date/[date]/[date]/[detail-level].json
-	}
-
-	//TODO: Create distance and distance unit classes
-	/**
-	 * The Log Activity endpoint creates log entry for an activity or user's private custom activity using
+	 * Creates log entry for an activity or user's private custom activity using
 	 * units in the unit system which corresponds to the Accept-Language header provided (or using
 	 * optional custom distanceUnit) and get a response in the format requested.
 	 *
-	 * @param int $activityId
-	 * @param string $activityName
-	 * @param int $manualCalories
 	 * @param Carbon $startTime
 	 * @param int $durationMillis
 	 * @param Carbon $date
-	 * @param Distance $distance
-	 * @param DistanceUnit $distanceUnit
+	 * @param int $activityId
+	 * @param string $activityName
+	 * @param int $manualCalories
+	 * @param int $distance
+	 * @param string $distanceUnit
 	 */
 	public function logActivity(
-		int $activityId,
-		string $activityName,
-		int $manualCalories,
 		Carbon $startTime,
 		int $durationMillis,
 		Carbon $date,
-		Distance $distance,
-		DistanceUnit $distanceUnit = null
+		int $activityId,
+		string $activityName,
+		int $manualCalories,
+		int $distance,
+		string $distanceUnit = null
 	) {
-		//POST https://api.fitbit.com/1/user/-/activities.json
+		return $this->client->post(
+			'https://api.fitbit.com/1/user/-/activities.json',
+			[ 'json' => []]//TODO: fill the body
+		)->getBody()->getContents();
 	}
 
 	/**
-	 * The Delete Activity Log endpoint deletes a user's activity log entry with the given ID.
+	 * Deletes a user's activity log entry with the given ID.
 	 * A successful request will return a 204 status code with an empty response body.
 	 *
 	 * @param int $activityLogId
 	 */
 	public function deleteActivityLog(int $activityLogId)
 	{
-		//DELETE /1/user/-/activities/[activity-log-id].json
+		return $this->client->delete(
+			'https://api.fitbit.com/1/user/-/activities/' . $activityLogId . '.json'
+		)->getBody()->getContents();
 	}
 
+	//TODO: A class for sort methods?
 	/**
-	 * The Get Activity Logs List endpoint retrieves a list of a user's activity log
-	 * entries before or after a given day with offset and limit using units in the unit system
+	 * Retrieves a list of a user's activity log
+	 * entries before after a given day with offset and limit using units in the unit system
 	 * which corresponds to the Accept-Language header provided.
 	 *
-	 * @param int $userId
-	 * @param Carbon $beforeDate
 	 * @param Carbon $afterDate
 	 * @param string $sort
 	 * @param int $limit
-	 * @param int $offset
+	 * @param int $userId
 	 */
-	public function getActivityLogsList(
-		int $userId,
-		Carbon $beforeDate,
+	public function getActivityLogsListAfter(
 		Carbon $afterDate,
 		string $sort,
 		int $limit,
-		int $offset
+		int $userId = null
 	) {
-		//GET https://api.fitbit.com/1/user/-/activities/list.json
+		$formattedAfterDate = $afterDate->format('Y-m-d');
+		return $this->client->get(
+		  'https://api.fitbit.com/1/user/' . 
+			$this->getUserUrlParam($userId) .
+			'/activities/list.json?' .
+			'&afterDate=' . $formattedAfterDate .
+			'&sort=' . $sort .
+			'&limit=' . $limit .
+			'&offset=0'
+		)->getBody()->getContents();
 	}
 
 	/**
-	 * The Get Activity TCX endpoint retrieves the details of a user's location and heart rate data during
+	 * Retrieves a list of a user's activity log
+	 * entries before a given day with offset and limit using units in the unit system
+	 * which corresponds to the Accept-Language header provided.
+	 *
+	 * @param Carbon $beforeDate
+	 * @param string $sort
+	 * @param int $limit
+	 * @param int $userId
+	 */
+	public function getActivityLogsListBefore(
+		Carbon $beforeDate,
+		string $sort,
+		int $limit,
+		int $userId = null
+	) {
+		$formattedBeforeDate = $beforeDate->format('Y-m-d');
+		return $this->client->get(
+		  'https://api.fitbit.com/1/user/' . 
+			$this->getUserUrlParam($userId) .
+			'/activities/list.json?' .
+			'beforeDate=' . $formattedBeforeDate .
+			'&sort=' . $sort .
+			'&limit=' . $limit .
+			'&offset=0'
+		)->getBody()->getContents();
+	}
+
+	/**
+	 * Retrieves the details of a user's location and heart rate data during
 	 * a logged exercise activity.
 	 *
-	 * @param int $userId
 	 * @param int $logId
+	 * @param int $userId
 	 */
-	public function getActivityTCX(int $userId, int $logId)
+	public function getActivityTCX(int $logId, int $userId = null)
 	{
-		//GET https://api.fitbit.com/1/user/[user-id]/activities/[log-id].tcx
+		return $this->client->get(
+		  'https://api.fitbit.com/1/user/' . 
+			$this->getUserUrlParam($userId) .
+			'/activities/' . $logId . '.tcx'
+		)->getBody()->getContents();
 	}
 
 	/**
@@ -279,7 +306,9 @@ class Activity
 	 */
 	public function addFavoriteActivity(int $activityId)
 	{
-		//POST https://api.fitbit.com/1/user/-/activities/favorite/[activity-id].json
+		return $this->client->post(
+			'https://api.fitbit.com/1/user/-/activities/favorite/' . $activityId . '.json',
+		)->getBody()->getContents();
 	}
 
 	/**
@@ -289,27 +318,34 @@ class Activity
 	 */
 	public function deleteFavoriteActivity(int $activityId)
 	{
-		//DELETE https://api.fitbit.com/1/user/-/activities/favorite/[activity-id].json
+		return $this->client->delete(
+			'https://api.fitbit.com/1/user/-/activities/favorite/' . $activityId . '.json',
+		)->getBody()->getContents();
 	}
 
+	//TODO: Create period class
 	/**
 	 * Retrieves a user's current daily or weekly activity goals using
 	 * measurement units as defined in the unit system, which corresponds to the Accept-Language header provided.
 	 *
-	 * @param Period $period
+	 * @param string $period
 	 * @param int $userId
 	 */
-	public function getActivityGoals(Period $period, int $userId = null)
+	public function getActivityGoals(string $period, int $userId = null)
 	{
-		//GET https://api.fitbit.com/1/user/[user-id]/activities/goals/[period].json
+		$url = 'https://api.fitbit.com/1/user/' .
+			$this->getUserUrlParam($userId) .
+			'/activities/goals/' . $period . '.json';
+		return $this->client->get($url)->getBody()->getContents();
 	}
 
+	//TODO: Create period class
 	/**
 	 * The Update Activity Goals endpoint creates or updates a user's daily activity goals and returns a
 	 * response using units in the unit system which corresponds to the Accept-Language header provided.
 	 *
+	 * @param string $period
 	 * @param int $userId
-	 * @param Period $period
 	 * @param int $caloriesOut
 	 * @param int $activeMinutes
 	 * @param int $floors
@@ -317,15 +353,21 @@ class Activity
 	 * @param int $steps
 	 */
 	public function updateActivityGoals(
-		int $userId,
-		Period $period,
+		string $period,
+		int $userId = null,
 		int $caloriesOut = null,
 		int $activeMinutes = null,
 		int $floors = null,
 		int $distance = null,
 		int $steps = null
 	) {
-		//POST https://api.fitbit.com/1/user/[user-id]/activities/goals/[period].json
+		$url = 'https://api.fitbit.com/1/user/' .
+			$this->getUserUrlParam($userId) .
+			'/activities/goals/' . $period . '.json';
+		return $this->client->post(
+			$url,
+			[ 'json' => []]//TODO: fill the body
+		)->getBody()->getContents();
 	}
 
 	/**
