@@ -6,6 +6,7 @@ namespace Namelivia\Fitbit;
 
 use GuzzleHttp\Client;
 use Carbon\Carbon;
+use Namelivia\Fitbit\Resource\AbstractResource;
 
 class Activity
 {
@@ -17,7 +18,7 @@ class Activity
 	}
 
 	/**
-	 * The Get Daily Activity Summary endpoint retrieves a summary and list of a user's
+	 * Retrieves a summary and list of a user's
 	 * activities and activity log entries for a given day in the format requested
 	 * using units in the unit system which corresponds to the Accept-Language header provided.
 	 *
@@ -26,51 +27,70 @@ class Activity
 	 */
 	public function getDailyActivitySummary(Carbon $date, int $userId = null)
 	{
-		$userString = is_null($userId) ? '-' : (string) $userId;
 		$formattedDate = $date->format('Y-m-d');
 		return $this->client->get(
 			'https://api.fitbit.com/1/user/' .
-			$userString .
+			$this->getUserUrlParam($userId) .
 			'/activities/date/' .
 			$formattedDate . '.json'
 		)->getBody()->getContents();
 	}
 
-	//TODO: Create the period class
-	//TODO: Review the phpdoc description
 	/**
-	 * The Get Activity Time Series endpoint returns time series data in the specified range
+	 * Returns time series data in the specified period from the specified date
 	 * for a given resource in the format requested using units in the unit system that corresponds
 	 * to the Accept-Language header provided.
 	 *
-	 * @param int $userId
-	 * @param string $resourcePath
+	 * @param AbstractResource $resource
 	 * @param Carbon $date
 	 * @param Period $period
+	 * @param int $userId
 	 */
-	public function getActivityTimeSeriesByPeriod(int $userId, string $resourcePath, Carbon $date, Period $period)
+	public function getActivityTimeSeriesByPeriod(AbstractResource $resource, Carbon $date, Period $period, int $userId = null)
 	{
-		//GET /1/user/[user-id]/[resource-path]/date/[date]/[period].json
+		$formattedDate = $date->format('Y-m-d');
+		return $this->client->get(
+			'https://api.fitbit.com/1/user/' .
+			$this->getUserUrlParam($userId) .
+			'/' .
+			$resource->asUrlParam() .
+			'/date/' .
+			$formattedDate .
+			'/' .
+			$period->asUrlParam() .
+			'.json'
+		)->getBody()->getContents();
 	}
 
-	//TODO: Review the phpdoc description
 	/**
-	 * The Get Activity Time Series endpoint returns time series data in the specified range
+	 * Returns time series data in the specified range
 	 * for a given resource in the format requested using units in the unit system that corresponds
 	 * to the Accept-Language header provided.
 	 *
-	 * @param int $userId
-	 * @param string $resourcePath
+	 * @param AbstractResource $resource
 	 * @param Carbon $baseDate
 	 * @param Carbon $endDate
+	 * @param int $userId
 	 */
 	public function getActivityTimeSeriesByDateRange(
-		int $userId,
-		string $resourcePath,
+		AbstractResource $resource,
 		Carbon $baseDate,
-		Carbon $endDate
+		Carbon $endDate,
+		int $userId = null
 	) {
-		//GET /1/user/[user-id]/[resource-path]/date/[base-date]/[end-date].json
+		$formattedBaseDate = $baseDate->format('Y-m-d');
+		$formattedEndDate = $endDate->format('Y-m-d');
+		return $this->client->get(
+			'https://api.fitbit.com/1/user/' .
+			$this->getUserUrlParam($userId) .
+			'/' .
+			$resource->asUrlParam() .
+			'/date/' .
+			$formattedBaseDate .
+			'/' .
+			$formattedEndDate .
+			'.json'
+		)->getBody()->getContents();
 	}
 
 	//TODO: Create the detail level class
@@ -203,7 +223,7 @@ class Activity
 	 */
 	public function browseActivityTypes()
 	{
-		//GET https://api.fitbit.com/1/activities.json
+		return $this->client->get('https://api.fitbit.com/1/activities.json')->getBody()->getContents();
 	}
 
 	/**
@@ -214,11 +234,11 @@ class Activity
 	 */
 	public function getActivityTypes(int $activityId)
 	{
-		//GET https://api.fitbit.com/1/activities/[activity-id].json
+		return $this->client->get('https://api.fitbit.com/1/activities/' . $activityId . '.json')->getBody()->getContents();
 	}
 
 	/**
-	 * The Get Frequent Activities endpoint retrieves a list of a user's frequent activities in the
+	 * Retrieves a list of a user's frequent activities in the
 	 * format requested using units in the unit system which corresponds to the Accept-Language header provided.
 	 * A frequent activity record contains the distance and duration values recorded
 	 * the last time the activity was logged.
@@ -231,7 +251,7 @@ class Activity
 	}
 
 	/**
-	 * The Get Recent Activity Types endpoint retrieves a list of a user's recent activities types
+	 * Retrieves a list of a user's recent activities types
 	 * logged with some details of the last activity log of that type using units in the unit system which
 	 * corresponds to the Accept-Language header provided. The record retrieved can be used to log the
 	 * activity via the Log Activity endpoint with the same or adjusted values for distance and duration.
@@ -242,17 +262,18 @@ class Activity
 	}
 
 	/**
-	 * The Get Favorite Activities endpoint returns a list of a user's favorite activities.
+	 * Returns a list of a user's favorite activities.
 	 */
 	public function getFavoriteActivities(int $userId = null)
 	{
-		$userString = is_null($userId) ? '-' : (string) $userId;
-		$url = 'https://api.fitbit.com/1/user/' . $userString  . '/activities/favorite.json';
+		$url = 'https://api.fitbit.com/1/user/' .
+			$this->getUserUrlParam($userId) .
+			'/activities/favorite.json';
 		return $this->client->get($url)->getBody()->getContents();
 	}
 
 	/**
-	 * The Add Favorite Activity endpoint adds the activity with the given ID to user's list of favorite activities.
+	 * Adds the activity with the given ID to user's list of favorite activities.
 	 *
 	 * @param int $activityId
 	 */
@@ -262,7 +283,7 @@ class Activity
 	}
 
 	/**
-	 * The Delete Favorite Activity removes the activity with the given ID from a user's list of favorite activities.
+	 * Removes the activity with the given ID from a user's list of favorite activities.
 	 *
 	 * @param int $activityId
 	 */
@@ -271,15 +292,14 @@ class Activity
 		//DELETE https://api.fitbit.com/1/user/-/activities/favorite/[activity-id].json
 	}
 
-	//ACTIVITY GOALS
 	/**
-	 * The Get Activity Goals retrieves a user's current daily or weekly activity goals using
+	 * Retrieves a user's current daily or weekly activity goals using
 	 * measurement units as defined in the unit system, which corresponds to the Accept-Language header provided.
 	 *
-	 * @param int $userId
 	 * @param Period $period
+	 * @param int $userId
 	 */
-	public function getActivityGoals(int $userId, Period $period)
+	public function getActivityGoals(Period $period, int $userId = null)
 	{
 		//GET https://api.fitbit.com/1/user/[user-id]/activities/goals/[period].json
 	}
@@ -317,8 +337,16 @@ class Activity
 	 *
 	 * @param int $userId
 	 */
-	public function getLifetimeStats(int $userId)
+	public function getLifetimeStats(int $userId = null)
 	{
-		//GET https://api.fitbit.com/1/user/[user-id]/activities.json
+		$url = 'https://api.fitbit.com/1/user/' .
+			$this->getUserUrlParam($userId) .
+			'/activities.json';
+		return $this->client->get($url)->getBody()->getContents();
+	}
+
+	private function getUserUrlParam(int $userId = null)
+	{
+		return is_null($userId) ? '-' : (string) $userId;
 	}
 }
