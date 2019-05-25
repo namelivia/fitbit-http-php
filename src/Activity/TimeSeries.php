@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Namelivia\Fitbit\Activity;
 
-use GuzzleHttp\Client;
+use Namelivia\Fitbit\Api\Fitbit;
 use Carbon\Carbon;
 use Namelivia\Fitbit\Activity\Resource\AbstractResource;
 
@@ -12,9 +12,9 @@ class TimeSeries
 {
 	private $client;
 
-	public function __construct(Client $client)
+	public function __construct(Fitbit $fitbit)
 	{
-		$this->client = $client;
+		$this->fitbit = $fitbit;
 	}
 
 	/**
@@ -30,8 +30,7 @@ class TimeSeries
 	public function getByPeriod(AbstractResource $resource, Carbon $date, Period $period, int $userId = null)
 	{
 		$formattedDate = $date->format('Y-m-d');
-		return $this->client->get(
-			'https://api.fitbit.com/1/user/' .
+		return $this->fitbit->get(
 			$this->getUserUrlParam($userId) .
 			'/' .
 			$resource->asUrlParam() .
@@ -40,7 +39,7 @@ class TimeSeries
 			'/' .
 			$period->asUrlParam() .
 			'.json'
-		)->getBody()->getContents();
+		);
 	}
 
 	/**
@@ -61,8 +60,7 @@ class TimeSeries
 	) {
 		$formattedBaseDate = $baseDate->format('Y-m-d');
 		$formattedEndDate = $endDate->format('Y-m-d');
-		return $this->client->get(
-			'https://api.fitbit.com/1/user/' .
+		return $this->fitbit->get(
 			$this->getUserUrlParam($userId) .
 			'/' .
 			$resource->asUrlParam() .
@@ -71,7 +69,7 @@ class TimeSeries
 			'/' .
 			$formattedEndDate .
 			'.json'
-		)->getBody()->getContents();
+		);
 	}
 
 	//TODO: This endpoint has a disclaimer that I should carefully read:
@@ -95,15 +93,15 @@ class TimeSeries
 		DetailLevel $detailLevel = null
 	) {
 		$formattedDate = $date->format('Y-m-d');
-		return $this->client->get(
-			'https://api.fitbit.com/1/user/-/' .
+		return $this->fitbit->get(
+			'-/' .
 			$resource->asUrlParam() .
 			'/date/' .
 			$formattedDate .
 			'/1d/' .
 			$detailLevel->asUrlParam() .
 			'.json'
-		)->getBody()->getContents();
+		);
 	}
 
 	private function getUserUrlParam(int $userId = null)

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Namelivia\Fitbit\Activity;
 
-use GuzzleHttp\Client;
+use Namelivia\Fitbit\Api\Fitbit;
 use Carbon\Carbon;
 use Namelivia\Fitbit\Resource\AbstractResource;
 
@@ -12,9 +12,9 @@ class Logs
 {
 	private $client;
 
-	public function __construct(Client $client)
+	public function __construct(Fitbit $fitbit)
 	{
-		$this->client = $client;
+		$this->fitbit = $fitbit;
 	}
 
 	//TODO: Create distance and distance unit classes?
@@ -42,7 +42,7 @@ class Logs
 		int $distance,
 		string $distanceUnit = null
 	) {
-		return $this->client->post(
+		return $this->fitbit->post(
 			'https://api.fitbit.com/1/user/-/activities.json',
 			[ 'json' => []]//TODO: fill the body
 		)->getBody()->getContents();
@@ -57,11 +57,10 @@ class Logs
 	 */
 	public function getTCX(int $logId, int $userId = null)
 	{
-		return $this->client->get(
-		  'https://api.fitbit.com/1/user/' . 
+		return $this->fitbit->get(
 			$this->getUserUrlParam($userId) .
 			'/activities/' . $logId . '.tcx'
-		)->getBody()->getContents();
+		);
 	}
 
 	/**
@@ -72,9 +71,9 @@ class Logs
 	 */
 	public function remove(int $activityLogId)
 	{
-		return $this->client->delete(
-			'https://api.fitbit.com/1/user/-/activities/' . $activityLogId . '.json'
-		)->getBody()->getContents();
+		return $this->fitbit->delete(
+			'-/activities/' . $activityLogId . '.json'
+		);
 	}
 
 	//TODO: A class for sort methods?
@@ -95,15 +94,14 @@ class Logs
 		int $userId = null
 	) {
 		$formattedAfterDate = $afterDate->format('Y-m-d');
-		return $this->client->get(
-		  'https://api.fitbit.com/1/user/' . 
+		return $this->fitbit->get(
 			$this->getUserUrlParam($userId) .
 			'/activities/list.json?' .
 			'&afterDate=' . $formattedAfterDate .
 			'&sort=' . $sort .
 			'&limit=' . $limit .
 			'&offset=0'
-		)->getBody()->getContents();
+		);
 	}
 
 	/**
@@ -123,15 +121,14 @@ class Logs
 		int $userId = null
 	) {
 		$formattedBeforeDate = $beforeDate->format('Y-m-d');
-		return $this->client->get(
-		  'https://api.fitbit.com/1/user/' . 
+		return $this->fitbit->get(
 			$this->getUserUrlParam($userId) .
 			'/activities/list.json?' .
 			'beforeDate=' . $formattedBeforeDate .
 			'&sort=' . $sort .
 			'&limit=' . $limit .
 			'&offset=0'
-		)->getBody()->getContents();
+		);
 	}
 
 	private function getUserUrlParam(int $userId = null)
