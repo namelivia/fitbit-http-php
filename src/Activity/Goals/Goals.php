@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Namelivia\Fitbit\Activity;
+namespace Namelivia\Fitbit\Activity\Goals;
 
 use GuzzleHttp\Client;
 
@@ -19,10 +19,10 @@ class Goals
 	 * Retrieves a user's current daily or weekly activity goals using
 	 * measurement units as defined in the unit system, which corresponds to the Accept-Language header provided.
 	 *
-	 * @param GoalPeriod $period
+	 * @param Period $period
 	 * @param int $userId
 	 */
-	public function get(GoalPeriod $period, int $userId = null)
+	public function get(Period $period, int $userId = null)
 	{
 		$url = 'https://api.fitbit.com/1/user/' .
 			$this->getUserUrlParam($userId) .
@@ -34,12 +34,12 @@ class Goals
 	 * The Update Activity Goals endpoint creates or updates a user's daily activity goals and returns a
 	 * response using units in the unit system which corresponds to the Accept-Language header provided.
 	 *
-	 * @param GoalPeriod $period
+	 * @param Period $period
 	 * @param Goal $goal
 	 * @param int $userId
 	 */
 	public function update(
-		GoalPeriod $period,
+		Period $period,
 		Goal $goal,
 		int $userId = null
 	) {

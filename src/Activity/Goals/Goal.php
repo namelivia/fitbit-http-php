@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Namelivia\Fitbit\Activity;
+namespace Namelivia\Fitbit\Activity\Goals;
 
 class Goal
 {

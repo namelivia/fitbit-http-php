@@ -2,27 +2,27 @@
 
 declare(strict_types=1);
 
-namespace Namelivia\Fitbit\Activity;
+namespace Namelivia\Fitbit\Activity\Goals;
 
-class GoalPeriod
+class Period
 {
 
 	const DAILY = 0;
 	const WEEKLY = 1;
 
-	private $goalPeriod;
+	private $period;
 
-	public function __construct(int $goalPeriod)
+	public function __construct(int $period)
 	{
-		if ($goalPeriod < self::DAILY || $goalPeriod > self::WEEKLY) {
+		if ($period < self::DAILY || $period > self::WEEKLY) {
 			//TODO: Throw an exception
 		}
-		$this->goalPeriod = $goalPeriod;
+		$this->period = $period;
 	}
 
 	public function asUrlParam()
 	{
-		switch ($this->goalPeriod) {
+		switch ($this->period) {
 			case self::DAILY:
 				return 'daily';
 			case self::WEEKLY:
