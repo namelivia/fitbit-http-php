@@ -17,35 +17,20 @@ class Logs
 		$this->fitbit = $fitbit;
 	}
 
-	//TODO: Create distance and distance unit classes?
 	/**
 	 * Creates log entry for an activity or user's private custom activity using
 	 * units in the unit system which corresponds to the Accept-Language header provided (or using
 	 * optional custom distanceUnit) and get a response in the format requested.
 	 *
-	 * @param Carbon $startTime
-	 * @param int $durationMillis
-	 * @param Carbon $date
-	 * @param int $activityId
-	 * @param string $activityName
-	 * @param int $manualCalories
-	 * @param int $distance
-	 * @param string $distanceUnit
+	 * @param Log $log
 	 */
 	public function add(
-		Carbon $startTime,
-		int $durationMillis,
-		Carbon $date,
-		int $activityId,
-		string $activityName,
-		int $manualCalories,
-		int $distance,
-		string $distanceUnit = null
+		Log $log
 	) {
 		return $this->fitbit->post(
-			'https://api.fitbit.com/1/user/-/activities.json',
-			[ 'json' => []]//TODO: fill the body
-		)->getBody()->getContents();
+			'-/activities.json?' . 
+			$log->asUrlParam()
+		);
 	}
 
 	/**
@@ -67,9 +52,9 @@ class Logs
 	 * Deletes a user's activity log entry with the given ID.
 	 * A successful request will return a 204 status code with an empty response body.
 	 *
-	 * @param int $activityLogId
+	 * @param string $activityLogId
 	 */
-	public function remove(int $activityLogId)
+	public function remove(string $activityLogId)
 	{
 		return $this->fitbit->delete(
 			'-/activities/' . $activityLogId . '.json'

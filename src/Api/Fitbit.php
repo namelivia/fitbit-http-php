@@ -24,4 +24,14 @@ class Fitbit
 			var_dump($t);
 		}
 	}
+
+	public function post($url)
+	{
+		return $this->client->post($this->baseUrl . $url)->getBody()->getContents();
+	}
+
+	public function delete($url)
+	{
+		return $this->client->delete($this->baseUrl . $url)->getBody()->getContents();
+	}
 }
