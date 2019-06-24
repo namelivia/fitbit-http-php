@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Namelivia\Fitbit\Activity\Goals;
 
-use GuzzleHttp\Client;
+use Namelivia\Fitbit\Api\Fitbit;
 
 class Goals
 {
-	private $client;
+	private $fitbit;
 
-	public function __construct(Client $client)
+	public function __construct(Fitbit $fitbit)
 	{
-		$this->client = $client;
+		$this->fitbit = $fitbit;
 	}
 
 	/**
@@ -20,14 +20,11 @@ class Goals
 	 * measurement units as defined in the unit system, which corresponds to the Accept-Language header provided.
 	 *
 	 * @param Period $period
-	 * @param int $userId
 	 */
-	public function get(Period $period, int $userId = null)
+	public function get(Period $period)
 	{
-		$url = 'https://api.fitbit.com/1/user/' .
-			$this->getUserUrlParam($userId) .
-			'/activities/goals/' . $period->asUrlParam() . '.json';
-		return $this->client->get($url)->getBody()->getContents();
+		$url =  'activities/goals/' . $period->asUrlParam() . '.json';
+		return $this->fitbit->get($url);
 	}
 
 	/**
@@ -36,25 +33,14 @@ class Goals
 	 *
 	 * @param Period $period
 	 * @param Goal $goal
-	 * @param int $userId
 	 */
 	public function update(
 		Period $period,
-		Goal $goal,
-		int $userId = null
+		Goal $goal
 	) {
 
-		$url = 'https://api.fitbit.com/1/user/' .
-			$this->getUserUrlParam($userId) .
-			'/activities/goals/' . $period->asUrlParam() . '.json?' . 
+		$url = 'activities/goals/' . $period->asUrlParam() . '.json?' . 
 			$goal->asUrlParam();
-		return $this->client->post(
-			$url
-		)->getBody()->getContents();
-	}
-
-	private function getUserUrlParam(int $userId = null)
-	{
-		return is_null($userId) ? '-' : (string) $userId;
+		return $this->fitbit->post($url);
 	}
 }
