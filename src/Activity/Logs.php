@@ -38,12 +38,10 @@ class Logs
 	 * a logged exercise activity.
 	 *
 	 * @param int $logId
-	 * @param int $userId
 	 */
-	public function getTCX(int $logId, int $userId = null)
+	public function getTCX(int $logId)
 	{
 		return $this->fitbit->get(
-			$this->getUserUrlParam($userId) .
 			'activities/' . $logId . '.tcx'
 		);
 	}
@@ -70,13 +68,11 @@ class Logs
 	 * @param Carbon $afterDate
 	 * @param string $sort
 	 * @param int $limit
-	 * @param int $userId
 	 */
 	public function listAfter(
 		Carbon $afterDate,
 		string $sort,
-		int $limit,
-		int $userId = null
+		int $limit
 	) {
 		$formattedAfterDate = $afterDate->format('Y-m-d');
 		return $this->fitbit->get(
@@ -96,13 +92,11 @@ class Logs
 	 * @param Carbon $beforeDate
 	 * @param string $sort
 	 * @param int $limit
-	 * @param int $userId
 	 */
 	public function listBefore(
 		Carbon $beforeDate,
 		string $sort,
-		int $limit,
-		int $userId = null
+		int $limit
 	) {
 		$formattedBeforeDate = $beforeDate->format('Y-m-d');
 		return $this->fitbit->get(

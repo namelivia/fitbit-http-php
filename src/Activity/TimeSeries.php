@@ -25,9 +25,8 @@ class TimeSeries
 	 * @param AbstractResource $resource
 	 * @param Carbon $date
 	 * @param Period $period
-	 * @param int $userId
 	 */
-	public function getByPeriod(AbstractResource $resource, Carbon $date, Period $period, int $userId = null)
+	public function getByPeriod(AbstractResource $resource, Carbon $date, Period $period)
 	{
 		$formattedDate = $date->format('Y-m-d');
 		return $this->fitbit->get(
@@ -48,13 +47,11 @@ class TimeSeries
 	 * @param AbstractResource $resource
 	 * @param Carbon $baseDate
 	 * @param Carbon $endDate
-	 * @param int $userId
 	 */
 	public function getByDateRange(
 		AbstractResource $resource,
 		Carbon $baseDate,
-		Carbon $endDate,
-		int $userId = null
+		Carbon $endDate
 	) {
 		$formattedBaseDate = $baseDate->format('Y-m-d');
 		$formattedEndDate = $endDate->format('Y-m-d');
