@@ -8,8 +8,9 @@ use GuzzleHttp\Client;
 
 class Fitbit
 {
-	private $client;
 	private $baseUrl = 'https://api.fitbit.com/1/user/';
+	private $userId = '-';
+	private $client;
 
 	public function __construct(Client $client)
 	{
@@ -18,20 +19,32 @@ class Fitbit
 
 	public function get($url)
 	{
-		try {
-			return $this->client->get($this->baseUrl . $url)->getBody()->getContents();
-		} catch (\Throwable $t) {
-			var_dump($t);
-		}
+		return $this->client->get(
+			$this->baseUrl  . $this->userId . '/' . $url
+		)->getBody()->getContents();
 	}
 
 	public function post($url)
 	{
-		return $this->client->post($this->baseUrl . $url)->getBody()->getContents();
+		return $this->client->post(
+			$this->baseUrl . $this->userId . '/' . $url
+		)->getBody()->getContents();
 	}
 
 	public function delete($url)
 	{
-		return $this->client->delete($this->baseUrl . $url)->getBody()->getContents();
+		return $this->client->delete(
+			$this->baseUrl . $this->userId . '/' . $url
+		)->getBody()->getContents();
+	}
+
+	public function userId(int $userId)
+	{
+		$this->userId = $userId;
+	}
+
+	public function currentUser()
+	{
+		$this->userId = '-';
 	}
 }

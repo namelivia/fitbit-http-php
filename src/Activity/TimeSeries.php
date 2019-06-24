@@ -31,8 +31,6 @@ class TimeSeries
 	{
 		$formattedDate = $date->format('Y-m-d');
 		return $this->fitbit->get(
-			$this->getUserUrlParam($userId) .
-			'/' .
 			$resource->asUrlParam() .
 			'/date/' .
 			$formattedDate .
@@ -61,8 +59,6 @@ class TimeSeries
 		$formattedBaseDate = $baseDate->format('Y-m-d');
 		$formattedEndDate = $endDate->format('Y-m-d');
 		return $this->fitbit->get(
-			$this->getUserUrlParam($userId) .
-			'/' .
 			$resource->asUrlParam() .
 			'/date/' .
 			$formattedBaseDate .
@@ -94,7 +90,6 @@ class TimeSeries
 	) {
 		$formattedDate = $date->format('Y-m-d');
 		return $this->fitbit->get(
-			'-/' .
 			$resource->asUrlParam() .
 			'/date/' .
 			$formattedDate .
@@ -102,10 +97,5 @@ class TimeSeries
 			$detailLevel->asUrlParam() .
 			'.json'
 		);
-	}
-
-	private function getUserUrlParam(int $userId = null)
-	{
-		return is_null($userId) ? '-' : (string) $userId;
 	}
 }

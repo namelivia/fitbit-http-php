@@ -10,7 +10,7 @@ use Namelivia\Fitbit\Resource\AbstractResource;
 
 class Logs
 {
-	private $client;
+	private $fitbit;
 
 	public function __construct(Fitbit $fitbit)
 	{
@@ -28,7 +28,7 @@ class Logs
 		Log $log
 	) {
 		return $this->fitbit->post(
-			'-/activities.json?' . 
+			'activities.json?' . 
 			$log->asUrlParam()
 		);
 	}
@@ -44,7 +44,7 @@ class Logs
 	{
 		return $this->fitbit->get(
 			$this->getUserUrlParam($userId) .
-			'/activities/' . $logId . '.tcx'
+			'activities/' . $logId . '.tcx'
 		);
 	}
 
@@ -57,7 +57,7 @@ class Logs
 	public function remove(string $activityLogId)
 	{
 		return $this->fitbit->delete(
-			'-/activities/' . $activityLogId . '.json'
+			'activities/' . $activityLogId . '.json'
 		);
 	}
 
@@ -80,8 +80,7 @@ class Logs
 	) {
 		$formattedAfterDate = $afterDate->format('Y-m-d');
 		return $this->fitbit->get(
-			$this->getUserUrlParam($userId) .
-			'/activities/list.json?' .
+			'activities/list.json?' .
 			'&afterDate=' . $formattedAfterDate .
 			'&sort=' . $sort .
 			'&limit=' . $limit .
@@ -107,17 +106,11 @@ class Logs
 	) {
 		$formattedBeforeDate = $beforeDate->format('Y-m-d');
 		return $this->fitbit->get(
-			$this->getUserUrlParam($userId) .
-			'/activities/list.json?' .
+			'activities/list.json?' .
 			'beforeDate=' . $formattedBeforeDate .
 			'&sort=' . $sort .
 			'&limit=' . $limit .
 			'&offset=0'
 		);
-	}
-
-	private function getUserUrlParam(int $userId = null)
-	{
-		return is_null($userId) ? '-' : (string) $userId;
 	}
 }
