@@ -21,7 +21,7 @@ class Period
 	public function __construct(int $period)
 	{
 		if ($period < self::ONE_DAY || $period > self::ONE_MONTH) {
-			//TOD: Throw an exception
+			//TODO: Throw an exception
 		}
 		$this->period = $period;
 	}
