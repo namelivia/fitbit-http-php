@@ -35,28 +35,21 @@ class Goals
 	 * response using units in the unit system which corresponds to the Accept-Language header provided.
 	 *
 	 * @param GoalPeriod $period
+	 * @param Goal $goal
 	 * @param int $userId
-	 * @param int $caloriesOut
-	 * @param int $activeMinutes
-	 * @param int $floors
-	 * @param int $distance
-	 * @param int $steps
 	 */
 	public function update(
 		GoalPeriod $period,
-		int $userId = null,
-		int $caloriesOut = null,
-		int $activeMinutes = null,
-		int $floors = null,
-		int $distance = null,
-		int $steps = null
+		Goal $goal,
+		int $userId = null
 	) {
+
 		$url = 'https://api.fitbit.com/1/user/' .
 			$this->getUserUrlParam($userId) .
-			'/activities/goals/' . $period . '.json';
+			'/activities/goals/' . $period->asUrlParam() . '.json?' . 
+			$goal->asUrlParam();
 		return $this->client->post(
-			$url,
-			[ 'json' => []]//TODO: fill the body
+			$url
 		)->getBody()->getContents();
 	}
 
