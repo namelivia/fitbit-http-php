@@ -27,6 +27,9 @@ class Goal
 		$this->steps = $steps;
 	}
 
+	/**
+	 * Returns the goal parameters as an http query to be inserted in an API call.
+	 */
 	public function asUrlParam()
 	{
 		return http_build_query([
