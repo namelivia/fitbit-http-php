@@ -6,3 +6,4 @@
 
 
 PHP SDK for accessing the Fitbit API
+Check the full documentation [on the project wiki](https://github.com/namelivia/fitbit-http-php/wiki)
