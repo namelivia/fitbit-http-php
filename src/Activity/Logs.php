@@ -37,9 +37,9 @@ class Logs
 	 * Retrieves the details of a user's location and heart rate data during
 	 * a logged exercise activity.
 	 *
-	 * @param int $logId
+	 * @param string $logId
 	 */
-	public function getTCX(int $logId)
+	public function getTCX(string $logId)
 	{
 		return $this->fitbit->get(
 			'activities/' . $logId . '.tcx'
