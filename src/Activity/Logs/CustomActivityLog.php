@@ -10,9 +10,9 @@ class CustomActivityLog extends Log
 {
 
 	public function __construct(
+		string $activityName,
 		Carbon $startDateTime,
 		int $durationMillis,
-		string $activityName,
 		int $manualCalories = null,
 		int $distance = null,
 		int $distanceUnit = null
