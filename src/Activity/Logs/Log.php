@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Namelivia\Fitbit\Activity;
+namespace Namelivia\Fitbit\Activity\Logs;
 
 use Carbon\Carbon;
 
-class Log
+abstract class Log
 {
 
 	private $startTime;
