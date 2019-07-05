@@ -28,7 +28,7 @@ class Favorites
 	 *
 	 * @param int $activityId
 	 */
-	public function add(int $activityId)
+	public function add(string $activityId)
 	{
 		return $this->fitbit->post('activities/favorite/' . $activityId . '.json');
 	}
@@ -38,7 +38,7 @@ class Favorites
 	 *
 	 * @param int $activityId
 	 */
-	public function remove(int $activityId)
+	public function remove(string $activityId)
 	{
 		return $this->fitbit->delete('activities/favorite/' . $activityId . '.json');
 	}
