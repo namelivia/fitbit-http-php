@@ -22,7 +22,7 @@ class Goal
 	) {
 		$this->activeMinutes = $activeMinutes;
 		$this->caloriesOut = $caloriesOut;
-		$this->distance = $distance / 100;
+		$this->distance = is_null($distance) ? null : $distance / 100;
 		$this->floors = $floors;
 		$this->steps = $steps;
 	}
