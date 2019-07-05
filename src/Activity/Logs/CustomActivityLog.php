@@ -13,7 +13,7 @@ class CustomActivityLog extends Log
 		string $activityName,
 		Carbon $startDateTime,
 		int $durationMillis,
-		int $manualCalories = null,
+		int $manualCalories,
 		int $distance = null,
 		int $distanceUnit = null
 	) {
