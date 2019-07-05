@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Namelivia\Fitbit\Activity;
 
 use Carbon\Carbon;
-use Namelivia\Fitbit\Resource\AbstractResource;
 use Namelivia\Fitbit\Api\Fitbit;
 
 class Activity
