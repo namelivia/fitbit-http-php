@@ -15,7 +15,7 @@ class CustomActivityLog extends Log
 		int $durationMillis,
 		int $manualCalories,
 		int $distance = null,
-		int $distanceUnit = null
+		string $distanceUnit = null
 	) {
 		parent::__construct(
 			$startDateTime,
@@ -25,6 +25,7 @@ class CustomActivityLog extends Log
 			$manualCalories,
 			$distance,
 			$distanceUnit,
+			null
 		);
 	}
 }

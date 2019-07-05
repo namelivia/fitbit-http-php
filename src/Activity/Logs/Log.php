@@ -17,6 +17,7 @@ abstract class Log
 	private $manualCalories;
 	private $distance;
 	private $distanceUnit;
+	private $steps;
 
 	public function __construct(
 		Carbon $startDateTime,
@@ -25,7 +26,8 @@ abstract class Log
 		string $activityName = null,
 		int $manualCalories = null,
 		int $distance = null,
-		int $distanceUnit = null
+		string $distanceUnit = null,
+		int $steps = null
 	) {
 		$this->startTime = $startDateTime->format('H:i:s');
 		$this->durationMillis = $durationMillis;
@@ -35,6 +37,7 @@ abstract class Log
 		$this->manualCalories = $manualCalories;
 		$this->distance = is_null($distance) ? null : $distance / 100;
 		$this->distanceUnit = $distanceUnit;
+		$this->steps = $steps;
 	}
 
 	/**
@@ -51,6 +54,7 @@ abstract class Log
 			'manualCalories' => $this->manualCalories,
 			'distance' => $this->distance,
 			'distanceUnit' => $this->distanceUnit,
+			'steps' => $this->steps
 		]);
 	}
 }
