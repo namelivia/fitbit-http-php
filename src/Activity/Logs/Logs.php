@@ -77,7 +77,7 @@ class Logs
 		$formattedAfterDate = $afterDate->format('Y-m-d');
 		return $this->fitbit->get(
 			'activities/list.json?' .
-			'&afterDate=' . $formattedAfterDate .
+			'afterDate=' . $formattedAfterDate .
 			'&sort=' . $sort .
 			'&limit=' . $limit .
 			'&offset=0'
