@@ -8,6 +8,7 @@ use GuzzleHttp\Client;
 
 class Fitbit
 {
+	private $nonUserUrl = 'https://api.fitbit.com/1/';
 	private $baseUrl = 'https://api.fitbit.com/1/user/';
 	private $userId = '-';
 	private $client;
@@ -21,6 +22,14 @@ class Fitbit
 	{
 		return $this->client->get(
 			$this->baseUrl  . $this->userId . '/' . $url
+		)->getBody()->getContents();
+	}
+
+	//TODO: Ugh! I hate doing this
+	public function getNonUserEndpoint($url)
+	{
+		return $this->client->get(
+			$this->nonUserUrl . $url
 		)->getBody()->getContents();
 	}
 

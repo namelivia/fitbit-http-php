@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Namelivia\Fitbit\Activity;
 
-use GuzzleHttp\Client;
+use Namelivia\Fitbit\Api\Fitbit;
 
 class Types
 {
-	private $client;
+	private $fitbit;
 
-	public function __construct(Client $client)
+	public function __construct(Fitbit $fitbit)
 	{
-		$this->client = $client;
+		$this->fitbit = $fitbit;
 	}
 
 	/**
@@ -22,7 +22,7 @@ class Types
 	 */
 	public function browse()
 	{
-		return $this->client->get('https://api.fitbit.com/1/activities.json')->getBody()->getContents();
+		return $this->fitbit->get('activities.json');
 	}
 
 	/**
@@ -33,7 +33,7 @@ class Types
 	 */
 	public function get(int $activityId)
 	{
-		return $this->client->get('https://api.fitbit.com/1/activities/' . $activityId . '.json')->getBody()->getContents();
+		return $this->fitbit->getNonUserEndpoint('activities/' . $activityId . '.json');
 	}
 
 	/**
@@ -46,7 +46,7 @@ class Types
 	 */
 	public function frequent()
 	{
-		return $this->client->get('https://api.fitbit.com/1/user/-/activities/frequent.json')->getBody()->getContents();
+		return $this->fitbit->get('activities/frequent.json');
 	}
 
 	/**
@@ -57,6 +57,6 @@ class Types
 	 */
 	public function recent()
 	{
-		return $this->client->get('https://api.fitbit.com/1/user/-/activities/recent.json')->getBody()->getContents();
+		return $this->fitbit->get('activities/recent.json');
 	}
 }
