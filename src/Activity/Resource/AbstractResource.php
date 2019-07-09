@@ -6,7 +6,6 @@ namespace Namelivia\Fitbit\Activity\Resource;
 
 class AbstractResource
 {
-
     const CALORIES = 0;
     const CALORIES_BMR = 1;
     const STEPS = 2;
@@ -44,7 +43,7 @@ class AbstractResource
                 return $this->getPath() . 'floors';
             case self::ELEVATION:
                 return $this->getPath() . 'elevation';
-            case self::MINUTES_SEDENTARY: 
+            case self::MINUTES_SEDENTARY:
                 return $this->getPath() . 'minutesSedentary';
             case self::MINUTES_LIGHTLY_ACTIVE:
                 return $this->getPath() . 'minutesLightlyActive';
@@ -56,7 +55,7 @@ class AbstractResource
                 return $this->getPath() . 'activityCalories';
             default:
                 //TODO: Thrown an exception
-                return null;
+                return;
         }
     }
 }

@@ -8,7 +8,6 @@ use Carbon\Carbon;
 
 abstract class Log
 {
-
     private $startTime;
     private $durationMillis;
     private $date;
@@ -54,7 +53,7 @@ abstract class Log
             'manualCalories' => $this->manualCalories,
             'distance' => $this->distance,
             'distanceUnit' => $this->distanceUnit,
-            'steps' => $this->steps
+            'steps' => $this->steps,
         ]);
     }
 }

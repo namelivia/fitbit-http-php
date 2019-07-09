@@ -6,7 +6,6 @@ namespace Namelivia\Fitbit\Activity\Goals;
 
 class Period
 {
-
     const DAILY = 0;
     const WEEKLY = 1;
 
@@ -29,7 +28,7 @@ class Period
                 return 'weekly';
             default:
                 //TODO: Thrown an exception
-                return null;
+                return;
         }
     }
 }

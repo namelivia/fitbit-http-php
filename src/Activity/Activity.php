@@ -26,6 +26,7 @@ class Activity
     public function getDailySummary(Carbon $date)
     {
         $formattedDate = $date->format('Y-m-d');
+
         return $this->fitbit->get('activities/date/' . $formattedDate . '.json');
     }
 

@@ -6,7 +6,6 @@ namespace Namelivia\Fitbit\Activity\Goals;
 
 class Goal
 {
-
     private $caloriesOut;
     private $activeMinutes;
     private $floors;

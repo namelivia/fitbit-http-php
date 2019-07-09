@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Namelivia\Fitbit\Tests;
 
-use Namelivia\Fitbit\Activity\Logs\Logs;
-use Namelivia\Fitbit\Activity\Logs\ActivityLog;
-use Namelivia\Fitbit\Api\Fitbit;
 use Carbon\Carbon;
 use Mockery;
+use Namelivia\Fitbit\Activity\Logs\ActivityLog;
+use Namelivia\Fitbit\Activity\Logs\Logs;
+use Namelivia\Fitbit\Api\Fitbit;
 
 class LogsTest extends TestCase
 {

@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace Namelivia\Fitbit\Activity\Logs;
 
-use Namelivia\Fitbit\Api\Fitbit;
 use Carbon\Carbon;
-use Namelivia\Fitbit\Resource\AbstractResource;
+use Namelivia\Fitbit\Api\Fitbit;
 
 class Logs
 {
@@ -28,7 +27,7 @@ class Logs
         Log $log
     ) {
         return $this->fitbit->post(
-            'activities.json?' . 
+            'activities.json?' .
             $log->asUrlParam()
         );
     }
@@ -60,6 +59,7 @@ class Logs
     }
 
     //TODO: A class for sort methods?
+
     /**
      * Retrieves a list of a user's activity log
      * entries before after a given day with offset and limit using units in the unit system
@@ -75,6 +75,7 @@ class Logs
         int $limit
     ) {
         $formattedAfterDate = $afterDate->format('Y-m-d');
+
         return $this->fitbit->get(
             'activities/list.json?' .
             'afterDate=' . $formattedAfterDate .
@@ -99,6 +100,7 @@ class Logs
         int $limit
     ) {
         $formattedBeforeDate = $beforeDate->format('Y-m-d');
+
         return $this->fitbit->get(
             'activities/list.json?' .
             'beforeDate=' . $formattedBeforeDate .

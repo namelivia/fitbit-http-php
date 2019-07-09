@@ -6,7 +6,8 @@ namespace Namelivia\Fitbit\Activity\Resource;
 
 class Resource extends AbstractResource
 {
-    protected function getPath() {
+    protected function getPath()
+    {
         return 'activities/';
     }
 }

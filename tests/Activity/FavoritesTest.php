@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Namelivia\Fitbit\Tests;
 
+use Mockery;
 use Namelivia\Fitbit\Activity\Favorites;
 use Namelivia\Fitbit\Api\Fitbit;
-use Mockery;
 
 class FavoritesTest extends TestCase
 {

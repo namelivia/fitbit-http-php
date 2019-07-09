@@ -1,6 +1,8 @@
 enabled:
   - unalign_double_arrow
+  - concat_with_spaces
 
 disabled:
+  - concat_without_spaces
   - align_double_arrow
   - phpdoc_align

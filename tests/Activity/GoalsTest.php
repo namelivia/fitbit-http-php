@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Namelivia\Fitbit\Tests;
 
-use Namelivia\Fitbit\Activity\Goals\Goals;
+use Mockery;
 use Namelivia\Fitbit\Activity\Goals\Goal;
+use Namelivia\Fitbit\Activity\Goals\Goals;
 use Namelivia\Fitbit\Activity\Goals\Period;
 use Namelivia\Fitbit\Api\Fitbit;
-use Mockery;
 
 class GoalsTest extends TestCase
 {

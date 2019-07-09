@@ -21,7 +21,7 @@ class Fitbit
     public function get($url)
     {
         return $this->client->get(
-            $this->baseUrl  . $this->userId . '/' . $url
+            $this->baseUrl . $this->userId . '/' . $url
         )->getBody()->getContents();
     }
 

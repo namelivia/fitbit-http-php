@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Namelivia\Fitbit\Api;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\HandlerStack;
 use kamermans\OAuth2\GrantType\AuthorizationCode;
 use kamermans\OAuth2\GrantType\RefreshToken;
-use kamermans\OAuth2\Persistence\FileTokenPersistence;
 use kamermans\OAuth2\OAuth2Middleware;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Client;
+use kamermans\OAuth2\Persistence\FileTokenPersistence;
 
 class Api
 {
@@ -28,7 +28,7 @@ class Api
     {
         $authUrl = 'https://www.fitbit.com/oauth2/authorize?' . http_build_query([
             'client_id' => $this->clientId,
-            'scope' => implode(' ',[
+            'scope' => implode(' ', [
                 'activity',
                 'nutrition',
                 'heartrate',
@@ -47,12 +47,14 @@ class Api
         $authClient = new Client([]);
         $response = $authClient->get($authUrl);
         //TODO: This won't be done like this in the future
-        print('Go to: ' . $authUrl . "\n");
-        print("Enter verification code: \n");
+        echo 'Go to: ' . $authUrl . "\n";
+        echo "Enter verification code: \n";
+
         return trim(fgets(STDIN, 1024));
     }
 
-    public function getClient() {
+    public function getClient()
+    {
         $tokenStorage = new FileTokenPersistence('/tmp/token');
         $authCode = $tokenStorage->hasToken() ? null : $this->getAuthCode();
         $reauthClient = new Client([
@@ -75,7 +77,7 @@ class Api
         // This is the normal Guzzle client that you use in your application
         return new Client([
             'handler' => $stack,
-            'auth'    => 'oauth',
+            'auth' => 'oauth',
         ]);
     }
 }

@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Namelivia\Fitbit\Tests;
 
-use Namelivia\Fitbit\Activity\TimeSeries;
-use Namelivia\Fitbit\Activity\Period;
-use Namelivia\Fitbit\Activity\Resource\Resource;
-use Namelivia\Fitbit\Api\Fitbit;
 use Carbon\Carbon;
 use Mockery;
+use Namelivia\Fitbit\Activity\Period;
+use Namelivia\Fitbit\Activity\Resource\Resource;
+use Namelivia\Fitbit\Activity\TimeSeries;
+use Namelivia\Fitbit\Api\Fitbit;
 
 class TimeSeriesTest extends TestCase
 {

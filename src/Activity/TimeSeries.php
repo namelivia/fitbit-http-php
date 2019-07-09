@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Namelivia\Fitbit\Activity;
 
-use Namelivia\Fitbit\Api\Fitbit;
 use Carbon\Carbon;
 use Namelivia\Fitbit\Activity\Resource\AbstractResource;
+use Namelivia\Fitbit\Api\Fitbit;
 
 class TimeSeries
 {
@@ -29,6 +29,7 @@ class TimeSeries
     public function getByPeriod(AbstractResource $resource, Carbon $date, Period $period)
     {
         $formattedDate = $date->format('Y-m-d');
+
         return $this->fitbit->get(
             $resource->asUrlParam() .
             '/date/' .
@@ -55,6 +56,7 @@ class TimeSeries
     ) {
         $formattedBaseDate = $baseDate->format('Y-m-d');
         $formattedEndDate = $endDate->format('Y-m-d');
+
         return $this->fitbit->get(
             $resource->asUrlParam() .
             '/date/' .
@@ -83,6 +85,7 @@ class TimeSeries
         DetailLevel $detailLevel = null
     ) {
         $formattedDate = $date->format('Y-m-d');
+
         return $this->fitbit->get(
             $resource->asUrlParam() .
             '/date/' .
@@ -117,6 +120,7 @@ class TimeSeries
         $formattedDate = $date->format('Y-m-d');
         $formattedStartTime = $startTime->format('H:i:s');
         $formattedEndTime = $endTime->format('H:i:s');
+
         return $this->fitbit->get(
             $resource->asUrlParam() .
             '/date/' .
@@ -148,6 +152,7 @@ class TimeSeries
     ) {
         $formattedStartDate = $startDate->format('Y-m-d');
         $formattedEndDate = $endDate->format('Y-m-d');
+
         return $this->fitbit->get(
             $resource->asUrlParam() .
             '/date/' .
@@ -181,6 +186,7 @@ class TimeSeries
         $formattedStartTime = $startDateTime->format('H:i:s');
         $formattedEndDate = $endDateTime->format('Y-m-d');
         $formattedEndTime = $endDateTime->format('H:i:s');
+
         return $this->fitbit->get(
             $resource->asUrlParam() .
             '/date/' .

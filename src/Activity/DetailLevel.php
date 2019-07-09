@@ -6,7 +6,6 @@ namespace Namelivia\Fitbit\Activity;
 
 class DetailLevel
 {
-
     const ONE_MINUTE = 0;
     const FIFTEEN_MINUTES = 1;
 
@@ -29,7 +28,7 @@ class DetailLevel
                 return '15min';
             default:
                 //TODO: Thrown an exception
-                return null;
+                return;
         }
     }
 }

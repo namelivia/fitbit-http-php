@@ -6,7 +6,6 @@ namespace Namelivia\Fitbit\Activity;
 
 class Period
 {
-
     const ONE_DAY = 0;
     const SEVEN_DAYS = 1;
     const THIRTY_DAYS = 2;
@@ -47,7 +46,7 @@ class Period
                 return '1y';
             default:
                 //TODO: Thrown an exception
-                return null;
+                return;
         }
     }
 }

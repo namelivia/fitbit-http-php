@@ -8,7 +8,6 @@ use Carbon\Carbon;
 
 class CustomActivityLog extends Log
 {
-
     public function __construct(
         string $activityName,
         Carbon $startDateTime,

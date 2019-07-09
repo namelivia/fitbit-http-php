@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Namelivia\Fitbit\Tests;
 
+use GuzzleHttp\Client;
 use Mockery;
 use Namelivia\Fitbit\Api\Fitbit;
-use GuzzleHttp\Client;
 
 class FitbitTest extends TestCase
 {

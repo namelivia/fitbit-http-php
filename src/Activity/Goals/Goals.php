@@ -23,7 +23,8 @@ class Goals
      */
     public function get(Period $period)
     {
-        $url =  'activities/goals/' . $period->asUrlParam() . '.json';
+        $url = 'activities/goals/' . $period->asUrlParam() . '.json';
+
         return $this->fitbit->get($url);
     }
 
@@ -38,9 +39,9 @@ class Goals
         Period $period,
         Goal $goal
     ) {
-
-        $url = 'activities/goals/' . $period->asUrlParam() . '.json?' . 
+        $url = 'activities/goals/' . $period->asUrlParam() . '.json?' .
             $goal->asUrlParam();
+
         return $this->fitbit->post($url);
     }
 }
