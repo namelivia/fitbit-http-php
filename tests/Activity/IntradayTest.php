@@ -41,17 +41,41 @@ class IntradayTest extends TestCase
 
     public function testGettingForOneDayAndTimeRange()
     {
-			$this->markTestIncomplete('TODO');
+      $this->fitbit->shouldReceive('get')
+          ->once()
+          ->with('activities/calories/date/2019-03-21/1d.json')
+          ->andReturn('intradayForOneDayAndTimeRange');
+      $this->assertEquals(
+          'intradayForOneDayAndTimeRange',
+          $this->intraday->getForOneDayAndTimeRange(
+              Carbon::today(),
+              Carbon::today()->addHours(3),
+              Carbon::today()->addHours(4),
+              new Resource(Resource::CALORIES)
+          )
+      );
     }
 
     public function testGettingForADateRange()
     {
-			$this->markTestIncomplete('TODO');
+      $this->fitbit->shouldReceive('get')
+          ->once()
+          ->with('activities/calories/date/2019-03-20/2019-03-22/1min.json')
+          ->andReturn('intradayForADateRange');
+      $this->assertEquals(
+          'intradayForADateRange',
+          $this->intraday->getForADateRange(
+              Carbon::yesterday(),
+              Carbon::tomorrow(),
+              new Resource(Resource::CALORIES),
+              new DetailLevel(DetailLevel::ONE_MINUTE)
+          )
+      );
     }
 
     public function testGettingForADateTimeRange()
     {
-			$this->markTestIncomplete('TODO');
+      $this->markTestIncomplete('TODO');
     }
 
 }
