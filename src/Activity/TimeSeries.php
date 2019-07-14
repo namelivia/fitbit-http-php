@@ -34,7 +34,7 @@ class TimeSeries
             $resource->asUrlParam(),
             'date',
             $formattedDate,
-            $period->asUrlParam(),
+            $period,
           ]) . '.json');
     }
 

@@ -6,18 +6,18 @@ namespace Namelivia\Fitbit\Activity;
 
 class Period
 {
-    const ONE_DAY = 0;
-    const SEVEN_DAYS = 1;
-    const THIRTY_DAYS = 2;
-    const ONE_WEEK = 3;
-    const ONE_MONTH = 4;
-    const THREE_MONTHS = 5;
-    const SIX_MONTHS = 6;
-    const ONE_YEAR = 7;
+    public const ONE_DAY = '1d';
+    public const SEVEN_DAYS = '7d';
+    public const THIRTY_DAYS = '30d';
+    public const ONE_WEEK = '1w';
+    public const ONE_MONTH = '1m';
+    public const THREE_MONTHS = '3m';
+    public const SIX_MONTHS = '6m';
+    public const ONE_YEAR = '1y';
 
     private $period;
 
-    public function __construct(int $period)
+    public function __construct(string $period)
     {
         if ($period < self::ONE_DAY || $period > self::ONE_MONTH) {
             //TODO: Throw an exception
@@ -25,28 +25,8 @@ class Period
         $this->period = $period;
     }
 
-    public function asUrlParam()
+    public function __toString()
     {
-        switch ($this->period) {
-            case self::ONE_DAY:
-                return '1d';
-            case self::SEVEN_DAYS:
-                return '7d';
-            case self::THIRTY_DAYS:
-                return '30d';
-            case self::ONE_WEEK:
-                return '1w';
-            case self::ONE_MONTH:
-                return '1m';
-            case self::THREE_MONTHS:
-                return '3m';
-            case self::SIX_MONTHS:
-                return '6m';
-            case self::ONE_YEAR:
-                return '1y';
-            default:
-                //TODO: Thrown an exception
-                return;
-        }
+      return $this->period;
     }
 }
