@@ -30,14 +30,12 @@ class TimeSeries
     {
         $formattedDate = $date->format('Y-m-d');
 
-        return $this->fitbit->get(
-            $resource->asUrlParam() .
-            '/date/' .
-            $formattedDate .
-            '/' .
-            $period->asUrlParam() .
-            '.json'
-        );
+        return $this->fitbit->get(implode('/', [
+            $resource->asUrlParam(),
+            'date',
+            $formattedDate,
+            $period->asUrlParam(),
+          ]) . '.json');
     }
 
     /**
@@ -57,13 +55,11 @@ class TimeSeries
         $formattedBaseDate = $baseDate->format('Y-m-d');
         $formattedEndDate = $endDate->format('Y-m-d');
 
-        return $this->fitbit->get(
-            $resource->asUrlParam() .
-            '/date/' .
-            $formattedBaseDate .
-            '/' .
-            $formattedEndDate .
-            '.json'
-        );
+        return $this->fitbit->get(implode('/', [
+            $resource->asUrlParam(),
+            'date',
+            $formattedBaseDate,
+            $formattedEndDate,
+          ]) . '.json');
     }
 }

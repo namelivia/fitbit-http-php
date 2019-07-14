@@ -27,7 +27,7 @@ class Activity
     {
         $formattedDate = $date->format('Y-m-d');
 
-        return $this->fitbit->get('activities/date/' . $formattedDate . '.json');
+        return $this->fitbit->get(implode('/', ['activities', 'date', $formattedDate]) . '.json');
     }
 
     /**

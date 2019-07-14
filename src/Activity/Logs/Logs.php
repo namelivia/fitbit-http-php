@@ -26,10 +26,7 @@ class Logs
     public function add(
         Log $log
     ) {
-        return $this->fitbit->post(
-            'activities.json?' .
-            $log->asUrlParam()
-        );
+        return $this->fitbit->post('activities.json?' . $log->asUrlParam());
     }
 
     /**
@@ -40,9 +37,7 @@ class Logs
      */
     public function getTCX(string $logId)
     {
-        return $this->fitbit->get(
-            'activities/' . $logId . '.tcx'
-        );
+        return $this->fitbit->get('activities/' . $logId . '.tcx');
     }
 
     /**
@@ -53,9 +48,7 @@ class Logs
      */
     public function remove(string $activityLogId)
     {
-        return $this->fitbit->delete(
-            'activities/' . $activityLogId . '.json'
-        );
+        return $this->fitbit->delete('activities/' . $activityLogId . '.json');
     }
 
     //TODO: A class for sort methods?
@@ -78,10 +71,12 @@ class Logs
 
         return $this->fitbit->get(
             'activities/list.json?' .
-            'afterDate=' . $formattedAfterDate .
-            '&sort=' . $sort .
-            '&limit=' . $limit .
-            '&offset=0'
+            http_build_query([
+              'afterDate' => $formattedAfterDate,
+              'sort' => $sort,
+              'limit' => $limit,
+              'offset' => 0,
+            ])
         );
     }
 
@@ -103,10 +98,12 @@ class Logs
 
         return $this->fitbit->get(
             'activities/list.json?' .
-            'beforeDate=' . $formattedBeforeDate .
-            '&sort=' . $sort .
-            '&limit=' . $limit .
-            '&offset=0'
+            http_build_query([
+              'beforeDate' => $formattedBeforeDate,
+              'sort' => $sort,
+              'limit' => $limit,
+              'offset' => 0,
+            ])
         );
     }
 }

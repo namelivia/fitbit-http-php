@@ -20,7 +20,7 @@ class Favorites
      */
     public function get()
     {
-        return $this->fitbit->get('activities/favorite.json');
+        return $this->fitbit->get(implode('/', ['activities', 'favorite']) . '.json');
     }
 
     /**
@@ -30,7 +30,7 @@ class Favorites
      */
     public function add(string $activityId)
     {
-        return $this->fitbit->post('activities/favorite/' . $activityId . '.json');
+        return $this->fitbit->post(implode('/', ['activities', 'favorite', $activityId]) . '.json');
     }
 
     /**
@@ -40,6 +40,6 @@ class Favorites
      */
     public function remove(string $activityId)
     {
-        return $this->fitbit->delete('activities/favorite/' . $activityId . '.json');
+        return $this->fitbit->delete(implode('/', ['activities', 'favorite', $activityId]) . '.json');
     }
 }
