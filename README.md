@@ -1,4 +1,4 @@
-# fitbit-http-php
+# fitbit-http-php [![Build Status](https://travis-ci.org/namelivia/fitbit-http-php.svg?branch=master)](https://travis-ci.org/namelivia/fitbit-http-php) [![codecov](https://codecov.io/gh/namelivia/fitbit-http-php/branch/master/graph/badge.svg)](https://codecov.io/gh/namelivia/fitbit-http-php) [![StyleCI](https://github.styleci.io/repos/188383877/shield?branch=master)](https://github.styleci.io/repos/188383877)
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/1571416/58320709-9675d700-7e1c-11e9-8a4f-c082d68a7499.png" alt="Fitbit PHP SDK" />
