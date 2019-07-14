@@ -38,13 +38,13 @@ class Intraday
         $detailLevel = is_null($detailLevel) ? null : $detailLevel->asUrlParam();
 
 				return $this->fitbit->get(
-					implode('/',[
+					implode('/', array_filter([
             $resource->asUrlParam(),
             'date',
             $formattedDate,
             '1d',
             $detailLevel,
-					]) . '.json'
+					])) . '.json'
         );
     }
 
@@ -75,13 +75,13 @@ class Intraday
         $detailLevel = is_null($detailLevel) ? null : $detailLevel->asUrlParam();
 
         return $this->fitbit->get(
-					implode('/', [
+					implode('/', array_filter([
 						$resource->asUrlParam(),
             'date',
             $formattedDate ,
             '1d' ,
             $detailLevel
-					]) . '.json'
+					])) . '.json'
         );
     }
 
@@ -109,13 +109,13 @@ class Intraday
         $detailLevel = is_null($detailLevel) ? null : $detailLevel->asUrlParam();
 
         return $this->fitbit->get(
-					implode('/', [
+					implode('/', array_filter([
             $resource->asUrlParam(),
             'date',
             $formattedStartDate,
             $formattedEndDate,
             $detailLevel,
-					]) . '.json'
+					])) . '.json'
         );
     }
 
@@ -145,7 +145,7 @@ class Intraday
         $detailLevel = is_null($detailLevel) ? null : $detailLevel->asUrlParam();
 
         return $this->fitbit->get(
-					implode('/', [
+					implode('/', array_filter([
             $resource->asUrlParam(),
             'date',
             $formattedStartDate,
@@ -153,8 +153,8 @@ class Intraday
             'time',
             $formattedStartTime,
             $formattedEndTime,
-            $detailLevel->asUrlParam(),
-					]) . '.json'
+            $detailLevel,
+					])) . '.json'
         );
     }
 }
