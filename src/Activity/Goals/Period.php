@@ -6,12 +6,12 @@ namespace Namelivia\Fitbit\Activity\Goals;
 
 class Period
 {
-    const DAILY = 0;
-    const WEEKLY = 1;
+    const DAILY = 'daily';
+    const WEEKLY = 'weekly';
 
     private $period;
 
-    public function __construct(int $period)
+    public function __construct(string $period)
     {
         if ($period < self::DAILY || $period > self::WEEKLY) {
             //TODO: Throw an exception
@@ -19,16 +19,8 @@ class Period
         $this->period = $period;
     }
 
-    public function asUrlParam()
+    public function __toString()
     {
-        switch ($this->period) {
-            case self::DAILY:
-                return 'daily';
-            case self::WEEKLY:
-                return 'weekly';
-            default:
-                //TODO: Thrown an exception
-                return;
-        }
+        return $this->period;
     }
 }

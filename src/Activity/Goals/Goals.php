@@ -23,7 +23,7 @@ class Goals
      */
     public function get(Period $period)
     {
-        return $this->fitbit->get(implode('/', ['activities', 'goals', $period->asUrlParam()]) . '.json');
+        return $this->fitbit->get(implode('/', ['activities', 'goals', $period]) . '.json');
     }
 
     /**
@@ -37,6 +37,6 @@ class Goals
         Period $period,
         Goal $goal
     ) {
-        return $this->fitbit->post(implode('/', ['activities', 'goals', $period->asUrlParam()]) . '.json?' . $goal->asUrlParam());
+        return $this->fitbit->post(implode('/', ['activities', 'goals', $period]) . '.json?' . $goal->asUrlParam());
     }
 }

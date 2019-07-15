@@ -27,6 +27,6 @@ class Period
 
     public function __toString()
     {
-      return $this->period;
+        return $this->period;
     }
 }

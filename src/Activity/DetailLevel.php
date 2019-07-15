@@ -6,12 +6,12 @@ namespace Namelivia\Fitbit\Activity;
 
 class DetailLevel
 {
-    const ONE_MINUTE = 0;
-    const FIFTEEN_MINUTES = 1;
+    const ONE_MINUTE = '1min';
+    const FIFTEEN_MINUTES = '15min';
 
     private $detailLevel;
 
-    public function __construct(int $detailLevel)
+    public function __construct(string $detailLevel)
     {
         if ($detailLevel < self::ONE_MINUTE || $detailLevel > self::FIFTEEN_MINUTES) {
             //TOD: Throw an exception
@@ -19,16 +19,8 @@ class DetailLevel
         $this->detailLevel = $detailLevel;
     }
 
-    public function asUrlParam()
+    public function __toString()
     {
-        switch ($this->detailLevel) {
-            case self::ONE_MINUTE:
-                return '1min';
-            case self::FIFTEEN_MINUTES:
-                return '15min';
-            default:
-                //TODO: Thrown an exception
-                return;
-        }
+        return $this->detailLevel;
     }
 }

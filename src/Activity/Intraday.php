@@ -35,7 +35,7 @@ class Intraday
         DetailLevel $detailLevel = null
     ) {
         $formattedDate = $date->format('Y-m-d');
-        $detailLevel = is_null($detailLevel) ? null : $detailLevel->asUrlParam();
+        $detailLevel = is_null($detailLevel) ? null : $detailLevel;
 
         return $this->fitbit->get(
           implode('/', array_filter([
@@ -72,7 +72,7 @@ class Intraday
         $formattedDate = $date->format('Y-m-d');
         $formattedStartTime = $startTime->format('H:i:s');
         $formattedEndTime = $endTime->format('H:i:s');
-        $detailLevel = is_null($detailLevel) ? null : $detailLevel->asUrlParam();
+        $detailLevel = is_null($detailLevel) ? null : $detailLevel;
 
         return $this->fitbit->get(
           implode('/', array_filter([
@@ -106,7 +106,7 @@ class Intraday
     ) {
         $formattedStartDate = $startDate->format('Y-m-d');
         $formattedEndDate = $endDate->format('Y-m-d');
-        $detailLevel = is_null($detailLevel) ? null : $detailLevel->asUrlParam();
+        $detailLevel = is_null($detailLevel) ? null : $detailLevel;
 
         return $this->fitbit->get(
           implode('/', array_filter([
@@ -142,7 +142,7 @@ class Intraday
         $formattedStartTime = $startDateTime->format('H:i:s');
         $formattedEndDate = $endDateTime->format('Y-m-d');
         $formattedEndTime = $endDateTime->format('H:i:s');
-        $detailLevel = is_null($detailLevel) ? null : $detailLevel->asUrlParam();
+        $detailLevel = is_null($detailLevel) ? null : $detailLevel;
 
         return $this->fitbit->get(
           implode('/', array_filter([
