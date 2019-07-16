@@ -34,8 +34,6 @@ class Intraday
         AbstractResource $resource,
         DetailLevel $detailLevel = null
     ) {
-        $detailLevel = is_null($detailLevel) ? null : $detailLevel;
-
         return $this->fitbit->get(
           implode('/', array_filter([
             $resource,
@@ -68,12 +66,6 @@ class Intraday
         AbstractResource $resource,
         DetailLevel $detailLevel = null
     ) {
-			  //TODO: This seems wrong! 
-        $formattedDate = $date->format('Y-m-d');
-        $formattedStartTime = $startTime->format('H:i:s');
-        $formattedEndTime = $endTime->format('H:i:s');
-        $detailLevel = is_null($detailLevel) ? null : $detailLevel;
-
         return $this->fitbit->get(
           implode('/', array_filter([
             $resource,
@@ -81,6 +73,9 @@ class Intraday
             $date->format('Y-m-d'),
             '1d',
             $detailLevel,
+            'time',
+            $startTime->format('H:i:s'),
+            $endTime->format('H:i:s'),
           ])) . '.json'
         );
     }
@@ -104,15 +99,12 @@ class Intraday
         AbstractResource $resource,
         DetailLevel $detailLevel = null
     ) {
-        
-        $detailLevel = is_null($detailLevel) ? null : $detailLevel;
-
         return $this->fitbit->get(
           implode('/', array_filter([
             $resource,
             'date',
-						$startDate->format('Y-m-d'),
-						$endDate->format('Y-m-d'),
+            $startDate->format('Y-m-d'),
+            $endDate->format('Y-m-d'),
             $detailLevel,
           ])) . '.json'
         );
@@ -137,18 +129,16 @@ class Intraday
         AbstractResource $resource,
         DetailLevel $detailLevel = null
     ) {
-        $detailLevel = is_null($detailLevel) ? null : $detailLevel;
-
         return $this->fitbit->get(
           implode('/', array_filter([
             $resource,
             'date',
-						$startDateTime->format('Y-m-d'),
-						$endDateTime->format('Y-m-d'),
-            'time',
-        		$startDateTime->format('H:i:s'),
-        		$endDateTime->format('H:i:s'),
+            $startDateTime->format('Y-m-d'),
+            $endDateTime->format('Y-m-d'),
             $detailLevel,
+            'time',
+            $startDateTime->format('H:i:s'),
+            $endDateTime->format('H:i:s'),
           ])) . '.json'
         );
     }

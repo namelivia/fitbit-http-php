@@ -43,7 +43,7 @@ class IntradayTest extends TestCase
     {
         $this->fitbit->shouldReceive('get')
             ->once()
-            ->with('activities/calories/date/2019-03-21/1d.json')
+            ->with('activities/calories/date/2019-03-21/1d/time/03:00:00/04:00:00.json')
             ->andReturn('intradayForOneDayAndTimeRange');
         $this->assertEquals(
             'intradayForOneDayAndTimeRange',
@@ -77,7 +77,7 @@ class IntradayTest extends TestCase
     {
         $this->fitbit->shouldReceive('get')
             ->once()
-            ->with('activities/calories/date/2019-03-20/2019-03-22/time/02:00:00/06:00:00/1min.json')
+            ->with('activities/calories/date/2019-03-20/2019-03-22/1min/time/02:00:00/06:00:00.json')
             ->andReturn('intradayForADateTimeRange');
         $this->assertEquals(
             'intradayForADateTimeRange',

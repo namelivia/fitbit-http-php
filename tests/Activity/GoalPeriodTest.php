@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Namelivia\Fitbit\Tests;
 
-use Carbon\Carbon;
-use Mockery;
 use Namelivia\Fitbit\Activity\Goals\Period;
 
 class GoalPeriodTest extends TestCase

@@ -12,7 +12,8 @@ abstract class BasicEnum
     private static $constCacheArray = null;
     private static $className = null;
 
-    private static function getConstants() {
+    private static function getConstants()
+    {
         if (self::$constCacheArray == null) {
             self::$constCacheArray = [];
         }
@@ -24,12 +25,13 @@ abstract class BasicEnum
         return self::$constCacheArray[$calledClass];
     }
 
-    protected static function checkValidity($value) {
+    protected static function checkValidity($value)
+    {
         $constants = self::getConstants();
         if (!in_array($value, $constants)) {
-          throw new InvalidConstantValueException(
-            'The value ' . $value. ' is not a valid ' . get_called_class() . ' value'
-          );
+            throw new InvalidConstantValueException(
+              'The value ' . $value . ' is not a valid ' . get_called_class() . ' value'
+            );
         }
     }
 }
