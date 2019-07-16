@@ -21,9 +21,7 @@ class Period extends BasicEnum
 
     public function __construct(string $period)
     {
-				if (parent::isInvalid($period)) {
-            //TODO: Throw an exception
-        }
+        parent::checkValidity($period);
         $this->period = $period;
     }
 
