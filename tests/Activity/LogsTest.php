@@ -7,6 +7,7 @@ namespace Namelivia\Fitbit\Tests;
 use Carbon\Carbon;
 use Mockery;
 use Namelivia\Fitbit\Activity\Logs\ActivityLog;
+use Namelivia\Fitbit\Activity\Logs\CustomActivityLog;
 use Namelivia\Fitbit\Activity\Logs\Logs;
 use Namelivia\Fitbit\Api\Fitbit;
 
@@ -32,6 +33,20 @@ class LogsTest extends TestCase
             'loggedActivity',
             $this->logs->add(
                 new ActivityLog(10, Carbon::now(), 320)
+            )
+        );
+    }
+
+    public function testAddingACustomActivityLog()
+    {
+        $this->fitbit->shouldReceive('post')
+            ->once()
+            ->with('activities.json?startTime=10%3A25%3A40&durationMillis=320&date=2019-03-21&activityName=customActivity&manualCalories=160')
+            ->andReturn('loggedActivity');
+        $this->assertEquals(
+            'loggedActivity',
+            $this->logs->add(
+                new CustomActivityLog('customActivity', Carbon::now(), 320, 160)
             )
         );
     }
