@@ -34,14 +34,13 @@ class Intraday
         AbstractResource $resource,
         DetailLevel $detailLevel = null
     ) {
-        $formattedDate = $date->format('Y-m-d');
         $detailLevel = is_null($detailLevel) ? null : $detailLevel;
 
         return $this->fitbit->get(
           implode('/', array_filter([
-            $resource->asUrlParam(),
+            $resource,
             'date',
-            $formattedDate,
+            $date->format('Y-m-d'),
             '1d',
             $detailLevel,
           ])) . '.json'
@@ -69,6 +68,7 @@ class Intraday
         AbstractResource $resource,
         DetailLevel $detailLevel = null
     ) {
+			  //TODO: This seems wrong! 
         $formattedDate = $date->format('Y-m-d');
         $formattedStartTime = $startTime->format('H:i:s');
         $formattedEndTime = $endTime->format('H:i:s');
@@ -76,9 +76,9 @@ class Intraday
 
         return $this->fitbit->get(
           implode('/', array_filter([
-            $resource->asUrlParam(),
+            $resource,
             'date',
-            $formattedDate,
+            $date->format('Y-m-d'),
             '1d',
             $detailLevel,
           ])) . '.json'
@@ -104,16 +104,15 @@ class Intraday
         AbstractResource $resource,
         DetailLevel $detailLevel = null
     ) {
-        $formattedStartDate = $startDate->format('Y-m-d');
-        $formattedEndDate = $endDate->format('Y-m-d');
+        
         $detailLevel = is_null($detailLevel) ? null : $detailLevel;
 
         return $this->fitbit->get(
           implode('/', array_filter([
-            $resource->asUrlParam(),
+            $resource,
             'date',
-            $formattedStartDate,
-            $formattedEndDate,
+						$startDate->format('Y-m-d'),
+						$endDate->format('Y-m-d'),
             $detailLevel,
           ])) . '.json'
         );
@@ -138,21 +137,17 @@ class Intraday
         AbstractResource $resource,
         DetailLevel $detailLevel = null
     ) {
-        $formattedStartDate = $startDateTime->format('Y-m-d');
-        $formattedStartTime = $startDateTime->format('H:i:s');
-        $formattedEndDate = $endDateTime->format('Y-m-d');
-        $formattedEndTime = $endDateTime->format('H:i:s');
         $detailLevel = is_null($detailLevel) ? null : $detailLevel;
 
         return $this->fitbit->get(
           implode('/', array_filter([
-            $resource->asUrlParam(),
+            $resource,
             'date',
-            $formattedStartDate,
-            $formattedEndDate,
+						$startDateTime->format('Y-m-d'),
+						$endDateTime->format('Y-m-d'),
             'time',
-            $formattedStartTime,
-            $formattedEndTime,
+        		$startDateTime->format('H:i:s'),
+        		$endDateTime->format('H:i:s'),
             $detailLevel,
           ])) . '.json'
         );

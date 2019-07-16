@@ -63,16 +63,14 @@ class Logs
      * @param int $limit
      */
     public function listAfter(
-        Carbon $afterDate,
+        Carbon $date,
         string $sort,
         int $limit
     ) {
-        $formattedAfterDate = $afterDate->format('Y-m-d');
-
         return $this->fitbit->get(
             'activities/list.json?' .
             http_build_query([
-              'afterDate' => $formattedAfterDate,
+              'afterDate' => $date->format('Y-m-d'),
               'sort' => $sort,
               'limit' => $limit,
               'offset' => 0,
@@ -85,21 +83,19 @@ class Logs
      * entries before a given day with offset and limit using units in the unit system
      * which corresponds to the Accept-Language header provided.
      *
-     * @param Carbon $beforeDate
+     * @param Carbon $date
      * @param string $sort
      * @param int $limit
      */
     public function listBefore(
-        Carbon $beforeDate,
+        Carbon $date,
         string $sort,
         int $limit
     ) {
-        $formattedBeforeDate = $beforeDate->format('Y-m-d');
-
         return $this->fitbit->get(
             'activities/list.json?' .
             http_build_query([
-              'beforeDate' => $formattedBeforeDate,
+              'beforeDate' => $date->format('Y-m-d'),
               'sort' => $sort,
               'limit' => $limit,
               'offset' => 0,

@@ -4,58 +4,32 @@ declare(strict_types=1);
 
 namespace Namelivia\Fitbit\Activity\Resource;
 
-class AbstractResource
+use Namelivia\Fitbit\BasicEnum;
+
+class AbstractResource extends BasicEnum
 {
-    const CALORIES = 0;
-    const CALORIES_BMR = 1;
-    const STEPS = 2;
-    const DISTANCE = 3;
-    const FLOORS = 4;
-    const ELEVATION = 5;
-    const MINUTES_SEDENTARY = 6;
-    const MINUTES_LIGHTLY_ACTIVE = 7;
-    const MINUTES_FAIRLY_ACTIVE = 8;
-    const MINUTES_VERY_ACTIVE = 9;
-    const ACTIVITY_CALORIES = 10;
+    const CALORIES = 'calories';
+    const CALORIES_BMR = 'caloriesBRM';
+    const STEPS = 'steps';
+    const DISTANCE = 'distance';
+    const FLOORS = 'floors';
+    const ELEVATION = 'elevation';
+    const MINUTES_SEDENTARY = 'minutesSedentary';
+    const MINUTES_LIGHTLY_ACTIVE = 'minutesLightlyActive';
+    const MINUTES_FAIRLY_ACTIVE = 'minutesFairlyActive';
+    const MINUTES_VERY_ACTIVE = 'minutesVeryActive';
+    const ACTIVITY_CALORIES = 'activityCalories';
 
     private $resource;
 
-    public function __construct(int $resource)
+    public function __construct(string $resource)
     {
-        if ($resource < self::CALORIES || $resource > self::ACTIVITY_CALORIES) {
-            //TOD: Throw an exception
-        }
+        parent::checkValidity($resource);
         $this->resource = $resource;
     }
 
-    public function asUrlParam()
+    public function __toString()
     {
-        switch ($this->resource) {
-            case self::CALORIES:
-                return $this->getPath() . 'calories';
-            case self::CALORIES_BMR:
-                return $this->getPath() . 'caloriesBRM';
-            case self::STEPS:
-                return $this->getPath() . 'steps';
-            case self::DISTANCE:
-                return $this->getPath() . 'distance';
-            case self::FLOORS:
-                return $this->getPath() . 'floors';
-            case self::ELEVATION:
-                return $this->getPath() . 'elevation';
-            case self::MINUTES_SEDENTARY:
-                return $this->getPath() . 'minutesSedentary';
-            case self::MINUTES_LIGHTLY_ACTIVE:
-                return $this->getPath() . 'minutesLightlyActive';
-            case self::MINUTES_FAIRLY_ACTIVE:
-                return $this->getPath() . 'minutesFairlyActive';
-            case self::MINUTES_VERY_ACTIVE:
-                return $this->getPath() . 'minutesVeryActive';
-            case self::ACTIVITY_CALORIES:
-                return $this->getPath() . 'activityCalories';
-            default:
-                //TODO: Thrown an exception
-                return;
-        }
+        return $this->getPath() . $this->resource;
     }
 }

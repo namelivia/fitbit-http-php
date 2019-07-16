@@ -28,12 +28,10 @@ class TimeSeries
      */
     public function getByPeriod(AbstractResource $resource, Carbon $date, Period $period)
     {
-        $formattedDate = $date->format('Y-m-d');
-
         return $this->fitbit->get(implode('/', [
-            $resource->asUrlParam(),
+            $resource,
             'date',
-            $formattedDate,
+            $date->format('Y-m-d'),
             $period,
           ]) . '.json');
     }
@@ -52,14 +50,11 @@ class TimeSeries
         Carbon $baseDate,
         Carbon $endDate
     ) {
-        $formattedBaseDate = $baseDate->format('Y-m-d');
-        $formattedEndDate = $endDate->format('Y-m-d');
-
         return $this->fitbit->get(implode('/', [
-            $resource->asUrlParam(),
+            $resource,
             'date',
-            $formattedBaseDate,
-            $formattedEndDate,
+            $baseDate->format('Y-m-d'),
+            $endDate->format('Y-m-d'),
           ]) . '.json');
     }
 }
