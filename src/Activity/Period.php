@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Namelivia\Fitbit\Activity;
 
-class Period
+use Namelivia\Fitbit\BasicEnum;
+
+class Period extends BasicEnum
 {
     public const ONE_DAY = '1d';
     public const SEVEN_DAYS = '7d';
@@ -19,7 +21,7 @@ class Period
 
     public function __construct(string $period)
     {
-        if ($period < self::ONE_DAY || $period > self::ONE_MONTH) {
+				if (parent::isInvalid($period)) {
             //TODO: Throw an exception
         }
         $this->period = $period;
