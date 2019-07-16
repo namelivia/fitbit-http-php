@@ -13,21 +13,33 @@ use kamermans\OAuth2\Persistence\FileTokenPersistence;
 
 class Api
 {
-    private $clientId;
-    private $clientSecret;
-    private $redirectUrl;
+    private $client;
+    private $config;
+    private $tokenPersistence;
+    private $initialized;
+    private $tokenUrl = 'https://api.fitbit.com/oauth2/token';
+    private $authorizeUrl = 'https://www.fitbit.com/oauth2/authorize';
 
-    public function __construct(string $clientId, string $clientSecret, string $redirectUrl)
-    {
-        $this->clientId = $clientId;
-        $this->clientSecret = $clientSecret;
-        $this->redirectUrl = $redirectUrl;
+    public function __construct(
+        string $clientId,
+        string $clientSecret,
+        string $redirectUrl,
+        string $tokenPath
+    ) {
+        $this->config = [
+            'code' => null,
+            'client_id' => $clientId,
+            'client_secret' => $clientSecret,
+            'redirect_uri' => $redirectUrl,
+        ];
+        $this->tokenPersistence = new FileTokenPersistence($tokenPath);
+        $this->initialized = false;
     }
 
-    private function getAuthCode()
+    public function getAuthUri()
     {
-        $authUrl = 'https://www.fitbit.com/oauth2/authorize?' . http_build_query([
-            'client_id' => $this->clientId,
+        return $this->authorizeUrl . '?' . http_build_query([
+            'client_id' => $this->config['client_id'],
             'scope' => implode(' ', [
                 'activity',
                 'nutrition',
@@ -41,43 +53,49 @@ class Api
                 'weight',
             ]),
             'response_type' => 'code',
-            'redirect_uri' => $this->redirectUrl,
+            'redirect_uri' => $this->config['redirect_uri'],
             'expires_in' => '604800',
         ]);
-        $authClient = new Client([]);
-        $response = $authClient->get($authUrl);
-        //TODO: This won't be done like this in the future
-        echo 'Go to: ' . $authUrl . "\n";
-        echo "Enter verification code: \n";
+    }
 
-        return trim(fgets(STDIN, 1024));
+    public function setAuthorizationCode(string $code)
+    {
+        $this->config['code'] = $code;
+
+        return $this;
+    }
+
+    public function isAuthorized()
+    {
+        return $this->tokenPersistence->hasToken() || !is_null($this->config['code']);
+    }
+
+    public function isInitialized()
+    {
+        return $this->initialized;
+    }
+
+    public function initialize()
+    {
+        if (!$this->initialized) {
+            $reauthClient = new Client(['base_uri' => $this->tokenUrl]);
+            $oauth = new OAuth2Middleware(
+                new AuthorizationCode($reauthClient, $this->config),
+                new RefreshToken($reauthClient, $this->config)
+            );
+            $oauth->setTokenPersistence($this->tokenPersistence);
+            $stack = HandlerStack::create();
+            $stack->push($oauth);
+            $this->client = new Client([
+                'handler' => $stack,
+                'auth' => 'oauth',
+            ]);
+            $this->initialized = true;
+        }
     }
 
     public function getClient()
     {
-        $tokenStorage = new FileTokenPersistence('/tmp/token');
-        $authCode = $tokenStorage->hasToken() ? null : $this->getAuthCode();
-        $reauthClient = new Client([
-            'base_uri' => 'https://api.fitbit.com/oauth2/token',
-        ]);
-
-        $reauthConfig = [
-            'code' => $authCode,
-            'client_id' => $this->clientId,
-            'client_secret' => $this->clientSecret,
-            'redirect_uri' => $this->redirectUrl,
-        ];
-        $grantType = new AuthorizationCode($reauthClient, $reauthConfig);
-        $refreshGrantType = new RefreshToken($reauthClient, $reauthConfig);
-        $oauth = new OAuth2Middleware($grantType, $refreshGrantType);
-        $oauth->setTokenPersistence($tokenStorage);
-        $stack = HandlerStack::create();
-        $stack->push($oauth);
-
-        // This is the normal Guzzle client that you use in your application
-        return new Client([
-            'handler' => $stack,
-            'auth' => 'oauth',
-        ]);
+        return $this->client;
     }
 }
