@@ -74,8 +74,8 @@ class Intraday
             '1d',
             $detailLevel,
             'time',
-            $startTime->format('H:i:s'),
-            $endTime->format('H:i:s'),
+            $startTime->format('H:i'),
+            $endTime->format('H:i'),
           ])) . '.json'
         );
     }
@@ -137,8 +137,8 @@ class Intraday
             $endDateTime->format('Y-m-d'),
             $detailLevel,
             'time',
-            $startDateTime->format('H:i:s'),
-            $endDateTime->format('H:i:s'),
+            $startDateTime->format('H:i'),
+            $endDateTime->format('H:i'),
           ])) . '.json'
         );
     }
