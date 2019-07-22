@@ -11,6 +11,7 @@ use Namelivia\Fitbit\Api\Fitbit;
 class FitbitTest extends TestCase
 {
     private $client;
+    private $fitbit;
 
     public function setUp()
     {
