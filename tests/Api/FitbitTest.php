@@ -112,4 +112,9 @@ class FitbitTest extends TestCase
             $this->fitbit->delete('sampleurl')
         );
     }
+
+    public function testGettingAnActivitiesInstance()
+    {
+        $this->assertTrue($this->fitbit->activities() instanceof \Namelivia\Fitbit\Api\Activities);
+    }
 }
