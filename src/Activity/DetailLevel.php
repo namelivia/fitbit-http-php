@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Namelivia\Fitbit\Activity;
 
-class DetailLevel
+use Namelivia\Fitbit\BasicEnum;
+
+class DetailLevel extends BasicEnum
 {
     const ONE_MINUTE = '1min';
     const FIFTEEN_MINUTES = '15min';
@@ -13,9 +15,7 @@ class DetailLevel
 
     public function __construct(string $detailLevel)
     {
-        if ($detailLevel < self::ONE_MINUTE || $detailLevel > self::FIFTEEN_MINUTES) {
-            //TOD: Throw an exception
-        }
+        parent::checkValidity($detailLevel);
         $this->detailLevel = $detailLevel;
     }
 
