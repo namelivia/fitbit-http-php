@@ -60,15 +60,14 @@ class IntradayTest extends TestCase
     {
         $this->fitbit->shouldReceive('get')
             ->once()
-            ->with('activities/calories/date/2019-03-20/2019-03-22/1min.json')
+            ->with('activities/calories/date/2019-03-20/2019-03-22.json')
             ->andReturn('intradayForADateRange');
         $this->assertEquals(
             'intradayForADateRange',
             $this->intraday->getForADateRange(
                 Carbon::yesterday(),
                 Carbon::tomorrow(),
-                new Resource(Resource::CALORIES),
-                new DetailLevel(DetailLevel::ONE_MINUTE)
+                new Resource(Resource::CALORIES)
             )
         );
     }
