@@ -7,6 +7,7 @@ namespace Namelivia\Fitbit\Tests;
 use GuzzleHttp\Client;
 use Mockery;
 use Namelivia\Fitbit\Api\Fitbit;
+use Namelivia\Fitbit\Api\Api;
 
 class FitbitTest extends TestCase
 {
@@ -16,8 +17,13 @@ class FitbitTest extends TestCase
     public function setUp()
     {
         parent::setUp();
+        $api = Mockery::mock(Api::class);
         $this->client = Mockery::mock(Client::class);
-        $this->fitbit = new Fitbit($this->client);
+        $api->shouldReceive('getClient')
+          ->once()
+          ->with()
+          ->andReturn($this->client);
+        $this->fitbit = new Fitbit($api);
     }
 
     public function testMakingAGetCall()

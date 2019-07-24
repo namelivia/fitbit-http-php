@@ -14,9 +14,9 @@ class Fitbit
     private $client;
     private $activities;
 
-    public function __construct(Client $client)
+    public function __construct(Api $api)
     {
-        $this->client = $client;
+        $this->client = $api->getClient();
         $this->activities = new Activities($this);
     }
 
