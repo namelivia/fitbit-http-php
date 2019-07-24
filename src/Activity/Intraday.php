@@ -102,7 +102,7 @@ class Intraday
             $resource,
             'date',
             $startDate->format('Y-m-d'),
-            $endDate->format('Y-m-d')
+            $endDate->format('Y-m-d'),
           ])) . '.json'
         );
     }

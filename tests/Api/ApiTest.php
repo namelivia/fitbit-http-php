@@ -24,38 +24,38 @@ class ApiTest extends TestCase
 
     public function testAnApiStartsUninitialized()
     {
-      $this->assertFalse($this->api->isInitialized());
+        $this->assertFalse($this->api->isInitialized());
     }
 
     public function testAnApiStartsUnauthorized()
     {
-      $this->assertFalse($this->api->isAuthorized());
+        $this->assertFalse($this->api->isAuthorized());
     }
 
     public function testGettingAnAuthorizationUrl()
     {
-      $this->assertEquals(
-        'https://www.fitbit.com/oauth2/authorize?' .
-        'client_id=clientId' .
-        '&scope=activity+nutrition+heartrate+location+nutrition+' .
-        'profile+settings+sleep+social+weight' .
-        '&response_type=code&redirect_uri=redirectUrl&expires_in=604800',
-        $this->api->getAuthUri()
-      );
+        $this->assertEquals(
+          'https://www.fitbit.com/oauth2/authorize?' .
+          'client_id=clientId' .
+          '&scope=activity+nutrition+heartrate+location+nutrition+' .
+          'profile+settings+sleep+social+weight' .
+          '&response_type=code&redirect_uri=redirectUrl&expires_in=604800',
+          $this->api->getAuthUri()
+        );
     }
 
     public function testInitializingTheApi()
     {
-      $this->assertNull($this->api->getClient());
-      $this->api->initialize();
-      $this->assertTrue($this->api->isInitialized());
-      $this->assertTrue(is_a($this->api->getClient(), Client::class));
+        $this->assertNull($this->api->getClient());
+        $this->api->initialize();
+        $this->assertTrue($this->api->isInitialized());
+        $this->assertTrue(is_a($this->api->getClient(), Client::class));
     }
 
     public function testAuthorizingTheApiBySettingACode()
     {
-      $this->assertFalse($this->api->isAuthorized());
-      $this->api->setAuthorizationCode('authCode');
-      $this->assertTrue($this->api->isAuthorized());
+        $this->assertFalse($this->api->isAuthorized());
+        $this->api->setAuthorizationCode('authCode');
+        $this->assertTrue($this->api->isAuthorized());
     }
 }
