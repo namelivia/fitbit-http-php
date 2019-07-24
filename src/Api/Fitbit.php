@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Namelivia\Fitbit\Api;
 
-use GuzzleHttp\Client;
-
 class Fitbit
 {
     private $nonUserUrl = 'https://api.fitbit.com/1/';
