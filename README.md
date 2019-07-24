@@ -21,7 +21,7 @@ $ composer require namelivia/fitbit-http-php
 
 TODO
 
-### First steps
+### Provindg credentials
 ```php
 
 $api = new \Namelivia\Fitbit\Api\Api(
@@ -66,3 +66,7 @@ The full documentation can be found [in the wiki section of the github repositor
 ## License
 
 [MIT](LICENSE)
+
+## Contributing
+Any suggestion, bug reports, ons or any other kind enhacements are welcome. Just [open an
+issue first](https://github.com/namelivia/fitbit-http-php/issues/new), for creating a PR remember this project has linting checkings and unit tests so any PR should comply with both before beign merged, this checks will be automatically applied when opening or modifying the PR's.
