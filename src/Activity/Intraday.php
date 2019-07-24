@@ -91,21 +91,18 @@ class Intraday
      * @param Carbon $starDate
      * @param Carbon $endDate
      * @param string $resourcePath
-     * @param DetailLevel $detailLevel
      */
     public function getForADateRange(
         Carbon $startDate,
         Carbon $endDate,
-        AbstractResource $resource,
-        DetailLevel $detailLevel = null
+        AbstractResource $resource
     ) {
         return $this->fitbit->get(
           implode('/', array_filter([
             $resource,
             'date',
             $startDate->format('Y-m-d'),
-            $endDate->format('Y-m-d'),
-            $detailLevel,
+            $endDate->format('Y-m-d')
           ])) . '.json'
         );
     }
