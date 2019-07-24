@@ -32,7 +32,7 @@ All sections are planned, you can check the progress and planning by browsing th
 Require this package, with [Composer](https://getcomposer.org/), in the root directory of your project.
 
 ```bash
-$ composer require namelivia/fitbit-http-php:~0.1
+$ composer require namelivia/fitbit-http-php:~0.0.1
 ```
 
 ## Getting started
@@ -43,11 +43,11 @@ Once you submit the form and your application has ben registred, they will provi
 - Client Secret
 Also you will provide a callback URL is the URL the client will be redirected from the Fitbit Platfrom after authorizing your application to access their data.
 
-### Provindg credentials
-```php
+### Proving credentials
 
 Now to get started you need to create an new instance of the API like this, note that four strings parameters are required to do so:
 
+```php
 $api = new \Namelivia\Fitbit\Api\Api(
 	'someClientId', #clientId
 	'someClientSecret', #clientSecret
