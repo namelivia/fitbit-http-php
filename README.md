@@ -99,7 +99,7 @@ Everything is ready, you can start asking for the data.
 ```php
 $fitbit->activities()->favorites()->get();
 ```
-For further information 
+For further information refer to the documentation linked in the next section.
 
 ## Documentation
 
