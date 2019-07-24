@@ -6,4 +6,63 @@
 
 
 PHP SDK for accessing the Fitbit API
-Check the full documentation [on the project wiki](https://github.com/namelivia/fitbit-http-php/wiki)
+## TODO
+Currently only Activities are implemented.
+
+## Installation
+
+Require this package, with [Composer](https://getcomposer.org/), in the root directory of your project.
+
+```bash
+$ composer require namelivia/fitbit-http-php
+```
+
+## Getting started
+
+TODO
+
+### First steps
+```php
+
+$api = new \Namelivia\Fitbit\Api\Api(
+	'someClientId', #clientId
+	'someClientSecret', #clientSecret
+	'someRedirectUrl', #redirectUrl
+	'/tmp/token' #tokenPath
+);
+```
+
+- clientId: Your application client Id.
+- clientSecret: Your application client secret.
+- redirectUrl: Your application redirect URL.
+- tokenPath: Your token path.
+
+### Authorizing
+
+Before making requests, the application needs to be authorized.
+
+```php
+if (!$api->isAuthorized()) {
+	echo 'Go to: ' . $api->getAuthUri() . "\n";
+	echo "Enter verification code: \n";
+	$code = trim(fgets(STDIN, 1024));
+	$api->setAuthorizationCode($code);
+}
+```
+
+### Initializing
+
+Before making requests, the api client needs to be initialized.
+```php
+if (!$api->isInitialized()) {
+	$api->initialize();
+}
+```
+
+## Documentation
+
+The full documentation can be found [in the wiki section of the github repository](https://github.com/namelivia/fitbit-http-php/wiki).
+
+## License
+
+[MIT](LICENSE)
