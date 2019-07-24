@@ -1,0 +1,38 @@
+{
+    "name": "namelivia/fitbit-http-php",
+    "description": "PHP SDK for accessing the Fitbit API",
+    "license": "MIT",
+    "keywords": ["fitbit", "sdk", "api"],
+    "authors": [
+        {
+            "name": "José Ignacio Amelivia Santiago",
+            "email": "jignacio.amelivia@gmail.com",
+            "homepage": "https://namelivia.com"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "guzzlehttp/guzzle": "^6.3",
+        "kamermans/guzzle-oauth2-subscriber": "^1.0",
+        "nesbot/carbon": "^1.37"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.0",
+        "phpunit/phpunit": "^6.5|^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Namelivia\\Fitbit\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Namelivia\\Fitbit\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "preferred-install": "dist"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
