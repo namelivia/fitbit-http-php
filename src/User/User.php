@@ -27,6 +27,16 @@ class User
     }
 
     /**
+		 * Updates the current user profile.
+		 *
+		 * @param Profile $profile
+     */
+    public function updateProfile(Profile $profile)
+    {
+        return $this->fitbit->post('profile.json?' . $profile->asUrlParam());
+    }
+
+    /**
      * Retrieves the user's badges in the format requested. Response
      * includes all badges for the user as seen on the Fitbit website
      * badge locker (both activity and weight related.).
