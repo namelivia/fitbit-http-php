@@ -7,7 +7,9 @@ namespace Namelivia\Fitbit\Tests;
 use Mockery;
 use Namelivia\Fitbit\Api\Fitbit;
 use Namelivia\Fitbit\User\Gender;
+use Namelivia\Fitbit\User\GlucoseUnit;
 use Namelivia\Fitbit\User\Profile;
+use Namelivia\Fitbit\User\StartDay;
 use Namelivia\Fitbit\User\User;
 
 class UserTest extends TestCase
@@ -37,10 +39,11 @@ class UserTest extends TestCase
     public function testUpdatingTheCurrentUserProfile()
     {
         $profile = (new Profile())->setGender(new Gender(Gender::FEMALE))
-          ->setStartDayOfWeek('Sunday');
+          ->setStartDayOfWeek(new StartDay(StartDay::SUNDAY))
+        	->setGlucoseUnit(new GlucoseUnit(GlucoseUnit::INTERNATIONAL));
         $this->fitbit->shouldReceive('post')
             ->once()
-            ->with('profile.json?gender=FEMALE&startDayOfWeek=Sunday')
+            ->with('profile.json?gender=FEMALE&glucoseUnit=any&startDayOfWeek=Sunday')
             ->andReturn('updatedProfile');
         $this->assertEquals(
             'updatedProfile',

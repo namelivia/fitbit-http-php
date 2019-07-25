@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Namelivia\Fitbit\User;
 
+use Carbon\Carbon;
+
 class Profile
 {
     private $gender;
-    private $birhday;
+    private $birthday;
     private $height;
     private $aboutMe;
     private $fullname;
@@ -34,8 +36,8 @@ class Profile
     public function asUrlParam()
     {
         return http_build_query([
-            'gender' => (string) $this->gender,
-            'birhday' => $this->birhday,
+            'gender' => is_null($this->gender) ? null :(string) $this->gender,
+            'birthday' => $this->birthday,
             'height' => $this->height,
             'aboutMe' => $this->aboutMe,
             'fullname' => $this->fullname,
@@ -44,32 +46,18 @@ class Profile
             'city' => $this->city,
             'strideLengthWalking' => $this->strideLengthWalking,
             'strideLengthRunning' => $this->strideLengthRunning,
-            'weightUnit' => $this->weightUnit,
-            'heightUnit' => $this->heightUnit,
-            'waterUnit' => $this->waterUnit,
-            'glucoseUnit' => $this->glucoseUnit,
+            'weightUnit' => is_null($this->weightUnit) ? null : (string) $this->weightUnit,
+            'heightUnit' => is_null($this->heightUnit) ? null :(string) $this->heightUnit,
+            'waterUnit' => is_null($this->waterUnit) ? null : (string) $this->waterUnit,
+            'glucoseUnit' => is_null($this->glucoseUnit) ? null : (string) $this->glucoseUnit,
             'timezone' => $this->timezone,
             'foodsLocale' => $this->foodsLocale,
-            'locale' => $this->locale,
+            'locale' => is_null($this->locale) ? null : (string) $this->locale,
             'localeLang' => $this->localeLang,
             'localeCountry' => $this->localeCountry,
-            'startDayOfWeek' => $this->startDayOfWeek,
-            'clockTimeDisplayFormat' => $this->clockTimeDisplayFormat,
+            'startDayOfWeek' => is_null($this->startDayOfWeek) ? null : (string) $this->startDayOfWeek,
+            'clockTimeDisplayFormat' => is_null($this->clockTimeDisplayFormat) ? null : (string) $this->clockTimeDisplayFormat,
         ]);
-    }
-
-    /**
-     * Sets how trackers with a clock should display the time. Either 12hour or 24hour.
-     *
-     * @param $clockTimeDisplayFormat
-     *
-     * @return $this
-     */
-    public function setClockTimeDisplayFormat($clockTimeDisplayFormat)
-    {
-        $this->clockTimeDisplayFormat = $clockTimeDisplayFormat;
-
-        return $this;
     }
 
     /**
@@ -89,13 +77,13 @@ class Profile
     /**
      * Sets the date of birth.
      *
-     * @param $birthday
+     * @param Carbon $birthday
      *
      * @return $this
      */
-    public function setBirthday($birthday)
+    public function setBirthday(Carbon $birthday)
     {
-        $this->birthday = $birthday;
+        $this->birthday = $birthday->format('Y-m-d');
 
         return $this;
     }
@@ -103,13 +91,13 @@ class Profile
     /**
      * Sets the height in centimeters.
      *
-     * @param $height
+     * @param int $height
      *
      * @return $this
      */
-    public function setHeight($height)
+    public function setHeight(int $height)
     {
-        $this->height = $height;
+        $this->height = $height / 100;
 
         return $this;
     }
@@ -117,11 +105,11 @@ class Profile
     /**
      * Sets the about me string.
      *
-     * @param $aboutMe
+     * @param string $aboutMe
      *
      * @return $this
      */
-    public function setAboutMe($aboutMe)
+    public function setAboutMe(string $aboutMe)
     {
         $this->aboutMe = $aboutMe;
 
@@ -131,11 +119,11 @@ class Profile
     /**
      * Sets the full name.
      *
-     * @param $clockTimeDisplayFormat
+     * @param string $fullname
      *
      * @return $this
      */
-    public function setFullname($fullName)
+    public function setFullname(string $fullName)
     {
         $this->fullName = $fullName;
 
@@ -145,26 +133,28 @@ class Profile
     /**
      * Sets the country, accepts a two character code.
      *
-     * @param $country
+     * @param string $country
      *
      * @return $this
      */
-    public function setCountry($country)
+    public function setCountry(string $country)
     {
+			  //TODO: Countries as enum?
         $this->country = $country;
 
         return $this;
     }
 
     /**
-     * Sets the US State; two-character code; valid only if country was or being set to US.
+     * Sets the US State, two-character code, valid only if country was or being set to US.
      *
-     * @param $state
+     * @param string $state
      *
      * @return $this
      */
-    public function setState($state)
+    public function setState(string $state)
     {
+			  //TODO: States as enum?
         $this->state = $state;
 
         return $this;
@@ -173,11 +163,11 @@ class Profile
     /**
      * Sets the city.
      *
-     * @param $city
+     * @param string $city
      *
      * @return $this
      */
-    public function setCity($city)
+    public function setCity(string $city)
     {
         $this->city = $city;
 
@@ -187,13 +177,13 @@ class Profile
     /**
      * Sets the walking stride length in centimeters.
      *
-     * @param $strideLengthWalking
+     * @param int $strideLengthWalking
      *
      * @return $this
      */
-    public function setStrideLengthWalking($strideLengthWalking)
+    public function setStrideLengthWalking(int $strideLengthWalking)
     {
-        $this->strideLengthWalking = $strideLengthWalking;
+        $this->strideLengthWalking = $strideLengthWalking / 100;
 
         return $this;
     }
@@ -201,13 +191,13 @@ class Profile
     /**
      * Sets the running stride length in centimeters.
      *
-     * @param $strideLengthRunning
+     * @param int $strideLengthRunning
      *
      * @return $this
      */
-    public function setStrideLengthRunning($strideLengthRunning)
+    public function setStrideLengthRunning(int $strideLengthRunning)
     {
-        $this->strideLengthRunning = $strideLengthRunning;
+        $this->strideLengthRunning = $strideLengthRunning / 100;
 
         return $this;
     }
@@ -216,11 +206,11 @@ class Profile
      * Sets the default weight unit on website (doesn't affect API)
      * One of (en_US, en_GB, "any" for METRIC).
      *
-     * @param $weightUnit
+     * @param WeightUnit $weightUnit
      *
      * @return $this
      */
-    public function setWeightUnit($weightUnit)
+    public function setWeightUnit(WeightUnit $weightUnit)
     {
         $this->weightUnit = $weightUnit;
 
@@ -231,11 +221,11 @@ class Profile
      * Sets the default height/distance unit on website (doesn't affect API)
      * One of (en_US, "any" for METRIC).
      *
-     * @param $heightUnit
+     * @param HeightUnit $heightUnit
      *
      * @return $this
      */
-    public function setHeightUnit($heightUnit)
+    public function setHeightUnit(HeightUnit $heightUnit)
     {
         $this->heightUnit = $heightUnit;
 
@@ -246,11 +236,11 @@ class Profile
      * Sets the default water unit on website (doesn't affect API)
      * One of (en_US, "any" for METRIC).
      *
-     * @param $waterUnit
+     * @param WaterUnit $waterUnit
      *
      * @return $this
      */
-    public function setWaterUnit($waterUnit)
+    public function setWaterUnit(WaterUnit $waterUnit)
     {
         $this->waterUnit = $waterUnit;
 
@@ -261,11 +251,11 @@ class Profile
      * Sets the default glucose unit on website (doesn't affect API)
      * One of (en_US, "any" for METRIC).
      *
-     * @param $glucoseUnit
+     * @param GlucoseUnit $glucoseUnit
      *
      * @return $this
      */
-    public function setGlucoseUnit($glucoseUnit)
+    public function setGlucoseUnit(GlucoseUnit $glucoseUnit)
     {
         $this->glucoseUnit = $glucoseUnit;
 
@@ -275,12 +265,13 @@ class Profile
     /**
      * Sets the timezone in the format "America/Los_Angeles".
      *
-     * @param $timezone
+     * @param string $timezone
      *
      * @return $this
      */
-    public function setTimezone($timeZone)
+    public function setTimezone(string $timeZone)
     {
+			  //TODO: Can I get a list of timezones?
         $this->timeZone = $timeZone;
 
         return $this;
@@ -289,12 +280,13 @@ class Profile
     /**
      * Sets the food database locale; in the format "xx_XX".
      *
-     * @param $foodsLocale
+     * @param string $foodsLocale
      *
      * @return $this
      */
-    public function setFoodsLocale($foodsLocale)
+    public function setFoodsLocale(string $foodsLocale)
     {
+			  //TODO: Can I get a list of locales?
         $this->foodsLocale = $foodsLocale;
 
         return $this;
@@ -304,11 +296,11 @@ class Profile
      * Sets the ocale of website (country/language)
      * One of the locales, currently – (en_US, fr_FR, de_DE, es_ES, en_GB, en_AU, en_NZ, ja_JP).
      *
-     * @param $locale
+     * @param Language $locale
      *
      * @return $this
      */
-    public function setLocale($locale)
+    public function setLocale(Language $locale)
     {
         $this->locale = $locale;
 
@@ -351,14 +343,29 @@ class Profile
     /**
      * Sets what day the week should start on. Either Sunday or Monday.
      *
-     * @param $startDayOfWeek
+     * @param StartDay $startDayOfWeek
      *
      * @return $this
      */
-    public function setStartDayOfWeek($startDayOfWeek)
+    public function setStartDayOfWeek(StartDay $startDayOfWeek)
     {
         $this->startDayOfWeek = $startDayOfWeek;
 
         return $this;
     }
+
+    /**
+     * Sets how trackers with a clock should display the time. Either 12hour or 24hour.
+     *
+     * @param TimeFormat $clockTimeDisplayFormat
+     *
+     * @return $this
+     */
+    public function setClockTimeDisplayFormat(TimeFormat $clockTimeDisplayFormat)
+    {
+        $this->clockTimeDisplayFormat = $clockTimeDisplayFormat;
+
+        return $this;
+    }
+
 }
