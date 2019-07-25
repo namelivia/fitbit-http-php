@@ -40,7 +40,7 @@ class UserTest extends TestCase
     {
         $profile = (new Profile())->setGender(new Gender(Gender::FEMALE))
           ->setStartDayOfWeek(new StartDay(StartDay::SUNDAY))
-        	->setGlucoseUnit(new GlucoseUnit(GlucoseUnit::INTERNATIONAL));
+          ->setGlucoseUnit(new GlucoseUnit(GlucoseUnit::INTERNATIONAL));
         $this->fitbit->shouldReceive('post')
             ->once()
             ->with('profile.json?gender=FEMALE&glucoseUnit=any&startDayOfWeek=Sunday')

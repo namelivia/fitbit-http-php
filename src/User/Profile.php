@@ -36,7 +36,7 @@ class Profile
     public function asUrlParam()
     {
         return http_build_query([
-            'gender' => is_null($this->gender) ? null :(string) $this->gender,
+            'gender' => is_null($this->gender) ? null : (string) $this->gender,
             'birthday' => $this->birthday,
             'height' => $this->height,
             'aboutMe' => $this->aboutMe,
@@ -47,7 +47,7 @@ class Profile
             'strideLengthWalking' => $this->strideLengthWalking,
             'strideLengthRunning' => $this->strideLengthRunning,
             'weightUnit' => is_null($this->weightUnit) ? null : (string) $this->weightUnit,
-            'heightUnit' => is_null($this->heightUnit) ? null :(string) $this->heightUnit,
+            'heightUnit' => is_null($this->heightUnit) ? null : (string) $this->heightUnit,
             'waterUnit' => is_null($this->waterUnit) ? null : (string) $this->waterUnit,
             'glucoseUnit' => is_null($this->glucoseUnit) ? null : (string) $this->glucoseUnit,
             'timezone' => $this->timezone,
@@ -139,7 +139,7 @@ class Profile
      */
     public function setCountry(string $country)
     {
-			  //TODO: Countries as enum?
+        //TODO: Countries as enum?
         $this->country = $country;
 
         return $this;
@@ -154,7 +154,7 @@ class Profile
      */
     public function setState(string $state)
     {
-			  //TODO: States as enum?
+        //TODO: States as enum?
         $this->state = $state;
 
         return $this;
@@ -271,7 +271,7 @@ class Profile
      */
     public function setTimezone(string $timeZone)
     {
-			  //TODO: Can I get a list of timezones?
+        //TODO: Can I get a list of timezones?
         $this->timeZone = $timeZone;
 
         return $this;
@@ -286,7 +286,7 @@ class Profile
      */
     public function setFoodsLocale(string $foodsLocale)
     {
-			  //TODO: Can I get a list of locales?
+        //TODO: Can I get a list of locales?
         $this->foodsLocale = $foodsLocale;
 
         return $this;
@@ -367,5 +367,4 @@ class Profile
 
         return $this;
     }
-
 }
