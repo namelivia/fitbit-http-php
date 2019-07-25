@@ -25,4 +25,14 @@ class User
     {
         return $this->fitbit->get('profile.json');
     }
+
+    /**
+     * Retrieves the user's badges in the format requested. Response
+     * includes all badges for the user as seen on the Fitbit website
+     * badge locker (both activity and weight related.).
+     */
+    public function getBadges()
+    {
+        return $this->fitbit->get('badges.json');
+    }
 }

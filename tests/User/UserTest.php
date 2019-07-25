@@ -31,4 +31,16 @@ class UserTest extends TestCase
             $this->user->getProfile()
         );
     }
+
+    public function testGettingTheCurrentUserBadges()
+    {
+        $this->fitbit->shouldReceive('get')
+            ->once()
+            ->with('badges.json')
+            ->andReturn('userBadges');
+        $this->assertEquals(
+            'userBadges',
+            $this->user->getBadges()
+        );
+    }
 }
