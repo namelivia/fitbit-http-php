@@ -27,9 +27,9 @@ class User
     }
 
     /**
-		 * Updates the current user profile.
-		 *
-		 * @param Profile $profile
+     * Updates the current user profile.
+     *
+     * @param Profile $profile
      */
     public function updateProfile(Profile $profile)
     {
