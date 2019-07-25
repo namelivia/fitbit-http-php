@@ -14,11 +14,12 @@ class User
     {
         $this->fitbit = $fitbit;
     }
+
     /**
-     * Returns a user's profile. The authenticated owner receives 
+     * Returns a user's profile. The authenticated owner receives
      * all values. Access to other user's profile is not available.
      * If you wish to retrieve the profile information of the
-     * authenticated owner's friends, use GetFriends
+     * authenticated owner's friends, use GetFriends.
      */
     public function getProfile()
     {
