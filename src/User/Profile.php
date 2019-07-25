@@ -34,7 +34,7 @@ class Profile
     public function asUrlParam()
     {
         return http_build_query([
-            'gender' => $this->gender,
+            'gender' => (string) $this->gender,
             'birhday' => $this->birhday,
             'height' => $this->height,
             'aboutMe' => $this->aboutMe,
@@ -75,11 +75,11 @@ class Profile
     /**
      * Sets gender, more accurately, sex; (MALE/FEMALE/NA).
      *
-     * @param $gender
+     * @param Gender $gender
      *
      * @return $this
      */
-    public function setGender($gender)
+    public function setGender(Gender $gender)
     {
         $this->gender = $gender;
 
