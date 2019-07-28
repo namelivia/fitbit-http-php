@@ -23,9 +23,8 @@ class Logs
      *
      * @param Log $log
      */
-    public function add(
-        Log $log
-    ) {
+    public function add(Log $log)
+    {
         return $this->fitbit->post('activities.json?' . $log->asUrlParam());
     }
 
