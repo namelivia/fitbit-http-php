@@ -123,9 +123,9 @@ class Profile
      *
      * @return $this
      */
-    public function setFullname(string $fullName)
+    public function setFullname(string $fullname)
     {
-        $this->fullName = $fullName;
+        $this->fullname = $fullname;
 
         return $this;
     }
@@ -269,10 +269,10 @@ class Profile
      *
      * @return $this
      */
-    public function setTimezone(string $timeZone)
+    public function setTimezone(string $timezone)
     {
         //TODO: Timezone as an enum?
-        $this->timeZone = $timeZone;
+        $this->timezone = $timezone;
 
         return $this;
     }
