@@ -72,7 +72,7 @@ class ProfileTest extends TestCase
             $this->profile->setCountry('AU')->asUrlParam()
         );
     }
- 
+
     public function testSettingAndPrintingTheState()
     {
         $this->assertEquals(
