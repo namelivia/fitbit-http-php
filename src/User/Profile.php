@@ -271,7 +271,7 @@ class Profile
      */
     public function setTimezone(string $timeZone)
     {
-        //TODO: Can I get a list of timezones?
+        //TODO: Timezone as an enum?
         $this->timeZone = $timeZone;
 
         return $this;
@@ -286,7 +286,7 @@ class Profile
      */
     public function setFoodsLocale(string $foodsLocale)
     {
-        //TODO: Can I get a list of locales?
+        //TODO: Locales as an enum?
         $this->foodsLocale = $foodsLocale;
 
         return $this;
@@ -313,12 +313,13 @@ class Profile
      * You should specify either locale or both - localeLang and
      * localeCountry (locale is higher priority).
      *
-     * @param $localeLang
+     * @param string $localeLang
      *
      * @return $this
      */
-    public function setLocaleLang($localeLang)
+    public function setLocaleLang(string $localeLang)
     {
+        //TODO: Locales as an enum?
         $this->localeLang = $localeLang;
 
         return $this;
@@ -329,12 +330,13 @@ class Profile
      * You should specify either locale or both - localeLang and
      * localeCountry (locale is higher priority).
      *
-     * @param $localeCountry
+     * @param string $localeCountry
      *
      * @return $this
      */
-    public function setLocaleCountry($localeCountry)
+    public function setLocaleCountry(string $localeCountry)
     {
+        //TODO: Locales as an enum?
         $this->localeCountry = $localeCountry;
 
         return $this;
