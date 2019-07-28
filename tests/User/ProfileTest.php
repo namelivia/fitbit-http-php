@@ -164,8 +164,8 @@ class ProfileTest extends TestCase
     public function testSettingAndPrintingTheLocaleLang()
     {
         $this->assertEquals(
-            'localeLang=es_AR',
-            $this->profile->setLocaleLang('es_AR')->asUrlParam()
+            'localeLang=es',
+            $this->profile->setLocaleLang('es')->asUrlParam()
         );
     }
 
