@@ -14,12 +14,12 @@ all data hold on their platform from Activity Logs to Sleep or Heart Rate inform
 
 - Activities & Exercise Logs
 - User
+- Heart Rate
 
 While these other are still pending:
 
 - Subscriptions
 - Sleep
-- Heart Rate
 - Friends
 - Food Logging
 - Devices

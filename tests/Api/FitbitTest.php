@@ -8,6 +8,7 @@ use GuzzleHttp\Client;
 use Mockery;
 use Namelivia\Fitbit\Api\Api;
 use Namelivia\Fitbit\Api\Fitbit;
+use Namelivia\Fitbit\Api\HeartRate;
 
 class FitbitTest extends TestCase
 {
@@ -127,5 +128,10 @@ class FitbitTest extends TestCase
     public function testGettingAUserInstance()
     {
         $this->assertTrue($this->fitbit->user() instanceof \Namelivia\Fitbit\Api\User);
+    }
+
+    public function testGettingAHeartRateInstance()
+    {
+        $this->assertTrue($this->fitbit->heartRate() instanceof \Namelivia\Fitbit\Api\HeartRate);
     }
 }

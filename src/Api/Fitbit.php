@@ -12,12 +12,14 @@ class Fitbit
     private $client;
     private $activities;
     private $user;
+    private $heartRate;
 
     public function __construct(Api $api)
     {
         $this->client = $api->getClient();
         $this->activities = new Activities($this);
         $this->user = new User($this);
+        $this->heartRate = new HeartRate($this);
     }
 
     public function get($url)
@@ -67,5 +69,10 @@ class Fitbit
     public function user()
     {
         return $this->user;
+    }
+
+    public function heartRate()
+    {
+        return $this->heartRate;
     }
 }
