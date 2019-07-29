@@ -8,7 +8,6 @@ use GuzzleHttp\Client;
 use Mockery;
 use Namelivia\Fitbit\Api\Api;
 use Namelivia\Fitbit\Api\Fitbit;
-use Namelivia\Fitbit\Api\HeartRate;
 
 class FitbitTest extends TestCase
 {
