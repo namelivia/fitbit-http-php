@@ -7,8 +7,8 @@ namespace Namelivia\Fitbit\Tests;
 use Carbon\Carbon;
 use Mockery;
 use Namelivia\Fitbit\Api\Fitbit;
-use Namelivia\Fitbit\HeartRate\Period;
 use Namelivia\Fitbit\HeartRAte\HeartRate;
+use Namelivia\Fitbit\HeartRate\Period;
 
 class HeartRateTest extends TestCase
 {
