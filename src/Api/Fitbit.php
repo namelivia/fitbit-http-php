@@ -8,6 +8,7 @@ class Fitbit
 {
     private $nonUserUrl = 'https://api.fitbit.com/1/';
     private $baseUrl = 'https://api.fitbit.com/1/user/';
+    private $v12Url = 'https://api.fitbit.com/1.2/user/';
     private $userId = '-';
     private $client;
     private $activities;
@@ -36,6 +37,14 @@ class Fitbit
     {
         return $this->client->get(
             $this->nonUserUrl . $url
+        )->getBody()->getContents();
+    }
+
+    //TODO: Ugh! I hate doing this
+    public function getv12Endpoint($url)
+    {
+        return $this->client->get(
+            $this->v12Url. $this->userId . '/' . $url
         )->getBody()->getContents();
     }
 
