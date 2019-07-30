@@ -128,4 +128,9 @@ class FitbitTest extends TestCase
     {
         $this->assertTrue($this->fitbit->user() instanceof \Namelivia\Fitbit\Api\User);
     }
+
+    public function testGettingAHeartRateInstance()
+    {
+        $this->assertTrue($this->fitbit->heartRate() instanceof \Namelivia\Fitbit\Api\HeartRate);
+    }
 }
