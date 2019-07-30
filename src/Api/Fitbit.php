@@ -44,7 +44,7 @@ class Fitbit
     public function getv12Endpoint($url)
     {
         return $this->client->get(
-            $this->v12Url. $this->userId . '/' . $url
+            $this->v12Url . $this->userId . '/' . $url
         )->getBody()->getContents();
     }
 

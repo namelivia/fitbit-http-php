@@ -47,9 +47,9 @@ class SleepLogs
      */
     public function getByDateRange(Carbon $startDate, Carbon $endDate)
     {
-      return $this->fitbit->getv12Endpoint(
-        implode('/', ['sleep', 'date', $startDate->format('Y-m-d'), $endDate->format('Y-m-d')]) . '.json'
-      );
+        return $this->fitbit->getv12Endpoint(
+          implode('/', ['sleep', 'date', $startDate->format('Y-m-d'), $endDate->format('Y-m-d')]) . '.json'
+        );
     }
 
     /**
