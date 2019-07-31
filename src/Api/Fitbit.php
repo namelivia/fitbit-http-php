@@ -49,7 +49,7 @@ class Fitbit
     }
 
     //TODO: Ugh! I hate doing this
-    public function post12Endpoint($url)
+    public function postv12Endpoint($url)
     {
         return $this->client->post(
             $this->v12Url . $this->userId . '/' . $url

@@ -24,4 +24,9 @@ class ApiSleepLogsTest extends TestCase
     {
         $this->assertTrue($this->sleepLogs->sleepLogs() instanceof \Namelivia\Fitbit\SleepLogs\SleepLogs);
     }
+
+    public function testGettingAGoalsInstance()
+    {
+        $this->assertTrue($this->sleepLogs->goals() instanceof \Namelivia\Fitbit\SleepLogs\Goals);
+    }
 }

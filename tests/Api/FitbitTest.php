@@ -58,6 +58,38 @@ class FitbitTest extends TestCase
         );
     }
 
+    public function testMakingAGetCallToAV12Endpoint()
+    {
+        $this->client->shouldReceive('get')
+            ->once()
+            ->with('https://api.fitbit.com/1.2/user/-/sampleurl')
+            ->andReturn($this->client);
+        $this->client->shouldReceive('getBody->getContents')
+            ->once()
+            ->with()
+            ->andReturn('responseContent');
+        $this->assertEquals(
+            'responseContent',
+            $this->fitbit->getv12Endpoint('sampleurl')
+        );
+    }
+
+    public function testMakingAPostCallToAV12Endpoint()
+    {
+        $this->client->shouldReceive('post')
+            ->once()
+            ->with('https://api.fitbit.com/1.2/user/-/sampleurl')
+            ->andReturn($this->client);
+        $this->client->shouldReceive('getBody->getContents')
+            ->once()
+            ->with()
+            ->andReturn('responseContent');
+        $this->assertEquals(
+            'responseContent',
+            $this->fitbit->postv12Endpoint('sampleurl')
+        );
+    }
+
     public function testMakingAPostCall()
     {
         $this->client->shouldReceive('post')

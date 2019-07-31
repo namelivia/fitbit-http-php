@@ -63,7 +63,7 @@ class SleepLogs
      */
     public function add(Log $log)
     {
-        return $this->fitbit->post('sleep.json?' . $log->asUrlParam());
+        return $this->fitbit->postv12Endpoint('sleep.json?' . $log->asUrlParam());
     }
 
     /**
