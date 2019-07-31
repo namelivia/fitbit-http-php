@@ -53,6 +53,31 @@ class SleepLogs
     }
 
     /**
+     * Creates an entry for an sleep event
+     * and get a response in the format requested.
+     * Keep in mind that it is NOT possible to create overlapping log entries.
+     * The Log dateOfSleep in the response for the sleep log is the date on which
+     * the sleep event ends.
+     *
+     * @param Log $log
+     */
+    public function add(Log $log)
+    {
+        return $this->fitbit->post('sleep.json?' . $log->asUrlParam());
+    }
+
+    /**
+     * Deletes a user's sleep log entry with the given ID.
+     * A successful request will return a 204 status code with an empty response body.
+     *
+     * @param string $sleepLogId
+     */
+    public function remove(string $sleepLogId)
+    {
+        return $this->fitbit->delete('sleep/' . $sleepLogId . '.json');
+    }
+
+    /**
      * Retrieves a list of a user's sleeps logs (including naps).
      * entries after a given day with offset and limit using units in the unit system
      * which corresponds to the Accept-Language header provided.

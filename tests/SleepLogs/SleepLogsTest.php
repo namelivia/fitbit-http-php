@@ -7,6 +7,7 @@ namespace Namelivia\Fitbit\Tests;
 use Carbon\Carbon;
 use Mockery;
 use Namelivia\Fitbit\Api\Fitbit;
+use Namelivia\Fitbit\SleepLogs\Log;
 use Namelivia\Fitbit\SleepLogs\SleepLogs;
 
 class SleepLogsTest extends TestCase
@@ -19,6 +20,33 @@ class SleepLogsTest extends TestCase
         parent::setUp();
         $this->fitbit = Mockery::mock(Fitbit::class);
         $this->sleepLogs = new SleepLogs($this->fitbit);
+    }
+
+    public function testAddingALog()
+    {
+        $this->fitbit->shouldReceive('post')
+            ->once()
+            ->with('sleep.json?startTime=10%3A25%3A40&durationMillis=320&date=2019-03-21')
+            ->andReturn('loggedSleep');
+        $this->assertEquals(
+            'loggedSleep',
+            $this->sleepLogs->add(
+                new Log(Carbon::now(), 320)
+            )
+        );
+    }
+
+    public function testRemovingASleepLog()
+    {
+			  $sleepLogId = '1';
+        $this->fitbit->shouldReceive('delete')
+            ->once()
+            ->with('sleep/1.json')
+            ->andReturn('');
+        $this->assertEquals(
+            '',
+            $this->sleepLogs->remove($sleepLogId)
+        );
     }
 
     public function testGettingLogsByDate()

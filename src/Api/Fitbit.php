@@ -48,6 +48,14 @@ class Fitbit
         )->getBody()->getContents();
     }
 
+    //TODO: Ugh! I hate doing this
+    public function post12Endpoint($url)
+    {
+        return $this->client->post(
+            $this->v12Url . $this->userId . '/' . $url
+        )->getBody()->getContents();
+    }
+
     public function post($url)
     {
         return $this->client->post(
