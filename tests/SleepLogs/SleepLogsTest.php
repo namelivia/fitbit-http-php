@@ -38,7 +38,7 @@ class SleepLogsTest extends TestCase
 
     public function testRemovingASleepLog()
     {
-			  $sleepLogId = '1';
+        $sleepLogId = '1';
         $this->fitbit->shouldReceive('delete')
             ->once()
             ->with('sleep/1.json')
