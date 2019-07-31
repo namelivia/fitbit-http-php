@@ -17,7 +17,6 @@ class Goals
 
     /**
      * Retrieves a user's current daily sleep goal in minutes.
-     *
      */
     public function get()
     {
@@ -29,7 +28,8 @@ class Goals
      *
      * @param int $duration
      */
-    public function update(int $duration) {
+    public function update(int $duration)
+    {
         return $this->fitbit->post(implode('/', ['sleep', 'goal']) . '.json?minDuration=' . $duration);
     }
 }

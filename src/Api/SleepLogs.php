@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Namelivia\Fitbit\Api;
 
-use Namelivia\Fitbit\SleepLogs\SleepLogs as SleepLogsOperations;
 use Namelivia\Fitbit\SleepLogs\Goals;
+use Namelivia\Fitbit\SleepLogs\SleepLogs as SleepLogsOperations;
 
 class SleepLogs
 {
