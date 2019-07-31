@@ -26,7 +26,7 @@ class SleepLogsTest extends TestCase
     {
         $this->fitbit->shouldReceive('post')
             ->once()
-            ->with('sleep.json?startTime=10%3A25%3A40&durationMillis=320&date=2019-03-21')
+            ->with('sleep.json?startTime=10%3A25&duration=320&date=2019-03-21')
             ->andReturn('loggedSleep');
         $this->assertEquals(
             'loggedSleep',

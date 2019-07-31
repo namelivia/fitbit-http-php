@@ -16,7 +16,7 @@ class Log
         Carbon $startDateTime,
         int $durationMillis
     ) {
-        $this->startTime = $startDateTime->format('H:i:s');
+        $this->startTime = $startDateTime->format('H:i');
         $this->durationMillis = $durationMillis;
         $this->date = $startDateTime->format('Y-m-d');
     }
@@ -28,7 +28,7 @@ class Log
     {
         return http_build_query([
             'startTime' => $this->startTime,
-            'durationMillis' => $this->durationMillis,
+            'duration' => $this->durationMillis,
             'date' => $this->date,
         ]);
     }
