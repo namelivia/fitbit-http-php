@@ -29,7 +29,7 @@ class Log
         return http_build_query([
             'startTime' => $this->startTime,
             'durationMillis' => $this->durationMillis,
-            'date' => $this->date
+            'date' => $this->date,
         ]);
     }
 }
