@@ -8,11 +8,13 @@ class Fitbit
 {
     private $nonUserUrl = 'https://api.fitbit.com/1/';
     private $baseUrl = 'https://api.fitbit.com/1/user/';
+    private $v12Url = 'https://api.fitbit.com/1.2/user/';
     private $userId = '-';
     private $client;
     private $activities;
     private $user;
     private $heartRate;
+    private $sleepLogs;
 
     public function __construct(Api $api)
     {
@@ -20,6 +22,7 @@ class Fitbit
         $this->activities = new Activities($this);
         $this->user = new User($this);
         $this->heartRate = new HeartRate($this);
+        $this->sleepLogs = new SleepLogs($this);
     }
 
     public function get($url)
@@ -34,6 +37,22 @@ class Fitbit
     {
         return $this->client->get(
             $this->nonUserUrl . $url
+        )->getBody()->getContents();
+    }
+
+    //TODO: Ugh! I hate doing this
+    public function getv12Endpoint($url)
+    {
+        return $this->client->get(
+            $this->v12Url . $this->userId . '/' . $url
+        )->getBody()->getContents();
+    }
+
+    //TODO: Ugh! I hate doing this
+    public function postv12Endpoint($url)
+    {
+        return $this->client->post(
+            $this->v12Url . $this->userId . '/' . $url
         )->getBody()->getContents();
     }
 
@@ -74,5 +93,10 @@ class Fitbit
     public function heartRate()
     {
         return $this->heartRate;
+    }
+
+    public function sleepLogs()
+    {
+        return $this->sleepLogs;
     }
 }
