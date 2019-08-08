@@ -23,6 +23,7 @@ class Fitbit
         $this->user = new User($this);
         $this->heartRate = new HeartRate($this);
         $this->sleepLogs = new SleepLogs($this);
+        $this->friends = new Friends($this);
     }
 
     public function get($url)
@@ -98,5 +99,10 @@ class Fitbit
     public function sleepLogs()
     {
         return $this->sleepLogs;
+    }
+
+    public function friends()
+    {
+        return $this->friends;
     }
 }

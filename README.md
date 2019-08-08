@@ -16,11 +16,11 @@ all data hold on their platform from Activity Logs to Sleep or Heart Rate inform
 - User
 - Heart Rate
 - Sleep
+- Friends
 
 While these other are still pending:
 
 - Subscriptions
-- Friends
 - Food Logging
 - Devices
 - Body & Weight

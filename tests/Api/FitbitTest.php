@@ -170,4 +170,9 @@ class FitbitTest extends TestCase
     {
         $this->assertTrue($this->fitbit->sleepLogs() instanceof \Namelivia\Fitbit\Api\SleepLogs);
     }
+
+    public function testGettingAFriendsInstance()
+    {
+        $this->assertTrue($this->fitbit->friends() instanceof \Namelivia\Fitbit\Api\Friends);
+    }
 }
