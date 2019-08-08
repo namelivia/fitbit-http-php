@@ -8,6 +8,7 @@ class Fitbit
 {
     private $nonUserUrl = 'https://api.fitbit.com/1/';
     private $baseUrl = 'https://api.fitbit.com/1/user/';
+    private $v11Url = 'https://api.fitbit.com/1.1/user/';
     private $v12Url = 'https://api.fitbit.com/1.2/user/';
     private $userId = '-';
     private $client;
@@ -23,6 +24,7 @@ class Fitbit
         $this->user = new User($this);
         $this->heartRate = new HeartRate($this);
         $this->sleepLogs = new SleepLogs($this);
+        $this->friends = new Friends($this);
     }
 
     public function get($url)
@@ -37,6 +39,22 @@ class Fitbit
     {
         return $this->client->get(
             $this->nonUserUrl . $url
+        )->getBody()->getContents();
+    }
+
+    //TODO: Ugh! I hate doing this
+    public function getv11Endpoint($url)
+    {
+        return $this->client->get(
+            $this->v11Url . $this->userId . '/' . $url
+        )->getBody()->getContents();
+    }
+
+    //TODO: Ugh! I hate doing this
+    public function postv11Endpoint($url)
+    {
+        return $this->client->post(
+            $this->v11Url . $this->userId . '/' . $url
         )->getBody()->getContents();
     }
 
@@ -98,5 +116,10 @@ class Fitbit
     public function sleepLogs()
     {
         return $this->sleepLogs;
+    }
+
+    public function friends()
+    {
+        return $this->friends;
     }
 }

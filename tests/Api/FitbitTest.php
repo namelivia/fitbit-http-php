@@ -58,6 +58,38 @@ class FitbitTest extends TestCase
         );
     }
 
+    public function testMakingAGetCallToAV11Endpoint()
+    {
+        $this->client->shouldReceive('get')
+            ->once()
+            ->with('https://api.fitbit.com/1.1/user/-/sampleurl')
+            ->andReturn($this->client);
+        $this->client->shouldReceive('getBody->getContents')
+            ->once()
+            ->with()
+            ->andReturn('responseContent');
+        $this->assertEquals(
+            'responseContent',
+            $this->fitbit->getv11Endpoint('sampleurl')
+        );
+    }
+
+    public function testMakingAPostCallToAV11Endpoint()
+    {
+        $this->client->shouldReceive('post')
+            ->once()
+            ->with('https://api.fitbit.com/1.1/user/-/sampleurl')
+            ->andReturn($this->client);
+        $this->client->shouldReceive('getBody->getContents')
+            ->once()
+            ->with()
+            ->andReturn('responseContent');
+        $this->assertEquals(
+            'responseContent',
+            $this->fitbit->postv11Endpoint('sampleurl')
+        );
+    }
+
     public function testMakingAGetCallToAV12Endpoint()
     {
         $this->client->shouldReceive('get')
@@ -169,5 +201,10 @@ class FitbitTest extends TestCase
     public function testGettingASleepLogsInstance()
     {
         $this->assertTrue($this->fitbit->sleepLogs() instanceof \Namelivia\Fitbit\Api\SleepLogs);
+    }
+
+    public function testGettingAFriendsInstance()
+    {
+        $this->assertTrue($this->fitbit->friends() instanceof \Namelivia\Fitbit\Api\Friends);
     }
 }
