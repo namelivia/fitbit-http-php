@@ -43,4 +43,28 @@ class FriendsTest extends TestCase
             $this->friends->leaderboard()
         );
     }
+
+    public function testInvitingAnUserById()
+    {
+        $this->fitbit->shouldReceive('postV11Endpoint')
+            ->once()
+            ->with('friends/invitations?invitedUserId=USERID')
+            ->andReturn('invitedUser');
+        $this->assertEquals(
+            'invitedUser',
+            $this->friends->inviteById('USERID')
+        );
+    }
+
+    public function testInvitingAnUserByEmail()
+    {
+        $this->fitbit->shouldReceive('postV11Endpoint')
+            ->once()
+            ->with('friends/invitations?invitedUserEmail=foo@bar.com')
+            ->andReturn('invitedUser');
+        $this->assertEquals(
+            'invitedUser',
+            $this->friends->inviteByEmail('foo@bar.com')
+        );
+    }
 }
