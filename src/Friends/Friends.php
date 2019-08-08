@@ -15,4 +15,17 @@ class Friends
     {
         $this->fitbit = $fitbit;
     }
+
+    /**
+     * Returns the data of a user's friends.
+		 * The Fitbit privacy setting, My Friends (Private, Friends Only or Public), 
+     * determines the access to a user's list of friends.
+     *
+     * @param Carbon $date
+     * @param Period $period
+     */
+    public function get()
+    {
+        return $this->fitbit->getv11Endpoint('friends.json');
+    }
 }
