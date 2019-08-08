@@ -67,4 +67,40 @@ class FriendsTest extends TestCase
             $this->friends->inviteByEmail('foo@bar.com')
         );
     }
+
+    public function testGettingTheUserInvitations()
+    {
+        $this->fitbit->shouldReceive('getV11Endpoint')
+            ->once()
+            ->with('friends/invitations.json')
+            ->andReturn('userInvitations');
+        $this->assertEquals(
+            'userInvitations',
+            $this->friends->getInvitations()
+        );
+    }
+
+    public function testAcceptingAnUserInvitation()
+    {
+        $this->fitbit->shouldReceive('postV11Endpoint')
+            ->once()
+            ->with('friends/invitations/USER1?accept=true')
+            ->andReturn('acceptedInvitation');
+        $this->assertEquals(
+            'acceptedInvitation',
+            $this->friends->acceptInvitation('USER1')
+        );
+    }
+
+    public function testRejectingAnUserInvitation()
+    {
+        $this->fitbit->shouldReceive('postV11Endpoint')
+            ->once()
+            ->with('friends/invitations/USER1?accept=false')
+            ->andReturn('rejectedInvitation');
+        $this->assertEquals(
+            'rejectedInvitation',
+            $this->friends->rejectInvitation('USER1')
+        );
+    }
 }

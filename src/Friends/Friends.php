@@ -56,4 +56,28 @@ class Friends
     {
         return $this->fitbit->postv11Endpoint('friends/invitations?invitedUserEmail=' . $email);
     }
+
+    /**
+     * Returns a list of invitations to become friends.
+     */
+    public function getInvitations()
+    {
+        return $this->fitbit->getv11Endpoint('friends/invitations.json');
+    }
+
+    /**
+     * Accepts the invitation to become friends with the inviting user.
+     */
+    public function acceptInvitation(string $userId)
+    {
+        return $this->fitbit->postv11Endpoint('friends/invitations/' . $userId . '?accept=true');
+    }
+
+    /**
+     * Rejects the invitation to become friends with the inviting user.
+     */
+    public function rejectInvitation(string $userId)
+    {
+        return $this->fitbit->postv11Endpoint('friends/invitations/' . $userId . '?accept=false');
+    }
 }
