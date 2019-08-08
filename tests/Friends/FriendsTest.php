@@ -32,4 +32,16 @@ class FriendsTest extends TestCase
             $this->friends->get()
         );
     }
+
+    public function testGettingTheUsersFriendsLeaderboard()
+    {
+        $this->fitbit->shouldReceive('getV11Endpoint')
+            ->once()
+            ->with('leaderboard/friends.json')
+            ->andReturn('friendsLeaderboard');
+        $this->assertEquals(
+            'friendsLeaderboard',
+            $this->friends->leaderboard()
+        );
+    }
 }
