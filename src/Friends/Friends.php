@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Namelivia\Fitbit\Friends;
 
-use Carbon\Carbon;
 use Namelivia\Fitbit\Api\Fitbit;
 
 class Friends
@@ -18,7 +17,7 @@ class Friends
 
     /**
      * Returns the data of a user's friends.
-		 * The Fitbit privacy setting, My Friends (Private, Friends Only or Public), 
+     * The Fitbit privacy setting, My Friends (Private, Friends Only or Public), 
      * determines the access to a user's list of friends.
      */
     public function get()
