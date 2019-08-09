@@ -12,7 +12,7 @@ class UpdatingAlarm extends Alarm
     private $enabled;
     private $recurring;
     private $weekDays;
-		
+    
     private $snoozeLength;
     private $snoozeCount;
     private $label;
@@ -22,9 +22,9 @@ class UpdatingAlarm extends Alarm
         bool $enabled,
         bool $recurring,
         string $weekDays, //TODO: Array of constants
-				int $snoozeLength,
-				int $snoozeCount,
-				string $label = null
+        int $snoozeLength,
+        int $snoozeCount,
+        string $label = null
     ) {
         parent::__construct($time, $enabled, $recurring, $weekDays);
         $this->snoozeLength = $snoozeLength;

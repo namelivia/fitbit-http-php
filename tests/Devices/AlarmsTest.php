@@ -39,8 +39,8 @@ class AlarmsTest extends TestCase
     {
         $this->fitbit->shouldReceive('post')
             ->once()
-            ->with('devices/tracker/TrackerId/alarms.json?'.
-            'time=10%3A03&enabled=true&recurring=false&weekDays=weekdays')
+            ->with('devices/tracker/TrackerId/alarms.json?' .
+            'time=10%3A03%2B00%3A00&enabled=true&recurring=false&weekDays=weekdays')
             ->andReturn('AddedAlarm');
         $this->assertEquals(
             'AddedAlarm',
@@ -55,8 +55,8 @@ class AlarmsTest extends TestCase
     {
         $this->fitbit->shouldReceive('post')
             ->once()
-            ->with('devices/tracker/TrackerId/alarms/AlarmId.json?'.
-            'time=10%3A03&enabled=true&recurring=false&'.
+            ->with('devices/tracker/TrackerId/alarms/AlarmId.json?' .
+            'time=10%3A03%2B00%3A00&enabled=true&recurring=false&' .
             'weekDays=weekdayssnoozeLength=20&snoozeCount=30')
             ->andReturn('UpdatedAlarm');
         $this->assertEquals(

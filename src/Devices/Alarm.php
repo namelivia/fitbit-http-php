@@ -19,7 +19,7 @@ class Alarm
         bool $recurring,
         string $weekDays //TODO: Array of constants
     ) {
-        $this->time = $time->format('H:m');// . $time->getOffsetString(); TODO: Doesnt exist?
+        $this->time = $time->format('H:m') . $time->getOffsetString();
         $this->enabled = $enabled;
         $this->recurring = $recurring;
         $this->weekDays = $weekDays;
