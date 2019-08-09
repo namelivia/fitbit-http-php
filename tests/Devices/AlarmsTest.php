@@ -10,6 +10,7 @@ use Namelivia\Fitbit\Api\Fitbit;
 use Namelivia\Fitbit\Devices\Alarm;
 use Namelivia\Fitbit\Devices\Alarms;
 use Namelivia\Fitbit\Devices\UpdatingAlarm;
+use Namelivia\Fitbit\Devices\Weekdays;
 
 class AlarmsTest extends TestCase
 {
@@ -40,13 +41,13 @@ class AlarmsTest extends TestCase
         $this->fitbit->shouldReceive('post')
             ->once()
             ->with('devices/tracker/TrackerId/alarms.json?' .
-            'time=10%3A03%2B00%3A00&enabled=true&recurring=false&weekDays=weekdays')
+            'time=10%3A03%2B00%3A00&enabled=true&recurring=false&weekDays=MONDAY')
             ->andReturn('AddedAlarm');
         $this->assertEquals(
             'AddedAlarm',
             $this->alarms->add(
               'TrackerId',
-              new Alarm(Carbon::now(), true, false, 'weekdays')
+              new Alarm(Carbon::now(), true, false, new Weekdays([Weekdays::MONDAY]))
             )
         );
     }
@@ -57,14 +58,21 @@ class AlarmsTest extends TestCase
             ->once()
             ->with('devices/tracker/TrackerId/alarms/AlarmId.json?' .
             'time=10%3A03%2B00%3A00&enabled=true&recurring=false&' .
-            'weekDays=weekdayssnoozeLength=20&snoozeCount=30')
+            'weekDays=SATURDAY%2CSUNDAY&snoozeLength=20&snoozeCount=30')
             ->andReturn('UpdatedAlarm');
         $this->assertEquals(
             'UpdatedAlarm',
             $this->alarms->update(
               'TrackerId',
               'AlarmId',
-              new UpdatingAlarm(Carbon::now(), true, false, 'weekdays', 20, 30)
+              new UpdatingAlarm(
+                Carbon::now(),
+                true,
+                false,
+                new Weekdays([Weekdays::SATURDAY, Weekdays::SUNDAY]),
+                20,
+                30
+              )
             )
         );
     }

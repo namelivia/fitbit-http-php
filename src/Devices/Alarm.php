@@ -17,7 +17,7 @@ class Alarm
         Carbon $time,
         bool $enabled,
         bool $recurring,
-        string $weekDays //TODO: Array of constants
+        Weekdays $weekDays
     ) {
         $this->time = $time->format('H:m') . $time->getOffsetString();
         $this->enabled = $enabled;
@@ -34,7 +34,7 @@ class Alarm
             'time' => $this->time,
             'enabled' => $this->enabled ? 'true' : 'false',
             'recurring' => $this->recurring ? 'true' : 'false',
-            'weekDays' => $this->weekDays,
+            'weekDays' => (string) $this->weekDays,
         ]);
     }
 }

@@ -16,7 +16,7 @@ class UpdatingAlarm extends Alarm
         Carbon $time,
         bool $enabled,
         bool $recurring,
-        string $weekDays, //TODO: Array of constants
+        Weekdays $weekDays,
         int $snoozeLength,
         int $snoozeCount,
         string $label = null
@@ -32,7 +32,7 @@ class UpdatingAlarm extends Alarm
      */
     public function asUrlParam()
     {
-        return parent::asUrlParam() . http_build_query([
+        return parent::asUrlParam() . '&' . http_build_query([
             'snoozeLength' => $this->snoozeLength,
             'snoozeCount' => $this->snoozeCount,
             'label' => $this->label,
