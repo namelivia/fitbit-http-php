@@ -15,13 +15,13 @@ class Weekdays extends BasicEnum
     const FRIDAY = 'FRIDAY';
     const SATURDAY = 'SATURDAY';
     const SUNDAY = 'SUNDAY';
-	
-		private $weekdays;
+
+    private $weekdays;
 
     public function __construct(array $weekdays)
     {
         foreach ($weekdays as $weekday) {
-        	parent::checkValidity($weekday);
+            parent::checkValidity($weekday);
         }
         $this->weekdays = $weekdays;
     }
