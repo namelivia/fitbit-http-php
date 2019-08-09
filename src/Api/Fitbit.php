@@ -14,8 +14,10 @@ class Fitbit
     private $client;
     private $activities;
     private $user;
+    private $friends;
     private $heartRate;
     private $sleepLogs;
+    private $devices;
 
     public function __construct(Api $api)
     {
@@ -25,6 +27,7 @@ class Fitbit
         $this->heartRate = new HeartRate($this);
         $this->sleepLogs = new SleepLogs($this);
         $this->friends = new Friends($this);
+        $this->devices = new Devices($this);
     }
 
     public function get($url)
@@ -121,5 +124,10 @@ class Fitbit
     public function friends()
     {
         return $this->friends;
+    }
+
+    public function devices()
+    {
+        return $this->devices;
     }
 }
