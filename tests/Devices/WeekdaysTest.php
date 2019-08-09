@@ -10,7 +10,7 @@ class WeekdaysTest extends TestCase
 {
     public function testPrintingAWeekdayList()
     {
-      $this->assertEquals(
+        $this->assertEquals(
         'MONDAY,TUESDAY',
         (string) new Weekdays([Weekdays::MONDAY, Weekdays::TUESDAY])
       );
@@ -21,7 +21,6 @@ class WeekdaysTest extends TestCase
      */
     public function testValidatingAllWeekdayList()
     {
-      new Weekdays([Weekdays::MONDAY, 'INVALID_STRING']);
+        new Weekdays([Weekdays::MONDAY, 'INVALID_STRING']);
     }
-
 }
