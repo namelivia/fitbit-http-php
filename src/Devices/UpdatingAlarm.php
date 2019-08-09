@@ -8,11 +8,6 @@ use Carbon\Carbon;
 
 class UpdatingAlarm extends Alarm
 {
-    private $time;
-    private $enabled;
-    private $recurring;
-    private $weekDays;
-    
     private $snoozeLength;
     private $snoozeCount;
     private $label;
@@ -33,7 +28,7 @@ class UpdatingAlarm extends Alarm
     }
 
     /**
-     * Returns the alarm parameters as an http query to be inserted in an API call.
+     * Returns the updating alarm parameters as an http query to be inserted in an API call.
      */
     public function asUrlParam()
     {
