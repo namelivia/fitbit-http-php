@@ -8,18 +8,19 @@ use Carbon\Carbon;
 use Mockery;
 use Namelivia\Fitbit\Api\Fitbit;
 use Namelivia\Fitbit\Weight\Fat;
+use Namelivia\Fitbit\Weight\Fat\Log;
 use Namelivia\Fitbit\Weight\Period;
 
 class FatTest extends TestCase
 {
     private $fitbit;
-    private $weight;
+    private $fat;
 
     public function setUp()
     {
         parent::setUp();
         $this->fitbit = Mockery::mock(Fitbit::class);
-        $this->weight = new Fat($this->fitbit);
+        $this->fat = new Fat($this->fitbit);
     }
 
     public function testGettingByDate()
@@ -30,7 +31,7 @@ class FatTest extends TestCase
             ->andReturn('dateFat');
         $this->assertEquals(
             'dateFat',
-            $this->weight->getByDate(
+            $this->fat->getByDate(
                 Carbon::today()
             )
         );
@@ -44,7 +45,7 @@ class FatTest extends TestCase
             ->andReturn('periodFat');
         $this->assertEquals(
             'periodFat',
-            $this->weight->getByPeriod(
+            $this->fat->getByPeriod(
                 Carbon::today(),
                 new Period(Period::ONE_WEEK)
             )
@@ -59,9 +60,23 @@ class FatTest extends TestCase
             ->andReturn('rangeFat');
         $this->assertEquals(
             'rangeFat',
-            $this->weight->getByDateRange(
+            $this->fat->getByDateRange(
                 Carbon::today(),
                 Carbon::today()->addDays(4)
+            )
+        );
+    }
+
+    public function testAddingALog()
+    {
+        $this->fitbit->shouldReceive('post')
+            ->once()
+            ->with('body/log/fat.json?fat=1.95&date=2019-03-21&time=10%3A25%3A40')
+            ->andReturn('addedFatLog');
+        $this->assertEquals(
+            'addedFatLog',
+            $this->fat->add(
+                new Log(195, Carbon::now())
             )
         );
     }

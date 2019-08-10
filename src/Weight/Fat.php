@@ -6,6 +6,7 @@ namespace Namelivia\Fitbit\Weight;
 
 use Carbon\Carbon;
 use Namelivia\Fitbit\Api\Fitbit;
+use Namelivia\Fitbit\Weight\Fat\Log;
 
 class Fat
 {
@@ -34,7 +35,7 @@ class Fat
             $date->format('Y-m-d')
           ]) . '.json');
     }
-		
+    
     /**
      * Returns weight data in the specified period from the specified date
      * in the format requested using units in the unit system that corresponds
@@ -73,5 +74,19 @@ class Fat
             $baseDate->format('Y-m-d'),
             $endDate->format('Y-m-d'),
           ]) . '.json');
+    }
+
+    /**
+     * Creates log entry for body fat and returns the response in the format requested.
+     *
+     * @param Log $log
+     */
+    public function add(Log $log)
+    {
+      return $this->fitbit->post(implode('/', [
+            'body',
+            'log',
+            'fat',
+          ]) . '.json?' . $log->asUrlParam());
     }
 }
