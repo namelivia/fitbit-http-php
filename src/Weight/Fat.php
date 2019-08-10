@@ -89,4 +89,19 @@ class Fat
             'fat',
           ]) . '.json?' . $log->asUrlParam());
     }
+
+    /**
+     * Removes log entry for body fat.
+     *
+     * @param string $logId
+     */
+    public function remove(string $logId)
+    {
+      return $this->fitbit->delete(implode('/', [
+            'body',
+            'log',
+            'fat',
+            $logId,
+          ]) . '.json');
+    }
 }

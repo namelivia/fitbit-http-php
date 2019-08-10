@@ -80,4 +80,16 @@ class FatTest extends TestCase
             )
         );
     }
+
+    public function testDeletingALog()
+    {
+        $this->fitbit->shouldReceive('delete')
+            ->once()
+            ->with('body/log/fat/FatLogId.json')
+            ->andReturn('removedFatLog');
+        $this->assertEquals(
+            'removedFatLog',
+            $this->fat->remove('FatLogId')
+        );
+    }
 }
