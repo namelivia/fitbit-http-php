@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace Namelivia\Fitbit\Api;
 
-use Namelivia\Fitbit\Weight\Weight as WeightOperations;
+use Namelivia\Fitbit\Weight\Fat as FatOperations;
 
 class Weight
 {
-    private $weight;
+    private $fat;
 
     public function __construct(Fitbit $fitbit)
     {
-        $this->weight = new WeightOperations($fitbit);
+        $this->fat = new FatOperations($fitbit);
     }
 
-    public function weight()
+    public function fat()
     {
-        return $this->weight;
+        return $this->fat;
     }
 }
