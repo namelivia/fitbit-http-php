@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Namelivia\Fitbit\Weight\Fat;
+namespace Namelivia\Fitbit\Body\Fat;
 
 use Carbon\Carbon;
 

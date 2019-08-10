@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Namelivia\Fitbit\Api;
 
-use Namelivia\Fitbit\Weight\Fat as FatOperations;
+use Namelivia\Fitbit\Body\Fat as FatOperations;
 
-class Weight
+class Body
 {
     private $fat;
 

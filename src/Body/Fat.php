@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Namelivia\Fitbit\Weight;
+namespace Namelivia\Fitbit\Body;
 
 use Carbon\Carbon;
 use Namelivia\Fitbit\Api\Fitbit;
-use Namelivia\Fitbit\Weight\Fat\Log;
+use Namelivia\Fitbit\Body\Fat\Log;
 
 class Fat
 {

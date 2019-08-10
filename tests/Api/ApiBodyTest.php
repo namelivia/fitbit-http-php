@@ -6,9 +6,9 @@ namespace Namelivia\Fitbit\Tests;
 
 use Mockery;
 use Namelivia\Fitbit\Api\Fitbit;
-use Namelivia\Fitbit\Api\Weight;
+use Namelivia\Fitbit\Api\Body;
 
-class ApiWeightTest extends TestCase
+class ApiBodyTest extends TestCase
 {
     private $fitbit;
     private $weight;
@@ -17,11 +17,11 @@ class ApiWeightTest extends TestCase
     {
         parent::setUp();
         $this->fitbit = Mockery::mock(Fitbit::class);
-        $this->weight = new Weight($this->fitbit);
+        $this->weight = new Body($this->fitbit);
     }
 
     public function testGettingAFatInstance()
     {
-        $this->assertTrue($this->weight->fat() instanceof \Namelivia\Fitbit\Weight\Fat);
+        $this->assertTrue($this->weight->fat() instanceof \Namelivia\Fitbit\Body\Fat);
     }
 }

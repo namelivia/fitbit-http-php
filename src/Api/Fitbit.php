@@ -29,7 +29,7 @@ class Fitbit
         $this->sleepLogs = new SleepLogs($this);
         $this->friends = new Friends($this);
         $this->devices = new Devices($this);
-        $this->weight = new Weight($this);
+        $this->weight = new Body($this);
     }
 
     public function get($url)

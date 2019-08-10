@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Namelivia\Fitbit\Weight;
+namespace Namelivia\Fitbit\Body;
 
 use Namelivia\Fitbit\BasicEnum;
 
