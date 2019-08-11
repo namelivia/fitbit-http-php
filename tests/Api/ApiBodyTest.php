@@ -22,7 +22,12 @@ class ApiBodyTest extends TestCase
 
     public function testGettingAFatInstance()
     {
-        $this->assertTrue($this->body->fat() instanceof \Namelivia\Fitbit\Body\Fat);
+        $this->assertTrue($this->body->fat() instanceof \Namelivia\Fitbit\Body\Fat\Fat);
+    }
+
+    public function testGettingAWeightInstance()
+    {
+        $this->assertTrue($this->body->weight() instanceof \Namelivia\Fitbit\Body\Weight\Weight);
     }
 
     public function testGettingAGoalsInstance()
