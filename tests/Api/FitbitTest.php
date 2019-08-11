@@ -215,6 +215,6 @@ class FitbitTest extends TestCase
 
     public function testGettingABodyInstance()
     {
-        $this->assertTrue($this->fitbit->weight() instanceof \Namelivia\Fitbit\Api\Body);
+        $this->assertTrue($this->fitbit->body() instanceof \Namelivia\Fitbit\Api\Body);
     }
 }

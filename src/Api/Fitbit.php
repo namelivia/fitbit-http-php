@@ -18,7 +18,7 @@ class Fitbit
     private $heartRate;
     private $sleepLogs;
     private $devices;
-    private $weight;
+    private $body;
 
     public function __construct(Api $api)
     {
@@ -29,7 +29,7 @@ class Fitbit
         $this->sleepLogs = new SleepLogs($this);
         $this->friends = new Friends($this);
         $this->devices = new Devices($this);
-        $this->weight = new Body($this);
+        $this->body = new Body($this);
     }
 
     public function get($url)
@@ -133,8 +133,8 @@ class Fitbit
         return $this->devices;
     }
 
-    public function weight()
+    public function body()
     {
-        return $this->weight;
+        return $this->body;
     }
 }

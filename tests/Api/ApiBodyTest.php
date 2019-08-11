@@ -11,17 +11,22 @@ use Namelivia\Fitbit\Api\Body;
 class ApiBodyTest extends TestCase
 {
     private $fitbit;
-    private $weight;
+    private $body;
 
     public function setUp()
     {
         parent::setUp();
         $this->fitbit = Mockery::mock(Fitbit::class);
-        $this->weight = new Body($this->fitbit);
+        $this->body = new Body($this->fitbit);
     }
 
     public function testGettingAFatInstance()
     {
-        $this->assertTrue($this->weight->fat() instanceof \Namelivia\Fitbit\Body\Fat);
+        $this->assertTrue($this->body->fat() instanceof \Namelivia\Fitbit\Body\Fat);
+    }
+
+    public function testGettingAGoalsInstance()
+    {
+        $this->assertTrue($this->body->goals() instanceof \Namelivia\Fitbit\Body\Goals\Goals);
     }
 }
