@@ -14,4 +14,19 @@ class Goals
     {
         $this->fitbit = $fitbit;
     }
+
+    /**
+     * Returns the current body goal for the user for the given goal type.
+     *
+     * @param GoalType $type
+     */
+    public function get(GoalType $type)
+    {
+        return $this->fitbit->get(implode('/', [
+            'body',
+            'log',
+            $type,
+            'goal'
+          ]) . '.json');
+    }
 }
