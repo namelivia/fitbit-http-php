@@ -29,4 +29,35 @@ class Goals
             'goal'
           ]) . '.json');
     }
+
+    /**
+     * Creates or updates user's fat percentage goal.
+     *
+     * @param int $fat
+     */
+    public function updateFat(int $fat)
+    {
+			  $newValue = $fat / 100;
+        return $this->fitbit->post(implode('/', [
+            'body',
+            'log',
+            'fat',
+            'goal'
+          ]) . '.json?fat=' . $newValue);
+    }
+
+    /**
+     * Creates or updates user's weight goal.
+     *
+     * @param weightGoal $weight
+     */
+    public function updateWeight(WeightGoal $weight)
+    {
+        return $this->fitbit->post(implode('/', [
+            'body',
+            'log',
+            'weight',
+            'goal'
+          ]) . '.json?' . $weight->asUrlParam());
+    }
 }
