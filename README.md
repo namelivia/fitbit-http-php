@@ -13,16 +13,16 @@ all data hold on their platform from Activity Logs to Sleep or Heart Rate inform
 **Disclaimer:** The Fitbit API is divided in various sections. Currently only the following sections are implemented on the current version:
 
 - Activities & Exercise Logs
-- User
+- Devices
+- Friends
 - Heart Rate
 - Sleep
-- Friends
+- User
 
 While these other are still pending:
 
 - Subscriptions
 - Food Logging
-- Devices
 - Body & Weight
 
 All sections are planned, you can check the progress and planning by browsing the [issues section of this repository](https://github.com/namelivia/fitbit-http-php/issues/new).
