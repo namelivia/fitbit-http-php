@@ -25,7 +25,7 @@ While these other are still pending:
 - Food Logging
 - Body & Weight
 
-All sections are planned, you can check the progress and planning by browsing the [issues section of this repository](https://github.com/namelivia/fitbit-http-php/issues/new).
+All sections are planned, you can check the progress and planning by browsing the [issues section of this repository](https://github.com/namelivia/fitbit-http-php/issues).
 
 ## Installation
 
