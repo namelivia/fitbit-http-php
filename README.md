@@ -16,7 +16,6 @@ all data hold on their platform from Activity Logs to Sleep or Heart Rate inform
 - Devices
 - Friends
 - Body & Weight
-- User
 - Heart Rate
 - Sleep
 - User

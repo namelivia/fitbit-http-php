@@ -34,4 +34,9 @@ class ApiBodyTest extends TestCase
     {
         $this->assertTrue($this->body->goals() instanceof \Namelivia\Fitbit\Body\Goals\Goals);
     }
+
+    public function testGettingATimeSeriesInstance()
+    {
+        $this->assertTrue($this->body->timeSeries() instanceof \Namelivia\Fitbit\Body\TimeSeries);
+    }
 }
