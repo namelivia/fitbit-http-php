@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Namelivia\Fitbit\Body;
 
 use Carbon\Carbon;
-use Namelivia\Fitbit\Body\Resource;
 use Namelivia\Fitbit\Api\Fitbit;
 
 class TimeSeries
@@ -22,7 +21,7 @@ class TimeSeries
      * for a given resource in the format requested using units in the unit system that corresponds
      * to the Accept-Language header provided.
      *
-     * @param Resource $resource
+     * @param resource $resource
      * @param Carbon $date
      * @param Period $period
      */
@@ -42,7 +41,7 @@ class TimeSeries
      * for a given resource in the format requested using units in the unit system that corresponds
      * to the Accept-Language header provided.
      *
-     * @param Resource $resource
+     * @param resource $resource
      * @param Carbon $baseDate
      * @param Carbon $endDate
      */

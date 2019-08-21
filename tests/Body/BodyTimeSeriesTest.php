@@ -6,10 +6,10 @@ namespace Namelivia\Fitbit\Tests;
 
 use Carbon\Carbon;
 use Mockery;
+use Namelivia\Fitbit\Api\Fitbit;
 use Namelivia\Fitbit\Body\Period;
 use Namelivia\Fitbit\Body\Resource;
 use Namelivia\Fitbit\Body\TimeSeries;
-use Namelivia\Fitbit\Api\Fitbit;
 
 class BodyTimeSeriesTest extends TestCase
 {

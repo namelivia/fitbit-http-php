@@ -7,9 +7,9 @@ namespace Namelivia\Fitbit\Tests;
 use Carbon\Carbon;
 use Mockery;
 use Namelivia\Fitbit\Api\Fitbit;
-use Namelivia\Fitbit\Body\Weight\Weight;
-use Namelivia\Fitbit\Body\Weight\Log;
 use Namelivia\Fitbit\Body\Period;
+use Namelivia\Fitbit\Body\Weight\Log;
+use Namelivia\Fitbit\Body\Weight\Weight;
 
 class WeightTest extends TestCase
 {
