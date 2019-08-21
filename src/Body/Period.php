@@ -13,6 +13,10 @@ class Period extends BasicEnum
     public const THIRTY_DAYS = '30d';
     public const ONE_WEEK = '1w';
     public const ONE_MONTH = '1m';
+    public const THREE_MONTHS = '3m';
+    public const SIX_MONTHS = '6m';
+    public const ONE_YEAR = '1y';
+    public const MAX_PERIOD = 'max';
 
     private $period;
 
