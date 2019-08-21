@@ -51,14 +51,14 @@ class BodyGoalsTest extends TestCase
     {
         $this->fitbit->shouldReceive('post')
             ->once()
-						->with('body/log/weight/goal.json?startDate=2019-03-21' .
-						'&startWeight=65.3&weight=63.9')
+                        ->with('body/log/weight/goal.json?startDate=2019-03-21' .
+                        '&startWeight=65.3&weight=63.9')
             ->andReturn('weightGoal');
         $this->assertEquals(
             'weightGoal',
-						$this->goals->updateWeight(
-							new WeightGoal(Carbon::now(), 6530, 6390)
-						)
+                        $this->goals->updateWeight(
+                            new WeightGoal(Carbon::now(), 6530, 6390)
+                        )
         );
     }
 }

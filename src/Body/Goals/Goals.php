@@ -26,7 +26,7 @@ class Goals
             'body',
             'log',
             $type,
-            'goal'
+            'goal',
           ]) . '.json');
     }
 
@@ -37,12 +37,13 @@ class Goals
      */
     public function updateFat(int $fat)
     {
-			  $newValue = $fat / 100;
+        $newValue = $fat / 100;
+
         return $this->fitbit->post(implode('/', [
             'body',
             'log',
             'fat',
-            'goal'
+            'goal',
           ]) . '.json?fat=' . $newValue);
     }
 
@@ -57,7 +58,7 @@ class Goals
             'body',
             'log',
             'weight',
-            'goal'
+            'goal',
           ]) . '.json?' . $weight->asUrlParam());
     }
 }

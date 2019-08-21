@@ -7,7 +7,6 @@ namespace Namelivia\Fitbit\Body\Fat;
 use Carbon\Carbon;
 use Namelivia\Fitbit\Api\Fitbit;
 use Namelivia\Fitbit\Body\Period;
-use Namelivia\Fitbit\Body\Fat\Log;
 
 class Fat
 {
@@ -33,10 +32,10 @@ class Fat
             'log',
             'fat',
             'date',
-            $date->format('Y-m-d')
+            $date->format('Y-m-d'),
           ]) . '.json');
     }
-    
+
     /**
      * Returns body fat data in the specified period from the specified date
      * in the format requested using units in the unit system that corresponds
@@ -84,7 +83,7 @@ class Fat
      */
     public function add(Log $log)
     {
-      return $this->fitbit->post(implode('/', [
+        return $this->fitbit->post(implode('/', [
             'body',
             'log',
             'fat',
@@ -98,7 +97,7 @@ class Fat
      */
     public function remove(string $logId)
     {
-      return $this->fitbit->delete(implode('/', [
+        return $this->fitbit->delete(implode('/', [
             'body',
             'log',
             'fat',
