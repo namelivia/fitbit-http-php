@@ -53,5 +53,4 @@ class Food
             $date->format('Y-m-d'),
           ]) . '.json');
     }
-
 }

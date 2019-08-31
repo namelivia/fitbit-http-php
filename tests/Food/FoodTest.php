@@ -58,5 +58,4 @@ class FoodTest extends TestCase
             )
         );
     }
-
 }
