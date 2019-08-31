@@ -17,7 +17,7 @@ class Food
     }
 
     /**
-     * Write
+     * Returns the food locales that the user may choose to search, log, and create food in.
      */
     public function getLocales()
     {
@@ -28,7 +28,7 @@ class Food
     }
 
     /**
-     * Write
+     * Returns a user's current daily calorie consumption goal and/or food Plan in the format requested.
      */
     public function getGoals()
     {
@@ -40,7 +40,7 @@ class Food
     }
 
     /**
-     * Write
+     * Returns a summary and list of a user's food log entries for a given day in the format requested.
      *
      * @param Carbon $date
      */
@@ -50,7 +50,7 @@ class Food
             'foods',
             'log',
             'date',
-            $date->format('Y-m-d')
+            $date->format('Y-m-d'),
           ]) . '.json');
     }
 

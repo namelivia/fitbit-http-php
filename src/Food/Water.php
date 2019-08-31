@@ -17,7 +17,7 @@ class Water
     }
 
     /**
-     * Write
+     * Returns a user's current daily water consumption goal.
      */
     public function getGoals()
     {
@@ -30,7 +30,7 @@ class Water
     }
 
     /**
-     * Write
+     * Retrieves a summary and list of a user's water log entries for a given day.
      *
      * @param Carbon $date
      */
@@ -41,7 +41,7 @@ class Water
             'log',
             'water',
             'date',
-            $date->format('Y-m-d')
+            $date->format('Y-m-d'),
           ]) . '.json');
     }
 
