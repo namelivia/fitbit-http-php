@@ -13,10 +13,10 @@ all data hold on their platform from Activity Logs to Sleep or Heart Rate inform
 **Disclaimer:** The Fitbit API is divided in various sections. Currently only the following sections are implemented on the current version:
 
 - Activities & Exercise Logs
+- Body & Weight
 - Devices
 - Friends
 - Food Logging
-- Body & Weight
 - Heart Rate
 - Sleep
 - User
