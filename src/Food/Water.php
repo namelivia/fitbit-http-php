@@ -44,5 +44,4 @@ class Water
             $date->format('Y-m-d'),
           ]) . '.json');
     }
-
 }

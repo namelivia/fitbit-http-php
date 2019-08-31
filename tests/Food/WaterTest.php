@@ -9,7 +9,7 @@ use Mockery;
 use Namelivia\Fitbit\Api\Fitbit;
 use Namelivia\Fitbit\Food\Water;
 
-class WaterjTest extends TestCase
+class WaterTest extends TestCase
 {
     private $fitbit;
     private $water;
@@ -46,5 +46,4 @@ class WaterjTest extends TestCase
             )
         );
     }
-
 }
