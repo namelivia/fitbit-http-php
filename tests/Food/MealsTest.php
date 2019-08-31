@@ -7,28 +7,49 @@ namespace Namelivia\Fitbit\Tests;
 use Carbon\Carbon;
 use Mockery;
 use Namelivia\Fitbit\Api\Fitbit;
-use Namelivia\Fitbit\Food\Meal;
+use Namelivia\Fitbit\Food\Meals\Meals;
+use Namelivia\Fitbit\Food\Meals\Meal;
 
-class MealTest extends TestCase
+class MealsTest extends TestCase
 {
     private $fitbit;
-    private $meal;
+    private $meals;
 
     public function setUp()
     {
         parent::setUp();
         $this->fitbit = Mockery::mock(Fitbit::class);
-        $this->meal = new Meal($this->fitbit);
+        $this->meals = new Meals($this->fitbit);
     }
 
     public function testAddingAMeal()
     {
-			//TODO: To be implemented
+        $this->fitbit->shouldReceive('post')
+            ->once()
+            ->with('meals.json?name=mealName&description=mealDescription&foodId=foodID&unitId=unitID&amount=1.8')
+            ->andReturn('newMeal');
+        $this->assertEquals(
+            'newMeal',
+            $this->meals->create(
+                new Meal('mealName', 'mealDescription', 'foodID', 'unitID', 180)
+            )
+        );
     }
 
     public function testEditingAMeal()
     {
-			//TODO: To be implemented
+        $mealId = 'someMealId';
+        $this->fitbit->shouldReceive('post')
+            ->once()
+            ->with('meals/someMealId.json?name=editedMealName&description=editedMealDescription&foodId=foodID&unitId=unitID&amount=23.8')
+            ->andReturn('newMeal');
+        $this->assertEquals(
+            'newMeal',
+            $this->meals->edit(
+                $mealId,
+                new Meal('editedMealName', 'editedMealDescription', 'foodID', 'unitID', 2380)
+            )
+        );
     }
 
     public function testDeletingAMeal()
@@ -39,7 +60,7 @@ class MealTest extends TestCase
             ->andReturn('removedMeal');
         $this->assertEquals(
             'removedMeal',
-            $this->meal->remove('MealId')
+            $this->meals->remove('MealId')
         );
     }
 
@@ -51,7 +72,7 @@ class MealTest extends TestCase
             ->andReturn('mealDetails');
         $this->assertEquals(
             'mealDetails',
-            $this->meal->get('MealId')
+            $this->meals->get('MealId')
         );
     }
 
@@ -63,7 +84,7 @@ class MealTest extends TestCase
             ->andReturn('allMeals');
         $this->assertEquals(
             'allMeals',
-            $this->meal->all()
+            $this->meals->all()
         );
     }
 }
