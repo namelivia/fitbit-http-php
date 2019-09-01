@@ -52,13 +52,13 @@ class Goals
      *
      * @param weightGoal $weight
      */
-    public function updateWeight(WeightGoal $weight)
+    public function updateWeight(WeightGoal $goal)
     {
         return $this->fitbit->post(implode('/', [
             'body',
             'log',
             'weight',
             'goal',
-          ]) . '.json?' . $weight->asUrlParam());
+          ]) . '.json?' . $goal->asUrlParam());
     }
 }

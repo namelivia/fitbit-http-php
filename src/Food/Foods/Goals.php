@@ -27,4 +27,17 @@ class Goals
             'goal',
           ]) . '.json');
     }
+
+    /**
+     * Updates or creates a user's daily calorie consumption goal or food plan and returns
+     * a response in the format requested.
+     */
+    public function update(FoodGoal $goal)
+    {
+        return $this->fitbit->post(implode('/', [
+            'foods',
+            'log',
+            'goal',
+          ]) . '.json?' . $goal->asUrlParam());
+    }
 }
