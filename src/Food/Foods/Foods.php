@@ -28,21 +28,6 @@ class Foods
     }
 
     /**
-     * Returns a summary and list of a user's food log entries for a given day in the format requested.
-     *
-     * @param Carbon $date
-     */
-    public function getLogs(Carbon $date)
-    {
-        return $this->fitbit->get(implode('/', [
-            'foods',
-            'log',
-            'date',
-            $date->format('Y-m-d'),
-          ]) . '.json');
-    }
-
-    /**
      * Given a search query, the Search Foods endpoint returns a list of public
      * foods from Fitbit foods database and private foods.
      *

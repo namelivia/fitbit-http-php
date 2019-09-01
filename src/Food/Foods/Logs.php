@@ -1,0 +1,33 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Namelivia\Fitbit\Food\Foods;
+
+use Carbon\Carbon;
+use Namelivia\Fitbit\Api\Fitbit;
+
+class Logs
+{
+    private $fitbit;
+
+    public function __construct(Fitbit $fitbit)
+    {
+        $this->fitbit = $fitbit;
+    }
+
+    /**
+     * Returns a summary and list of a user's food log entries for a given day in the format requested.
+     *
+     * @param Carbon $date
+     */
+    public function get(Carbon $date)
+    {
+        return $this->fitbit->get(implode('/', [
+            'foods',
+            'log',
+            'date',
+            $date->format('Y-m-d'),
+          ]) . '.json');
+    }
+}

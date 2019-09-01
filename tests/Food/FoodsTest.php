@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Namelivia\Fitbit\Tests;
 
-use Carbon\Carbon;
 use Mockery;
 use Namelivia\Fitbit\Api\Fitbit;
 use Namelivia\Fitbit\Food\Foods\FormType;
@@ -32,20 +31,6 @@ class FoodsTest extends TestCase
         $this->assertEquals(
             'foodLocales',
             $this->foods->getLocales()
-        );
-    }
-
-    public function testGettingLogs()
-    {
-        $this->fitbit->shouldReceive('get')
-            ->once()
-            ->with('foods/log/date/2019-03-21.json')
-            ->andReturn('foodLogs');
-        $this->assertEquals(
-            'foodLogs',
-            $this->foods->getLogs(
-                Carbon::today()
-            )
         );
     }
 

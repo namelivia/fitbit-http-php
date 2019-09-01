@@ -6,6 +6,7 @@ namespace Namelivia\Fitbit\Api;
 
 use Namelivia\Fitbit\Food\Foods\Foods as FoodsOperations;
 use Namelivia\Fitbit\Food\Foods\Goals as GoalsOperations;
+use Namelivia\Fitbit\Food\Foods\Logs as LogsOperations;
 use Namelivia\Fitbit\Food\Meals\Meals as MealsOperations;
 use Namelivia\Fitbit\Food\TimeSeries as TimeSeriesOperations;
 use Namelivia\Fitbit\Food\Water as WaterOperations;
@@ -13,6 +14,7 @@ use Namelivia\Fitbit\Food\Water as WaterOperations;
 class Food
 {
     private $foods;
+    private $logs;
     private $goals;
     private $water;
     private $timeSeries;
@@ -21,6 +23,7 @@ class Food
     public function __construct(Fitbit $fitbit)
     {
         $this->foods = new FoodsOperations($fitbit);
+        $this->logs = new LogsOperations($fitbit);
         $this->goals = new GoalsOperations($fitbit);
         $this->water = new WaterOperations($fitbit);
         $this->meals = new MealsOperations($fitbit);
@@ -50,5 +53,10 @@ class Food
     public function meals()
     {
         return $this->meals;
+    }
+
+    public function logs()
+    {
+        return $this->logs;
     }
 }
