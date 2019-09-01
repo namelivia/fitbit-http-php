@@ -35,18 +35,6 @@ class FoodsTest extends TestCase
         );
     }
 
-    public function testGettingGoals()
-    {
-        $this->fitbit->shouldReceive('get')
-            ->once()
-            ->with('foods/log/goal.json')
-            ->andReturn('foodGoals');
-        $this->assertEquals(
-            'foodGoals',
-            $this->foods->getGoals()
-        );
-    }
-
     public function testGettingLogs()
     {
         $this->fitbit->shouldReceive('get')
