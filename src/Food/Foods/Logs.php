@@ -30,4 +30,14 @@ class Logs
             $date->format('Y-m-d'),
           ]) . '.json');
     }
+
+    /**
+     * Creates log entry for on the user's food log, etheir a private or a public food.
+     *
+     * @param FoodLog $log
+     */
+    public function add(FoodLog $log)
+    {
+        return $this->fitbit->post('foods/log.json?' . $log->asUrlParam());
+    }
 }
