@@ -74,6 +74,14 @@ class Fitbit
     }
 
     //TODO: Ugh! I hate doing this
+    public function postNonUserEndpoint($url)
+    {
+        return $this->client->post(
+            $this->nonUserUrl . $url
+        )->getBody()->getContents();
+    }
+
+    //TODO: Ugh! I hate doing this
     public function postv12Endpoint($url)
     {
         return $this->client->post(

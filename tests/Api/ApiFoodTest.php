@@ -20,9 +20,9 @@ class ApiFoodTest extends TestCase
         $this->food = new Food($this->fitbit);
     }
 
-    public function testGettingAFoodInstance()
+    public function testGettingAFoodsInstance()
     {
-        $this->assertTrue($this->food->food() instanceof \Namelivia\Fitbit\Food\Food);
+        $this->assertTrue($this->food->foods() instanceof \Namelivia\Fitbit\Food\Foods\Foods);
     }
 
     public function testGettingAWaterInstance()

@@ -4,29 +4,29 @@ declare(strict_types=1);
 
 namespace Namelivia\Fitbit\Api;
 
-use Namelivia\Fitbit\Food\Food as FoodOperations;
+use Namelivia\Fitbit\Food\Foods\Foods as FoosdOperations;
 use Namelivia\Fitbit\Food\Meals\Meals as MealsOperations;
 use Namelivia\Fitbit\Food\TimeSeries as TimeSeriesOperations;
 use Namelivia\Fitbit\Food\Water as WaterOperations;
 
 class Food
 {
-    private $food;
+    private $foods;
     private $water;
     private $timeSeries;
     private $meal;
 
     public function __construct(Fitbit $fitbit)
     {
-        $this->food = new FoodOperations($fitbit);
+        $this->foods = new FoosdOperations($fitbit);
         $this->water = new WaterOperations($fitbit);
         $this->meals = new MealsOperations($fitbit);
         $this->timeSeries = new TimeSeriesOperations($fitbit);
     }
 
-    public function food()
+    public function foods()
     {
-        return $this->food;
+        return $this->foods;
     }
 
     public function water()
