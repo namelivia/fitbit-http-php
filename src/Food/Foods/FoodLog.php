@@ -48,7 +48,7 @@ abstract class FoodLog
         return http_build_query([
             'foodId' => $this->foodId,
             'foodName' => $this->foodName,
-            'mealTypeId' => $this->mealTypeId,
+            'mealTypeId' => (string) $this->mealTypeId,
             'unitId' => $this->unitId,
             'amount' => $this->amount,
             'date' => $this->date,

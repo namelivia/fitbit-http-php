@@ -31,7 +31,7 @@ class UpdatedFoodLog
     public function asUrlParam()
     {
         return http_build_query([
-            'mealTypeId' => $this->mealTypeId,
+            'mealTypeId' => (string) $this->mealTypeId,
             'unitId' => $this->unitId,
             'amount' => $this->amount,
             'calories' => $this->calories,

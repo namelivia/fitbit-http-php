@@ -44,7 +44,7 @@ class FoodLogsTest extends TestCase
         $this->fitbit->shouldReceive('post')
             ->once()
             ->with(
-                'foods/log.json?foodName=private+test+food&unitId=unitId' .
+                'foods/log.json?foodName=private+test+food&mealTypeId=1&unitId=unitId' .
                 '&amount=0.02&date=2019-03-21&favorite=false&brandName=Brand+name&calories=3000'
             )
             ->andReturn('createdFoodLog');
@@ -69,7 +69,7 @@ class FoodLogsTest extends TestCase
         $this->fitbit->shouldReceive('post')
             ->once()
             ->with(
-                'foods/log.json?foodId=foodId&unitId=unitId&amount=0.02' .
+                'foods/log.json?foodId=foodId&mealTypeId=3&unitId=unitId&amount=0.02' .
                 '&date=2019-03-21&favorite=true&calories=2000'
             )
             ->andReturn('createdFoodLog');
@@ -94,7 +94,7 @@ class FoodLogsTest extends TestCase
         $this->fitbit->shouldReceive('post')
             ->once()
             ->with(
-                'foods/log/logId.json?unitId=unitId&amount=0.02' .
+                'foods/log/logId.json?mealTypeId=3&unitId=unitId&amount=0.02' .
                 '&calories=2000'
             )
             ->andReturn('updatedFoodLog');
