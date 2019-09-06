@@ -10,6 +10,6 @@ class IntensityGoal extends FoodGoal
         Intensity $intensity,
         bool $personalized
     ) {
-		parent::__construct(null, $intensity, $personalized);
+        parent::__construct(null, $intensity, $personalized);
     }
 }

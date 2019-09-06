@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Namelivia\Fitbit\Food\Meals;
 
-use Carbon\Carbon;
-
 class Meal
 {
     private $name;

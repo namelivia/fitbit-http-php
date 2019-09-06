@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Namelivia\Fitbit\Food\Foods;
 
-use Carbon\Carbon;
 use Namelivia\Fitbit\Api\Fitbit;
 
 class Foods

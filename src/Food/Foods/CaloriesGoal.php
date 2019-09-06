@@ -10,6 +10,6 @@ class CaloriesGoal extends FoodGoal
         int $calories,
         bool $personalized
     ) {
-		parent::__construct($calories, null, $personalized);
+        parent::__construct($calories, null, $personalized);
     }
 }
