@@ -8,10 +8,10 @@ use Carbon\Carbon;
 use Mockery;
 use Namelivia\Fitbit\Api\Fitbit;
 use Namelivia\Fitbit\Food\Foods\Logs;
+use Namelivia\Fitbit\Food\Foods\MealType;
 use Namelivia\Fitbit\Food\Foods\PrivateFoodLog;
 use Namelivia\Fitbit\Food\Foods\PublicFoodLog;
 use Namelivia\Fitbit\Food\Foods\UpdatedFoodLog;
-use Namelivia\Fitbit\Food\Foods\MealType;
 
 class FoodLogsTest extends TestCase
 {
@@ -101,7 +101,7 @@ class FoodLogsTest extends TestCase
         $this->assertEquals(
             'updatedFoodLog',
             $this->logs->update(
-				'logId',
+                'logId',
                 new UpdatedFoodLog(
                     new MealType(MealType::LUNCH),
                     'unitId',

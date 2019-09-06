@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace Namelivia\Fitbit\Tests;
 
-use Carbon\Carbon;
 use Mockery;
 use Namelivia\Fitbit\Api\Fitbit;
-use Namelivia\Fitbit\Food\Meals\Meals;
 use Namelivia\Fitbit\Food\Meals\Meal;
+use Namelivia\Fitbit\Food\Meals\Meals;
 
 class MealsTest extends TestCase
 {

@@ -6,9 +6,9 @@ namespace Namelivia\Fitbit\Tests;
 
 use Mockery;
 use Namelivia\Fitbit\Api\Fitbit;
-use Namelivia\Fitbit\Food\Foods\FormType;
 use Namelivia\Fitbit\Food\Foods\Food;
 use Namelivia\Fitbit\Food\Foods\Foods;
+use Namelivia\Fitbit\Food\Foods\FormType;
 
 class FoodsTest extends TestCase
 {

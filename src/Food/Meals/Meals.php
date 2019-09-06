@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Namelivia\Fitbit\Food\Meals;
 
-use Carbon\Carbon;
 use Namelivia\Fitbit\Api\Fitbit;
 
 class Meals
@@ -31,7 +30,7 @@ class Meals
      */
     public function create(Meal $meal)
     {
-      return $this->fitbit->post('meals.json?' . $meal->asUrlParam());
+        return $this->fitbit->post('meals.json?' . $meal->asUrlParam());
     }
 
     /**
@@ -52,7 +51,7 @@ class Meals
      */
     public function edit(string $mealId, Meal $meal)
     {
-      return $this->fitbit->post('meals/' . $mealId .'.json?' . $meal->asUrlParam());
+        return $this->fitbit->post('meals/' . $mealId . '.json?' . $meal->asUrlParam());
     }
 
     /**
