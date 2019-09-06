@@ -40,4 +40,25 @@ class Logs
     {
         return $this->fitbit->post('foods/log.json?' . $log->asUrlParam());
     }
+
+    /**
+     * Changes the quantity or calories consumed for a user's food log entry with the given ID.
+     *
+     * @param string $logId
+     * @param UpdatedFoodLog $log
+     */
+    public function update(string $logId, UpdatedFoodLog $log)
+    {
+        return $this->fitbit->post('foods/log/' . $logId . '.json?' . $log->asUrlParam());
+    }
+
+    /**
+     * Deletes a user's food log entry with the given ID.
+     *
+     * @param string $logId
+     */
+    public function remove(string $logId)
+    {
+        return $this->fitbit->delete('foods/log/' . $logId . '.json');
+    }
 }
