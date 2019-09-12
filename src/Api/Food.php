@@ -11,6 +11,7 @@ use Namelivia\Fitbit\Food\Foods\Logs as LogsOperations;
 use Namelivia\Fitbit\Food\Meals\Meals as MealsOperations;
 use Namelivia\Fitbit\Food\TimeSeries as TimeSeriesOperations;
 use Namelivia\Fitbit\Food\Water\Water as WaterOperations;
+use Namelivia\Fitbit\Food\Favorite\Favorites as FavoritesOperations;
 
 class Food
 {
@@ -21,6 +22,7 @@ class Food
     private $water;
     private $timeSeries;
     private $meal;
+    private $favorites;
 
     public function __construct(Fitbit $fitbit)
     {
@@ -31,6 +33,7 @@ class Food
         $this->waterGoals = new WaterGoalsOperations($fitbit);
         $this->meals = new MealsOperations($fitbit);
         $this->timeSeries = new TimeSeriesOperations($fitbit);
+        $this->favorites = new FavoritesOperations($fitbit);
     }
 
     public function foods()
@@ -66,5 +69,10 @@ class Food
     public function logs()
     {
         return $this->logs;
+    }
+
+    public function favorites()
+    {
+        return $this->favorites;
     }
 }

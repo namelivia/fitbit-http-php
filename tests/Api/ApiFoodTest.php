@@ -54,4 +54,9 @@ class ApiFoodTest extends TestCase
     {
         $this->assertTrue($this->food->waterGoals() instanceof \Namelivia\Fitbit\Food\Water\Goals);
     }
+
+    public function testGettingAFavoritesInstance()
+    {
+        $this->assertTrue($this->food->favorites() instanceof \Namelivia\Fitbit\Food\Favorite\Favorites);
+    }
 }
