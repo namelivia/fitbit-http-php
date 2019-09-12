@@ -9,7 +9,7 @@ use Namelivia\Fitbit\Food\Foods\Goals as GoalsOperations;
 use Namelivia\Fitbit\Food\Foods\Logs as LogsOperations;
 use Namelivia\Fitbit\Food\Meals\Meals as MealsOperations;
 use Namelivia\Fitbit\Food\TimeSeries as TimeSeriesOperations;
-use Namelivia\Fitbit\Food\Water as WaterOperations;
+use Namelivia\Fitbit\Food\Water\Water as WaterOperations;
 
 class Food
 {

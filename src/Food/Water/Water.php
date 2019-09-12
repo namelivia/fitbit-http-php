@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Namelivia\Fitbit\Food;
+namespace Namelivia\Fitbit\Food\Water;
 
 use Carbon\Carbon;
 use Namelivia\Fitbit\Api\Fitbit;
