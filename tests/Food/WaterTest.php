@@ -7,9 +7,9 @@ namespace Namelivia\Fitbit\Tests;
 use Carbon\Carbon;
 use Mockery;
 use Namelivia\Fitbit\Api\Fitbit;
-use Namelivia\Fitbit\Food\Water\Water;
+use Namelivia\Fitbit\Food\Water\Logs;
 
-class WaterTest extends TestCase
+class WaterLogsTest extends TestCase
 {
     private $fitbit;
     private $water;
@@ -18,7 +18,7 @@ class WaterTest extends TestCase
     {
         parent::setUp();
         $this->fitbit = Mockery::mock(Fitbit::class);
-        $this->water = new Water($this->fitbit);
+        $this->logs = new Logs($this->fitbit);
     }
 
     public function testGettingLogs()
@@ -29,7 +29,7 @@ class WaterTest extends TestCase
             ->andReturn('waterLogs');
         $this->assertEquals(
             'waterLogs',
-            $this->water->getLogs(
+            $this->logs->get(
                 Carbon::today()
             )
         );

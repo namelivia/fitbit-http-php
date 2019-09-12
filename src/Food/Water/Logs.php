@@ -7,7 +7,7 @@ namespace Namelivia\Fitbit\Food\Water;
 use Carbon\Carbon;
 use Namelivia\Fitbit\Api\Fitbit;
 
-class Water
+class Logs
 {
     private $fitbit;
 
@@ -21,7 +21,7 @@ class Water
      *
      * @param Carbon $date
      */
-    public function getLogs(Carbon $date)
+    public function get(Carbon $date)
     {
         return $this->fitbit->get(implode('/', [
             'foods',

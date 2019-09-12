@@ -25,9 +25,9 @@ class ApiFoodTest extends TestCase
         $this->assertTrue($this->food->foods() instanceof \Namelivia\Fitbit\Food\Foods\Foods);
     }
 
-    public function testGettingAWaterInstance()
+    public function testGettingAWaterLogsInstance()
     {
-        $this->assertTrue($this->food->water() instanceof \Namelivia\Fitbit\Food\Water\Water);
+        $this->assertTrue($this->food->waterLogs() instanceof \Namelivia\Fitbit\Food\Water\Logs);
     }
 
     public function testGettingATimeSeriesInstance()
