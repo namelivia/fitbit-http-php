@@ -17,19 +17,6 @@ class Water
     }
 
     /**
-     * Returns a user's current daily water consumption goal.
-     */
-    public function getGoals()
-    {
-        return $this->fitbit->get(implode('/', [
-            'foods',
-            'log',
-            'water',
-            'goal',
-          ]) . '.json');
-    }
-
-    /**
      * Retrieves a summary and list of a user's water log entries for a given day.
      *
      * @param Carbon $date

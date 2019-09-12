@@ -21,18 +21,6 @@ class WaterTest extends TestCase
         $this->water = new Water($this->fitbit);
     }
 
-    public function testGettingGoals()
-    {
-        $this->fitbit->shouldReceive('get')
-            ->once()
-            ->with('foods/log/water/goal.json')
-            ->andReturn('waterGoals');
-        $this->assertEquals(
-            'waterGoals',
-            $this->water->getGoals()
-        );
-    }
-
     public function testGettingLogs()
     {
         $this->fitbit->shouldReceive('get')
