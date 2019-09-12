@@ -31,4 +31,28 @@ class FoodFavoritesTest extends TestCase
             $this->favorites->get()
         );
     }
+
+    public function testAddingAFoodFavorite()
+    {
+        $this->fitbit->shouldReceive('post')
+            ->once()
+            ->with('foods/log/favorite/foodId.json')
+            ->andReturn('addedFavoriteFood');
+        $this->assertEquals(
+            'addedFavoriteFood',
+            $this->favorites->add('foodId')
+        );
+    }
+
+    public function testRemovingAFoodFavorite()
+    {
+        $this->fitbit->shouldReceive('delete')
+            ->once()
+            ->with('foods/log/favorite/foodId.json')
+            ->andReturn('');
+        $this->assertEquals(
+            '',
+            $this->favorites->remove('foodId')
+        );
+    }
 }

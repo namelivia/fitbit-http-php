@@ -26,4 +26,34 @@ class Favorites
             'favorite',
           ]) . '.json');
     }
+
+    /**
+     * Adds a food with the given ID to the user's list of favorite foods.
+     *
+     * @param string $foodId
+     */
+    public function add(string $foodId)
+    {
+        return $this->fitbit->post(implode('/', [
+            'foods',
+            'log',
+            'favorite',
+            $foodId
+          ]) . '.json');
+    }
+
+    /**
+     * Removes edds a food with the given ID to the user's list of favorite foods.
+     *
+     * @param string $foodId
+     */
+    public function remove(string $foodId)
+    {
+        return $this->fitbit->delete(implode('/', [
+            'foods',
+            'log',
+            'favorite',
+            $foodId
+          ]) . '.json');
+    }
 }
