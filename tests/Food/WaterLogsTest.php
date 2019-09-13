@@ -9,6 +9,7 @@ use Mockery;
 use Namelivia\Fitbit\Api\Fitbit;
 use Namelivia\Fitbit\Food\Water\Logs;
 use Namelivia\Fitbit\Food\Water\Log;
+use Namelivia\Fitbit\Food\Water\UpdatedLog;
 use Namelivia\Fitbit\Food\Water\Unit;
 
 class WaterLogsTest extends TestCase
@@ -47,6 +48,21 @@ class WaterLogsTest extends TestCase
             'addedLog',
 						$this->logs->add(
 							new Log(Carbon::now(), 12, new Unit(Unit::MILIMETER))
+						)
+        );
+    }
+
+    public function testUpdatingALogEntry()
+    {
+        $this->fitbit->shouldReceive('post')
+            ->once()
+            ->with('foods/log/water/logId.json?unit=ml&amount=1.2')
+            ->andReturn('updatedLog');
+        $this->assertEquals(
+            'updatedLog',
+						$this->logs->update(
+							'logId',
+							new UpdatedLog(12, new Unit(Unit::MILIMETER))
 						)
         );
     }

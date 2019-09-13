@@ -47,6 +47,22 @@ class Logs
     }
 
     /**
+     * Creates a water log entry on the users water log records.
+     *
+     * @param string $logId
+     * @param UpdatedLog $log
+     */
+    public function update(string $logId, UpdatedLog $log)
+    {
+        return $this->fitbit->post(implode('/', [
+            'foods',
+            'log',
+            'water',
+            $logId,
+          ]) . '.json?' . $log->asUrlParam());
+    }
+
+    /**
      * Deletes a user water log entry with the given ID.
      *
      * @param string $logId
