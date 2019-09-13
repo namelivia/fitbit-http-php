@@ -31,4 +31,33 @@ class Logs
             $date->format('Y-m-d'),
           ]) . '.json');
     }
+
+    /**
+     * Creates a water log entry on the users water log records.
+     *
+     * @param Log $log
+     */
+    public function add(Log $log)
+    {
+        return $this->fitbit->post(implode('/', [
+            'foods',
+            'log',
+            'water',
+          ]) . '.json?' . $log->asUrlParam());
+    }
+
+    /**
+     * Deletes a user water log entry with the given ID.
+     *
+     * @param string $logId
+     */
+    public function remove(string $logId)
+    {
+			return $this->fitbit->delete(implode('/', [
+				'foods',
+				'log',
+				'water',
+				$logId,
+			]) . '.json');
+    }
 }
