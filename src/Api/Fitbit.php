@@ -89,6 +89,17 @@ class Fitbit
         )->getBody()->getContents();
     }
 
+    //TODO: Ugh! I hate doing this
+    public function postBody($url, $body)
+    {
+        return $this->client->post(
+            $this->baseUrl . $this->userId . '/' . $url,
+						[
+							'json' => $body
+						]
+        )->getBody()->getContents();
+    }
+
     public function post($url)
     {
         return $this->client->post(

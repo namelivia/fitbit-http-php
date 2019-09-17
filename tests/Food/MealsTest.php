@@ -7,6 +7,7 @@ namespace Namelivia\Fitbit\Tests;
 use Mockery;
 use Namelivia\Fitbit\Api\Fitbit;
 use Namelivia\Fitbit\Food\Meals\Meal;
+use Namelivia\Fitbit\Food\Meals\MealFood;
 use Namelivia\Fitbit\Food\Meals\Meals;
 
 class MealsTest extends TestCase
@@ -23,31 +24,63 @@ class MealsTest extends TestCase
 
     public function testAddingAMeal()
     {
-        $this->fitbit->shouldReceive('post')
+				$newMeal = (new Meal('mealName', 'mealDescription'))
+					->addFood(new MealFood('foodId1', 'unitId1', 223))
+					->addFood(new MealFood('foodId2', 'unitId2', 446));
+
+        $this->fitbit->shouldReceive('postBody')
             ->once()
-            ->with('meals.json?name=mealName&description=mealDescription&foodId=foodID&unitId=unitID&amount=1.8')
+						->with('meals.json', [
+							'name' => 'mealName',
+							'description' => 'mealDescription',
+							'mealFoods' => [
+								[
+									'foodId' => 'foodId1',
+									'amount' => 2.23,
+									'unitId' => 'unitId1',
+								],
+								[
+									'foodId' => 'foodId2',
+									'amount' => 4.46,
+									'unitId' => 'unitId2',
+								],
+							],
+						])
             ->andReturn('newMeal');
         $this->assertEquals(
             'newMeal',
-            $this->meals->create(
-                new Meal('mealName', 'mealDescription', 'foodID', 'unitID', 180)
-            )
+            $this->meals->create($newMeal)
         );
     }
 
     public function testEditingAMeal()
     {
         $mealId = 'someMealId';
-        $this->fitbit->shouldReceive('post')
+				$editedMeal = (new Meal('mealName', 'mealDescription'))
+							->addFood(new MealFood('foodId1', 'unitId1', 223))
+							->addFood(new MealFood('foodId2', 'unitId2', 446));
+        $this->fitbit->shouldReceive('postBody')
             ->once()
-            ->with('meals/someMealId.json?name=editedMealName&description=editedMealDescription&foodId=foodID&unitId=unitID&amount=23.8')
-            ->andReturn('newMeal');
+						->with('meals/someMealId.json', [
+							'name' => 'mealName',
+							'description' => 'mealDescription',
+							'mealFoods' => [
+								[
+									'foodId' => 'foodId1',
+									'amount' => 2.23,
+									'unitId' => 'unitId1',
+								],
+								[
+									'foodId' => 'foodId2',
+									'amount' => 4.46,
+									'unitId' => 'unitId2',
+								],
+							],
+						])
+            ->andReturn('updatedMeal');
         $this->assertEquals(
-            'newMeal',
-            $this->meals->edit(
-                $mealId,
-                new Meal('editedMealName', 'editedMealDescription', 'foodID', 'unitID', 2380)
-            )
+            'updatedMeal',
+            $this->meals->edit($mealId, $editedMeal)
         );
     }
 

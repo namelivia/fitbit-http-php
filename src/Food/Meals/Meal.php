@@ -8,35 +8,34 @@ class Meal
 {
     private $name;
     private $description;
-    private $foodId;
-    private $unitId;
-    private $amount;
 
     public function __construct(
         string $name,
-        string $description,
-        string $foodId,
-        string $unitId,
-        int $amount
+        string $description
     ) {
         $this->name = $name;
         $this->description = $description;
-        $this->foodId = $foodId;
-        $this->unitId = $unitId;
-        $this->amount = $amount / 100;
+        $this->mealFoods = new MealFoods();
     }
 
     /**
-     * Returns the log parameters as an http query to be inserted in an API call.
+     * Adds a MealFood to the foods collection.
      */
-    public function asUrlParam()
+    public function addFood(MealFood $mealFood)
     {
-        return http_build_query([
-            'name' => $this->name,
-            'description' => $this->description,
-            'foodId' => $this->foodId,
-            'unitId' => $this->unitId,
-            'amount' => $this->amount,
-        ]);
+		    $this->mealFoods->addFood($mealFood);
+        return $this;
+    }
+
+    /**
+     * Returns the meal structure as an array.
+     */
+    public function toArray()
+    {
+        return [
+					'name' => $this->name,
+					'description' => $this->description,
+					'mealFoods' => $this->mealFoods->toArray()
+        ];
     }
 }
