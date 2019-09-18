@@ -19,6 +19,7 @@ class Fitbit
     private $sleepLogs;
     private $devices;
     private $body;
+    private $food;
 
     public function __construct(Api $api)
     {
@@ -30,6 +31,7 @@ class Fitbit
         $this->friends = new Friends($this);
         $this->devices = new Devices($this);
         $this->body = new Body($this);
+        $this->food = new Food($this);
     }
 
     public function get($url)
@@ -72,10 +74,29 @@ class Fitbit
     }
 
     //TODO: Ugh! I hate doing this
+    public function postNonUserEndpoint($url)
+    {
+        return $this->client->post(
+            $this->nonUserUrl . $url
+        )->getBody()->getContents();
+    }
+
+    //TODO: Ugh! I hate doing this
     public function postv12Endpoint($url)
     {
         return $this->client->post(
             $this->v12Url . $this->userId . '/' . $url
+        )->getBody()->getContents();
+    }
+
+    //TODO: Ugh! I hate doing this
+    public function postBody($url, $body)
+    {
+        return $this->client->post(
+            $this->baseUrl . $this->userId . '/' . $url,
+                        [
+                            'json' => $body,
+                        ]
         )->getBody()->getContents();
     }
 
@@ -136,5 +157,10 @@ class Fitbit
     public function body()
     {
         return $this->body;
+    }
+
+    public function food()
+    {
+        return $this->food;
     }
 }

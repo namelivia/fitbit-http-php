@@ -58,6 +58,42 @@ class FitbitTest extends TestCase
         );
     }
 
+    public function testMakingAPostCallWithAPostBody()
+    {
+        $body = [];
+        $this->client->shouldReceive('post')
+            ->once()
+                        ->with(
+                            'https://api.fitbit.com/1/user/-/sampleurl',
+                            ['json' => $body]
+                        )
+            ->andReturn($this->client);
+        $this->client->shouldReceive('getBody->getContents')
+            ->once()
+            ->with()
+            ->andReturn('responseContent');
+        $this->assertEquals(
+            'responseContent',
+            $this->fitbit->postBody('sampleurl', $body)
+        );
+    }
+
+    public function testMakingAPostCallToANonUserEndpoint()
+    {
+        $this->client->shouldReceive('post')
+            ->once()
+            ->with('https://api.fitbit.com/1/sampleurl')
+            ->andReturn($this->client);
+        $this->client->shouldReceive('getBody->getContents')
+            ->once()
+            ->with()
+            ->andReturn('responseContent');
+        $this->assertEquals(
+            'responseContent',
+            $this->fitbit->postNonUserEndpoint('sampleurl')
+        );
+    }
+
     public function testMakingAGetCallToAV11Endpoint()
     {
         $this->client->shouldReceive('get')
@@ -216,5 +252,10 @@ class FitbitTest extends TestCase
     public function testGettingABodyInstance()
     {
         $this->assertTrue($this->fitbit->body() instanceof \Namelivia\Fitbit\Api\Body);
+    }
+
+    public function testGettingAFoodInstance()
+    {
+        $this->assertTrue($this->fitbit->food() instanceof \Namelivia\Fitbit\Api\Food);
     }
 }
