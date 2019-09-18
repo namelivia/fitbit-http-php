@@ -38,7 +38,7 @@ class Favorites
             'foods',
             'log',
             'favorite',
-            $foodId
+            $foodId,
           ]) . '.json');
     }
 
@@ -53,7 +53,7 @@ class Favorites
             'foods',
             'log',
             'favorite',
-            $foodId
+            $foodId,
           ]) . '.json');
     }
 }

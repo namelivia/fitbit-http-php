@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Namelivia\Fitbit\Food\Water;
 
-use Carbon\Carbon;
-
 class UpdatedLog
 {
     private $amount;

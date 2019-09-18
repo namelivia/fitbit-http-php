@@ -24,28 +24,28 @@ class MealsTest extends TestCase
 
     public function testAddingAMeal()
     {
-				$newMeal = (new Meal('mealName', 'mealDescription'))
-					->addFood(new MealFood('foodId1', 'unitId1', 223))
-					->addFood(new MealFood('foodId2', 'unitId2', 446));
+        $newMeal = (new Meal('mealName', 'mealDescription'))
+                    ->addFood(new MealFood('foodId1', 'unitId1', 223))
+                    ->addFood(new MealFood('foodId2', 'unitId2', 446));
 
         $this->fitbit->shouldReceive('postBody')
             ->once()
-						->with('meals.json', [
-							'name' => 'mealName',
-							'description' => 'mealDescription',
-							'mealFoods' => [
-								[
-									'foodId' => 'foodId1',
-									'amount' => 2.23,
-									'unitId' => 'unitId1',
-								],
-								[
-									'foodId' => 'foodId2',
-									'amount' => 4.46,
-									'unitId' => 'unitId2',
-								],
-							],
-						])
+                        ->with('meals.json', [
+                            'name' => 'mealName',
+                            'description' => 'mealDescription',
+                            'mealFoods' => [
+                                [
+                                    'foodId' => 'foodId1',
+                                    'amount' => 2.23,
+                                    'unitId' => 'unitId1',
+                                ],
+                                [
+                                    'foodId' => 'foodId2',
+                                    'amount' => 4.46,
+                                    'unitId' => 'unitId2',
+                                ],
+                            ],
+                        ])
             ->andReturn('newMeal');
         $this->assertEquals(
             'newMeal',
@@ -56,27 +56,27 @@ class MealsTest extends TestCase
     public function testEditingAMeal()
     {
         $mealId = 'someMealId';
-				$editedMeal = (new Meal('mealName', 'mealDescription'))
-							->addFood(new MealFood('foodId1', 'unitId1', 223))
-							->addFood(new MealFood('foodId2', 'unitId2', 446));
+        $editedMeal = (new Meal('mealName', 'mealDescription'))
+                            ->addFood(new MealFood('foodId1', 'unitId1', 223))
+                            ->addFood(new MealFood('foodId2', 'unitId2', 446));
         $this->fitbit->shouldReceive('postBody')
             ->once()
-						->with('meals/someMealId.json', [
-							'name' => 'mealName',
-							'description' => 'mealDescription',
-							'mealFoods' => [
-								[
-									'foodId' => 'foodId1',
-									'amount' => 2.23,
-									'unitId' => 'unitId1',
-								],
-								[
-									'foodId' => 'foodId2',
-									'amount' => 4.46,
-									'unitId' => 'unitId2',
-								],
-							],
-						])
+                        ->with('meals/someMealId.json', [
+                            'name' => 'mealName',
+                            'description' => 'mealDescription',
+                            'mealFoods' => [
+                                [
+                                    'foodId' => 'foodId1',
+                                    'amount' => 2.23,
+                                    'unitId' => 'unitId1',
+                                ],
+                                [
+                                    'foodId' => 'foodId2',
+                                    'amount' => 4.46,
+                                    'unitId' => 'unitId2',
+                                ],
+                            ],
+                        ])
             ->andReturn('updatedMeal');
         $this->assertEquals(
             'updatedMeal',

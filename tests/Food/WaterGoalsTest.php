@@ -6,8 +6,8 @@ namespace Namelivia\Fitbit\Tests;
 
 use Mockery;
 use Namelivia\Fitbit\Api\Fitbit;
-use Namelivia\Fitbit\Food\Water\WaterGoal;
 use Namelivia\Fitbit\Food\Water\Goals;
+use Namelivia\Fitbit\Food\Water\WaterGoal;
 
 class WaterGoalsTest extends TestCase
 {

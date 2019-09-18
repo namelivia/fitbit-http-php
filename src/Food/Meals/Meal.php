@@ -23,7 +23,8 @@ class Meal
      */
     public function addFood(MealFood $mealFood)
     {
-		    $this->mealFoods->addFood($mealFood);
+        $this->mealFoods->addFood($mealFood);
+
         return $this;
     }
 
@@ -33,9 +34,9 @@ class Meal
     public function toArray()
     {
         return [
-					'name' => $this->name,
-					'description' => $this->description,
-					'mealFoods' => $this->mealFoods->toArray()
+                    'name' => $this->name,
+                    'description' => $this->description,
+                    'mealFoods' => $this->mealFoods->toArray(),
         ];
     }
 }
