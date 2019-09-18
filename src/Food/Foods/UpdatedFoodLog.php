@@ -33,6 +33,7 @@ abstract class UpdatedFoodLog
             'unitId' => $this->unitId,
             'amount' => $this->amount,
             'calories' => $this->calories,
+            'nutritionalValues' => is_null($this->nutritionalValues) ? null : $this->nutritionalValues->toArray(),
         ]);
     }
 }

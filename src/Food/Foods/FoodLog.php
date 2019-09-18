@@ -52,9 +52,10 @@ abstract class FoodLog
             'unitId' => $this->unitId,
             'amount' => $this->amount,
             'date' => $this->date,
-            'favorite' => $this->favorite ? 'true' : 'false', //TOOD: This should be null sometimes
+            'favorite' => $this->favorite ? 'true' : 'false', //TODO: This should be null sometimes
             'brandName' => $this->brandName,
             'calories' => $this->calories,
+            'nutritionalValues' => is_null($this->nutritionalValues) ? null : $this->nutritionalValues->toArray(),
         ]);
     }
 }

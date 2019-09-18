@@ -12,6 +12,7 @@ class Food
     private $calories;
     private $formType;
     private $description;
+    private $nutritionalValues;
 
     public function __construct(
         string $name,
@@ -30,6 +31,18 @@ class Food
     }
 
     /**
+     * Sets the nutritional values information for the
+		 * food.
+		 *
+		 * @param NutritionalValues
+     */
+    public function setNutritionalValues(NutritionalValues $nutritionalValues)
+    {
+			$this->nutritionalValues = $nutritionalValues;
+			return $this;
+		}
+
+    /**
      * Returns the log parameters as an http query to be inserted in an API call.
      */
     public function asUrlParam()
@@ -41,6 +54,7 @@ class Food
             'calories' => $this->calories,
             'formType' => $this->formType,
             'description' => $this->description,
+            'nutritionalValues' => is_null($this->nutritionalValues) ? null : $this->nutritionalValues->toArray(),
         ]);
     }
 }
