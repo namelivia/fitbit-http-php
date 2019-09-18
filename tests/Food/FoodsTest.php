@@ -8,8 +8,8 @@ use Mockery;
 use Namelivia\Fitbit\Api\Fitbit;
 use Namelivia\Fitbit\Food\Foods\Food;
 use Namelivia\Fitbit\Food\Foods\Foods;
-use Namelivia\Fitbit\Food\Foods\NutritionalValues;
 use Namelivia\Fitbit\Food\Foods\FormType;
+use Namelivia\Fitbit\Food\Foods\NutritionalValues;
 
 class FoodsTest extends TestCase
 {

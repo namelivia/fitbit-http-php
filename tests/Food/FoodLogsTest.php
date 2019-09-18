@@ -9,11 +9,11 @@ use Mockery;
 use Namelivia\Fitbit\Api\Fitbit;
 use Namelivia\Fitbit\Food\Foods\Logs;
 use Namelivia\Fitbit\Food\Foods\MealType;
+use Namelivia\Fitbit\Food\Foods\NutritionalValues;
 use Namelivia\Fitbit\Food\Foods\PrivateFoodLog;
 use Namelivia\Fitbit\Food\Foods\PublicFoodLog;
-use Namelivia\Fitbit\Food\Foods\NutritionalValues;
-use Namelivia\Fitbit\Food\Foods\UpdatedPublicFoodLog;
 use Namelivia\Fitbit\Food\Foods\UpdatedPrivateFoodLog;
+use Namelivia\Fitbit\Food\Foods\UpdatedPublicFoodLog;
 
 class FoodLogsTest extends TestCase
 {
