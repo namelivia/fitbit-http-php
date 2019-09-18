@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Namelivia\Fitbit\Api;
 
+use Namelivia\Fitbit\Food\Favorite\Favorites as FavoritesOperations;
 use Namelivia\Fitbit\Food\Foods\Foods as FoodsOperations;
 use Namelivia\Fitbit\Food\Foods\Goals as GoalsOperations;
-use Namelivia\Fitbit\Food\Water\Goals as WaterGoalsOperations;
 use Namelivia\Fitbit\Food\Foods\Logs as LogsOperations;
 use Namelivia\Fitbit\Food\Meals\Meals as MealsOperations;
 use Namelivia\Fitbit\Food\TimeSeries as TimeSeriesOperations;
+use Namelivia\Fitbit\Food\Water\Goals as WaterGoalsOperations;
 use Namelivia\Fitbit\Food\Water\Logs as WaterLogsOperations;
-use Namelivia\Fitbit\Food\Favorite\Favorites as FavoritesOperations;
 
 class Food
 {

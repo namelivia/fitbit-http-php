@@ -69,11 +69,11 @@ class Logs
      */
     public function remove(string $logId)
     {
-			return $this->fitbit->delete(implode('/', [
-				'foods',
-				'log',
-				'water',
-				$logId,
-			]) . '.json');
+        return $this->fitbit->delete(implode('/', [
+                'foods',
+                'log',
+                'water',
+                $logId,
+            ]) . '.json');
     }
 }

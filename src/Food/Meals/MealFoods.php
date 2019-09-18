@@ -8,7 +8,8 @@ class MealFoods
 {
     private $items;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->items = [];
     }
 
@@ -17,7 +18,8 @@ class MealFoods
      */
     public function addFood(MealFood $mealFood)
     {
-		    array_push($this->items, $mealFood);
+        array_push($this->items, $mealFood);
+
         return $this;
     }
 
@@ -26,8 +28,8 @@ class MealFoods
      */
     public function toArray()
     {
-			return array_map(function ($item) {
-				return $item->toArray();
-			}, $this->items);
+        return array_map(function ($item) {
+            return $item->toArray();
+        }, $this->items);
     }
 }

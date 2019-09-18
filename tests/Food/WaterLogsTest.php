@@ -7,10 +7,10 @@ namespace Namelivia\Fitbit\Tests;
 use Carbon\Carbon;
 use Mockery;
 use Namelivia\Fitbit\Api\Fitbit;
-use Namelivia\Fitbit\Food\Water\Logs;
 use Namelivia\Fitbit\Food\Water\Log;
-use Namelivia\Fitbit\Food\Water\UpdatedLog;
+use Namelivia\Fitbit\Food\Water\Logs;
 use Namelivia\Fitbit\Food\Water\Unit;
+use Namelivia\Fitbit\Food\Water\UpdatedLog;
 
 class WaterLogsTest extends TestCase
 {
@@ -46,9 +46,9 @@ class WaterLogsTest extends TestCase
             ->andReturn('addedLog');
         $this->assertEquals(
             'addedLog',
-						$this->logs->add(
-							new Log(Carbon::now(), 12, new Unit(Unit::MILIMETER))
-						)
+                        $this->logs->add(
+                            new Log(Carbon::now(), 12, new Unit(Unit::MILIMETER))
+                        )
         );
     }
 
@@ -60,10 +60,10 @@ class WaterLogsTest extends TestCase
             ->andReturn('updatedLog');
         $this->assertEquals(
             'updatedLog',
-						$this->logs->update(
-							'logId',
-							new UpdatedLog(12, new Unit(Unit::MILIMETER))
-						)
+                        $this->logs->update(
+                            'logId',
+                            new UpdatedLog(12, new Unit(Unit::MILIMETER))
+                        )
         );
     }
 
