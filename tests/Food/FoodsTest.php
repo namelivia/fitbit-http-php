@@ -98,7 +98,7 @@ class FoodsTest extends TestCase
     {
         $this->fitbit->shouldReceive('postNonUserEndpoint')
             ->once()
-            ->with('foods.json?name=test+food&defaultFoodMeasurementUnitId=unitId&defaultServingSize=servingSize&calories=400&description=test+food+description')
+            ->with('foods.json?name=test+food&defaultFoodMeasurementUnitId=unitId&defaultServingSize=servingSize&calories=400&formType=DRY&description=test+food+description')
             ->andReturn('newFood');
         $this->assertEquals(
             'newFood',

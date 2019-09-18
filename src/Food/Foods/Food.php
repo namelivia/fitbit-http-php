@@ -58,7 +58,7 @@ class Food
             'defaultFoodMeasurementUnitId' => $this->defaultFoodMeasurementUnitId,
             'defaultServingSize' => $this->defaultServingSize,
             'calories' => $this->calories,
-            'formType' => $this->formType,
+            'formType' => is_null($this->formType) ? null : (string) $this->formType,
             'description' => $this->description,
                     ], $nutritionalValues)
                 );
