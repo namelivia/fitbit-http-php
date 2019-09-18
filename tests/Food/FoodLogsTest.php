@@ -13,6 +13,7 @@ use Namelivia\Fitbit\Food\Foods\PrivateFoodLog;
 use Namelivia\Fitbit\Food\Foods\PublicFoodLog;
 use Namelivia\Fitbit\Food\Foods\NutritionalValues;
 use Namelivia\Fitbit\Food\Foods\UpdatedPublicFoodLog;
+use Namelivia\Fitbit\Food\Foods\UpdatedPrivateFoodLog;
 
 class FoodLogsTest extends TestCase
 {
@@ -90,7 +91,7 @@ class FoodLogsTest extends TestCase
         );
     }
 
-    public function testUpdatingAFoodLog()
+    public function testUpdatingAPublicFoodLog()
     {
         $this->fitbit->shouldReceive('post')
             ->once()
@@ -107,6 +108,26 @@ class FoodLogsTest extends TestCase
                     'unitId',
                     2
                 )
+            )
+        );
+    }
+
+    public function testUpdatingAPrivateFoodLog()
+    {
+        $this->fitbit->shouldReceive('post')
+            ->once()
+            ->with(
+                'foods/log/logId.json?mealTypeId=3&calories=1000&iron=10'
+            )
+            ->andReturn('updatedFoodLog');
+        $this->assertEquals(
+            'updatedFoodLog',
+            $this->logs->update(
+                'logId',
+                (new UpdatedPrivateFoodLog(
+                    new MealType(MealType::LUNCH),
+                    1000
+                ))->setNutritionalValues((new NutritionalValues())->setIron(10))
             )
         );
     }

@@ -95,6 +95,27 @@ class FoodsTest extends TestCase
         );
     }
 
+    public function testCreatingAFoodWithoutNutritionalInformation()
+    {
+        $this->fitbit->shouldReceive('postNonUserEndpoint')
+            ->once()
+            ->with('foods.json?name=test+food&defaultFoodMeasurementUnitId=unitId&defaultServingSize=servingSize&calories=400&formType=DRY&description=test+food+description')
+            ->andReturn('newFood');
+        $this->assertEquals(
+            'newFood',
+            $this->foods->create(
+                new Food(
+                    'test food',
+                    'unitId',
+                    'servingSize',
+                    400,
+                    new FormType(FormType::DRY),
+                    'test food description'
+                )
+            )
+        );
+    }
+
     public function testCreatingAFoodWithNutritionalInformation()
     {
         $this->fitbit->shouldReceive('postNonUserEndpoint')
