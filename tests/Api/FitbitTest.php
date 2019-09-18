@@ -63,10 +63,10 @@ class FitbitTest extends TestCase
         $body = [];
         $this->client->shouldReceive('post')
             ->once()
-						->with(
-							'https://api.fitbit.com/1/user/-/sampleurl',
-							['json' => $body]
-						)
+                        ->with(
+                            'https://api.fitbit.com/1/user/-/sampleurl',
+                            ['json' => $body]
+                        )
             ->andReturn($this->client);
         $this->client->shouldReceive('getBody->getContents')
             ->once()

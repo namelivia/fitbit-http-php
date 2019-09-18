@@ -28,17 +28,17 @@ abstract class UpdatedFoodLog
      */
     public function asUrlParam()
     {
-			$nutritionalValues = is_null($this->nutritionalValues) ?
-				[] :
-				$this->nutritionalValues->toArray();
+        $nutritionalValues = is_null($this->nutritionalValues) ?
+                [] :
+                $this->nutritionalValues->toArray();
 
-			return http_build_query(
-				array_merge([
-					'mealTypeId' => (string) $this->mealType,
-					'unitId' => $this->unitId,
-					'amount' => $this->amount,
-					'calories' => $this->calories,
-				], $nutritionalValues)
-			);
+        return http_build_query(
+                array_merge([
+                    'mealTypeId' => (string) $this->mealType,
+                    'unitId' => $this->unitId,
+                    'amount' => $this->amount,
+                    'calories' => $this->calories,
+                ], $nutritionalValues)
+            );
     }
 }

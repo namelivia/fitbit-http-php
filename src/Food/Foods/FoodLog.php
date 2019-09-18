@@ -45,22 +45,22 @@ abstract class FoodLog
      */
     public function asUrlParam()
     {
-			$nutritionalValues = is_null($this->nutritionalValues) ?
-				[] :
-				$this->nutritionalValues->toArray();
+        $nutritionalValues = is_null($this->nutritionalValues) ?
+                [] :
+                $this->nutritionalValues->toArray();
 
-			return http_build_query(
-				array_merge([
-					'foodId' => $this->foodId,
-					'foodName' => $this->foodName,
-					'mealTypeId' => (string) $this->mealType,
-					'unitId' => $this->unitId,
-					'amount' => $this->amount,
-					'date' => $this->date,
-					'favorite' => $this->favorite ? 'true' : 'false', //TODO: This should be null sometimes
-					'brandName' => $this->brandName,
-					'calories' => $this->calories,
-				], $nutritionalValues)
-			);
-		}
+        return http_build_query(
+                array_merge([
+                    'foodId' => $this->foodId,
+                    'foodName' => $this->foodName,
+                    'mealTypeId' => (string) $this->mealType,
+                    'unitId' => $this->unitId,
+                    'amount' => $this->amount,
+                    'date' => $this->date,
+                    'favorite' => $this->favorite ? 'true' : 'false', //TODO: This should be null sometimes
+                    'brandName' => $this->brandName,
+                    'calories' => $this->calories,
+                ], $nutritionalValues)
+            );
+    }
 }
