@@ -47,14 +47,18 @@ class Food
      */
     public function asUrlParam()
     {
-        return http_build_query([
+				$nutritionalValues = is_null($this->nutritionalValues) ?
+				[]:
+				$this->nutritionalValues->toArray();
+				return http_build_query(
+					array_merge([
             'name' => $this->name,
             'defaultFoodMeasurementUnitId' => $this->defaultFoodMeasurementUnitId,
             'defaultServingSize' => $this->defaultServingSize,
             'calories' => $this->calories,
             'formType' => $this->formType,
             'description' => $this->description,
-            'nutritionalValues' => is_null($this->nutritionalValues) ? null : $this->nutritionalValues->toArray(),
-        ]);
+					], $nutritionalValues)
+				);
     }
 }
