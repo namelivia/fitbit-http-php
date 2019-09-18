@@ -11,7 +11,7 @@ use Namelivia\Fitbit\Food\Foods\Logs;
 use Namelivia\Fitbit\Food\Foods\MealType;
 use Namelivia\Fitbit\Food\Foods\PrivateFoodLog;
 use Namelivia\Fitbit\Food\Foods\PublicFoodLog;
-use Namelivia\Fitbit\Food\Foods\UpdatedFoodLog;
+use Namelivia\Fitbit\Food\Foods\UpdatedPublicFoodLog;
 
 class FoodLogsTest extends TestCase
 {
@@ -94,19 +94,17 @@ class FoodLogsTest extends TestCase
         $this->fitbit->shouldReceive('post')
             ->once()
             ->with(
-                'foods/log/logId.json?mealTypeId=3&unitId=unitId&amount=0.02' .
-                '&calories=2000'
+                'foods/log/logId.json?mealTypeId=3&unitId=unitId&amount=0.02'
             )
             ->andReturn('updatedFoodLog');
         $this->assertEquals(
             'updatedFoodLog',
             $this->logs->update(
                 'logId',
-                new UpdatedFoodLog(
+                new UpdatedPublicFoodLog(
                     new MealType(MealType::LUNCH),
                     'unitId',
-                    2,
-                    2000
+                    2
                 )
             )
         );
