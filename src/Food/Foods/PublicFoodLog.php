@@ -10,7 +10,7 @@ class PublicFoodLog extends FoodLog
 {
     public function __construct(
         string $foodId,
-        MealType $mealTypeId,
+        MealType $mealType,
         string $unitId,
         int $amount,
         Carbon $date,
@@ -20,7 +20,7 @@ class PublicFoodLog extends FoodLog
         parent::__construct(
             $foodId,
             null,
-            $mealTypeId,
+            $mealType,
             $unitId,
             $amount,
             $date,

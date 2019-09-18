@@ -10,7 +10,7 @@ abstract class FoodLog
 {
     private $foodId;
     private $foodName;
-    private $mealTypeId;
+    private $mealType;
     private $unitId;
     private $amount;
     private $date;
@@ -21,7 +21,7 @@ abstract class FoodLog
     public function __construct(
         string $foodId = null,
         string $foodName = null,
-        MealType $mealTypeId,
+        MealType $mealType,
         string $unitId,
         int $amount,
         Carbon $date,
@@ -31,7 +31,7 @@ abstract class FoodLog
     ) {
         $this->foodId = $foodId;
         $this->foodName = $foodName;
-        $this->mealTypeId = $mealTypeId;
+        $this->mealType = $mealType;
         $this->unitId = $unitId;
         $this->amount = $amount / 100;
         $this->date = $date->format('Y-m-d');
@@ -48,7 +48,7 @@ abstract class FoodLog
         return http_build_query([
             'foodId' => $this->foodId,
             'foodName' => $this->foodName,
-            'mealTypeId' => (string) $this->mealTypeId,
+            'mealTypeId' => (string) $this->mealType,
             'unitId' => $this->unitId,
             'amount' => $this->amount,
             'date' => $this->date,
