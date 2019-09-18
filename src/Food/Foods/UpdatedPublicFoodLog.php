@@ -6,7 +6,7 @@ namespace Namelivia\Fitbit\Food\Foods;
 
 class UpdatedPublicFoodLog extends UpdatedFoodLog
 {
-	  protected $nutritionalValues;
+    protected $nutritionalValues;
 
     public function __construct(
         MealType $mealType,
