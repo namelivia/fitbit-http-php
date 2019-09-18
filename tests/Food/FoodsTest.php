@@ -8,6 +8,7 @@ use Mockery;
 use Namelivia\Fitbit\Api\Fitbit;
 use Namelivia\Fitbit\Food\Foods\Food;
 use Namelivia\Fitbit\Food\Foods\Foods;
+use Namelivia\Fitbit\Food\Foods\NutritionalValues;
 use Namelivia\Fitbit\Food\Foods\FormType;
 
 class FoodsTest extends TestCase
@@ -94,23 +95,23 @@ class FoodsTest extends TestCase
         );
     }
 
-    public function testCreatingAFood()
+    public function testCreatingAFoodWithNutritionalInformation()
     {
         $this->fitbit->shouldReceive('postNonUserEndpoint')
             ->once()
-            ->with('foods.json?name=test+food&defaultFoodMeasurementUnitId=unitId&defaultServingSize=servingSize&calories=400&formType=DRY&description=test+food+description')
+            ->with('foods.json?name=test+food&defaultFoodMeasurementUnitId=unitId&defaultServingSize=servingSize&calories=400&formType=DRY&description=test+food+description&protein=10')
             ->andReturn('newFood');
         $this->assertEquals(
             'newFood',
             $this->foods->create(
-                new Food(
+                (new Food(
                     'test food',
                     'unitId',
                     'servingSize',
                     400,
                     new FormType(FormType::DRY),
                     'test food description'
-                )
+                ))->setNutritionalValues((new NutritionalValues())->setProtein(10))
             )
         );
     }

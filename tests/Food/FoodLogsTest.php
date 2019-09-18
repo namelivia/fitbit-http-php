@@ -11,6 +11,7 @@ use Namelivia\Fitbit\Food\Foods\Logs;
 use Namelivia\Fitbit\Food\Foods\MealType;
 use Namelivia\Fitbit\Food\Foods\PrivateFoodLog;
 use Namelivia\Fitbit\Food\Foods\PublicFoodLog;
+use Namelivia\Fitbit\Food\Foods\NutritionalValues;
 use Namelivia\Fitbit\Food\Foods\UpdatedPublicFoodLog;
 
 class FoodLogsTest extends TestCase
@@ -39,19 +40,19 @@ class FoodLogsTest extends TestCase
         );
     }
 
-    public function testAddingAPrivateFoodLog()
+    public function testAddingAPrivateFoodLogWithNutritionalValues()
     {
         $this->fitbit->shouldReceive('post')
             ->once()
             ->with(
                 'foods/log.json?foodName=private+test+food&mealTypeId=1&unitId=unitId' .
-                '&amount=0.02&date=2019-03-21&favorite=false&brandName=Brand+name&calories=3000'
+                '&amount=0.02&date=2019-03-21&favorite=false&brandName=Brand+name&calories=3000&protein=10'
             )
             ->andReturn('createdFoodLog');
         $this->assertEquals(
             'createdFoodLog',
             $this->logs->add(
-                new PrivateFoodLog(
+                (new PrivateFoodLog(
                     'private test food',
                     new MealType(MealType::BREAKFAST),
                     'unitId',
@@ -59,7 +60,7 @@ class FoodLogsTest extends TestCase
                     Carbon::now(),
                     'Brand name',
                     3000
-                )
+                ))->setNutritionalValues((new NutritionalValues())->setProtein(10))
             )
         );
     }
