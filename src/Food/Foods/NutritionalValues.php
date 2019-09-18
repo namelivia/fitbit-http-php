@@ -138,9 +138,9 @@ class NutritionalValues
      *
      * @param int $dietaryFiber
      */
-    public function setDietaryFiber(int $zinc)
+    public function setDietaryFiber(int $dietaryFiber)
     {
-        $this->zinc = $zinc;
+        $this->dietaryFiber = $dietaryFiber;
 
         return $this;
     }
