@@ -8,7 +8,7 @@ use Carbon\Carbon;
 
 class PublicFoodLog extends FoodLog
 {
-	  protected $nutritionalValues;
+    protected $nutritionalValues;
 
     public function __construct(
         string $foodId,

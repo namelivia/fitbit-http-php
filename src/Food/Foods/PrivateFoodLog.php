@@ -8,7 +8,7 @@ use Carbon\Carbon;
 
 class PrivateFoodLog extends FoodLog
 {
-	  protected $nutritionalValues; 
+    protected $nutritionalValues;
 
     public function __construct(
         string $foodName,
@@ -34,13 +34,14 @@ class PrivateFoodLog extends FoodLog
 
     /**
      * Sets the nutritional values information for the
-		 * food.
-		 *
-		 * @param NutritionalValues
+     * food.
+     *
+     * @param NutritionalValues
      */
     public function setNutritionalValues(NutritionalValues $nutritionalValues)
     {
-			$this->nutritionalValues = $nutritionalValues;
-			return $this;
-		}
+        $this->nutritionalValues = $nutritionalValues;
+
+        return $this;
+    }
 }

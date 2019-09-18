@@ -6,7 +6,7 @@ namespace Namelivia\Fitbit\Food\Foods;
 
 class UpdatedPrivateFoodLog extends UpdatedFoodLog
 {
-	  protected $nutritionalValues; 
+    protected $nutritionalValues;
 
     public function __construct(
         MealType $mealType,
@@ -21,15 +21,15 @@ class UpdatedPrivateFoodLog extends UpdatedFoodLog
     }
 
     /**
-		 *
      * Sets the nutritional values information for the
-		 * food.
-		 *
-		 * @param NutritionalValues
+     * food.
+     *
+     * @param NutritionalValues
      */
     public function setNutritionalValues(NutritionalValues $nutritionalValues)
     {
-			$this->nutritionalValues = $nutritionalValues;
-			return $this;
-		}
+        $this->nutritionalValues = $nutritionalValues;
+
+        return $this;
+    }
 }
