@@ -9,24 +9,6 @@
 This is a package for acessing the [Fitbit official Web API](https://dev.fitbit.com/build/reference/web-api/) from your PHP language project. It is designed so you can easily query and retrieve
 all data hold on their platform from Activity Logs to Sleep or Heart Rate information.
 
-## TODO
-**Disclaimer:** The Fitbit API is divided in various sections. Currently only the following sections are implemented on the current version:
-
-- Activities & Exercise Logs
-- Body & Weight
-- Devices
-- Friends
-- Food Logging
-- Heart Rate
-- Sleep
-- User
-
-While these other are still pending:
-
-- Subscriptions
-
-All sections are planned, you can check the progress and planning by browsing the [issues section of this repository](https://github.com/namelivia/fitbit-http-php/issues).
-
 ## Installation
 
 Require this package, with [Composer](https://getcomposer.org/), in the root directory of your project.

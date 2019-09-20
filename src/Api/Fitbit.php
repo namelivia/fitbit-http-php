@@ -20,6 +20,7 @@ class Fitbit
     private $devices;
     private $body;
     private $food;
+    private $subscriptions;
 
     public function __construct(Api $api)
     {
@@ -32,6 +33,7 @@ class Fitbit
         $this->devices = new Devices($this);
         $this->body = new Body($this);
         $this->food = new Food($this);
+        $this->subscriptions = new Subscriptions($this);
     }
 
     public function get($url)
@@ -162,5 +164,10 @@ class Fitbit
     public function food()
     {
         return $this->food;
+    }
+
+    public function subscriptions()
+    {
+        return $this->subscriptions;
     }
 }
