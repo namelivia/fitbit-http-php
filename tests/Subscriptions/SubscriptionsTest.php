@@ -6,8 +6,8 @@ namespace Namelivia\Fitbit\Tests;
 
 use Mockery;
 use Namelivia\Fitbit\Api\Fitbit;
-use Namelivia\Fitbit\Subscriptions\Subscriptions;
 use Namelivia\Fitbit\Subscriptions\CollectionPath;
+use Namelivia\Fitbit\Subscriptions\Subscriptions;
 
 class SubscriptionsTest extends TestCase
 {
@@ -41,9 +41,9 @@ class SubscriptionsTest extends TestCase
             ->andReturn('foodsSubscriptionsList');
         $this->assertEquals(
             'foodsSubscriptionsList',
-						$this->subscriptions->getCollection(
-							new CollectionPath(CollectionPath::FOODS)
-						)
+                        $this->subscriptions->getCollection(
+                            new CollectionPath(CollectionPath::FOODS)
+                        )
         );
     }
 
@@ -55,9 +55,9 @@ class SubscriptionsTest extends TestCase
             ->andReturn('addedSubscription');
         $this->assertEquals(
             'addedSubscription',
-						$this->subscriptions->addAll(
-							'subscriptionId'
-						)
+                        $this->subscriptions->addAll(
+                            'subscriptionId'
+                        )
         );
     }
 
@@ -69,10 +69,10 @@ class SubscriptionsTest extends TestCase
             ->andReturn('addedSubscription');
         $this->assertEquals(
             'addedSubscription',
-						$this->subscriptions->addCollection(
-							'subscriptionId',
-							new CollectionPath(CollectionPath::FOODS)
-						)
+                        $this->subscriptions->addCollection(
+                            'subscriptionId',
+                            new CollectionPath(CollectionPath::FOODS)
+                        )
         );
     }
 
@@ -84,9 +84,9 @@ class SubscriptionsTest extends TestCase
             ->andReturn('');
         $this->assertEquals(
             '',
-						$this->subscriptions->removeAll(
-							'subscriptionId'
-						)
+                        $this->subscriptions->removeAll(
+                            'subscriptionId'
+                        )
         );
     }
 
@@ -98,10 +98,10 @@ class SubscriptionsTest extends TestCase
             ->andReturn('');
         $this->assertEquals(
             '',
-						$this->subscriptions->removeCollection(
-							'subscriptionId',
-							new CollectionPath(CollectionPath::FOODS)
-						)
+                        $this->subscriptions->removeCollection(
+                            'subscriptionId',
+                            new CollectionPath(CollectionPath::FOODS)
+                        )
         );
     }
 }

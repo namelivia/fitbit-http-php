@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Namelivia\Fitbit\Tests;
 
 use Mockery;
-use Namelivia\Fitbit\Api\Subscriptions;
 use Namelivia\Fitbit\Api\Fitbit;
+use Namelivia\Fitbit\Api\Subscriptions;
 
 class ApiSubscriptionsTest extends TestCase
 {
