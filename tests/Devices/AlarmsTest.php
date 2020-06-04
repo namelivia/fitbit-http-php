@@ -46,8 +46,8 @@ class AlarmsTest extends TestCase
         $this->assertEquals(
             'AddedAlarm',
             $this->alarms->add(
-              'TrackerId',
-              new Alarm(Carbon::now(), true, false, new Weekdays([Weekdays::MONDAY]))
+                'TrackerId',
+                new Alarm(Carbon::now(), true, false, new Weekdays([Weekdays::MONDAY]))
             )
         );
     }
@@ -63,15 +63,15 @@ class AlarmsTest extends TestCase
         $this->assertEquals(
             'UpdatedAlarm',
             $this->alarms->update(
-              'TrackerId',
-              'AlarmId',
-              new UpdatingAlarm(
-                Carbon::now(),
-                true,
-                false,
-                new Weekdays([Weekdays::SATURDAY, Weekdays::SUNDAY]),
-                20,
-                30
+                'TrackerId',
+                'AlarmId',
+                new UpdatingAlarm(
+                  Carbon::now(),
+                  true,
+                  false,
+                  new Weekdays([Weekdays::SATURDAY, Weekdays::SUNDAY]),
+                  20,
+                  30
               )
             )
         );
@@ -86,8 +86,8 @@ class AlarmsTest extends TestCase
         $this->assertEquals(
             'DeletedAlarm',
             $this->alarms->remove(
-              'TrackerId',
-              'AlarmId'
+                'TrackerId',
+                'AlarmId'
             )
         );
     }

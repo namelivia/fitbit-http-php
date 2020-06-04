@@ -96,9 +96,9 @@ class Fitbit
     {
         return $this->client->post(
             $this->baseUrl . $this->userId . '/' . $url,
-                        [
-                            'json' => $body,
-                        ]
+            [
+                'json' => $body,
+            ]
         )->getBody()->getContents();
     }
 

@@ -23,7 +23,7 @@ class Foods
         return $this->fitbit->getNonUserEndpoint(implode('/', [
             'foods',
             'locales',
-          ]) . '.json');
+        ]) . '.json');
     }
 
     /**
@@ -37,7 +37,7 @@ class Foods
         return $this->fitbit->getNonUserEndpoint(implode('/', [
             'foods',
             'search',
-          ]) . '.json' . '?' . http_build_query(['query' => $query]));
+        ]) . '.json' . '?' . http_build_query(['query' => $query]));
     }
 
     /**
@@ -48,7 +48,7 @@ class Foods
         return $this->fitbit->getNonUserEndpoint(implode('/', [
             'foods',
             'units',
-          ]) . '.json');
+        ]) . '.json');
     }
 
     /**
@@ -61,7 +61,7 @@ class Foods
         return $this->fitbit->getNonUserEndpoint(implode('/', [
             'foods',
             $foodId,
-          ]) . '.json');
+        ]) . '.json');
     }
 
     /**
@@ -73,7 +73,7 @@ class Foods
             'foods',
             'log',
             'recent',
-          ]) . '.json');
+        ]) . '.json');
     }
 
     /**
@@ -85,7 +85,7 @@ class Foods
             'foods',
             'log',
             'frequent',
-          ]) . '.json');
+        ]) . '.json');
     }
 
     /**

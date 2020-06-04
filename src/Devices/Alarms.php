@@ -27,7 +27,7 @@ class Alarms
             'tracker',
             $trackerId,
             'alarms',
-          ]) . '.json');
+        ]) . '.json');
     }
 
     /**
@@ -43,7 +43,7 @@ class Alarms
             'tracker',
             $trackerId,
             'alarms',
-          ]) . '.json?' . $alarm->asUrlParam());
+        ]) . '.json?' . $alarm->asUrlParam());
     }
 
     /**
@@ -62,7 +62,7 @@ class Alarms
             $trackerId,
             'alarms',
             $alarmId,
-          ]) . '.json?' . $alarm->asUrlParam());
+        ]) . '.json?' . $alarm->asUrlParam());
     }
 
     /**
@@ -79,6 +79,6 @@ class Alarms
             $trackerId,
             'alarms',
             $alarmId,
-          ]) . '.json');
+        ]) . '.json');
     }
 }

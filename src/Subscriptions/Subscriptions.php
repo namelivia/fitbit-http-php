@@ -33,8 +33,8 @@ class Subscriptions
     public function getCollection(CollectionPath $collectionPath)
     {
         return $this->fitbit->get(
-                (string) $collectionPath . '/apiSubscriptions.json'
-            );
+            (string) $collectionPath . '/apiSubscriptions.json'
+        );
     }
 
     /**
@@ -49,9 +49,9 @@ class Subscriptions
     public function addAll(string $subscriptionId)
     {
         return $this->fitbit->post(implode('/', [
-                    'apiSubscriptions',
-                    $subscriptionId,
-                ]) . '.json');
+            'apiSubscriptions',
+            $subscriptionId,
+        ]) . '.json');
     }
 
     /**
@@ -65,14 +65,14 @@ class Subscriptions
      * @param CollectionPath $collectionPath
      */
     public function addCollection(
-            string $subscriptionId,
-            CollectionPath $collectionPath
-        ) {
+        string $subscriptionId,
+        CollectionPath $collectionPath
+    ) {
         return $this->fitbit->post(implode('/', [
-                    $collectionPath,
-                    'apiSubscriptions',
-                    $subscriptionId,
-                ]) . '.json');
+            $collectionPath,
+            'apiSubscriptions',
+            $subscriptionId,
+        ]) . '.json');
     }
 
     /**
@@ -83,9 +83,9 @@ class Subscriptions
     public function removeAll(string $subscriptionId)
     {
         return $this->fitbit->delete(implode('/', [
-                    'apiSubscriptions',
-                    $subscriptionId,
-                ]) . '.json');
+            'apiSubscriptions',
+            $subscriptionId,
+        ]) . '.json');
     }
 
     /**
@@ -96,13 +96,13 @@ class Subscriptions
      * @param CollectionPath $collectionPath
      */
     public function removeCollection(
-            string $subscriptionId,
-            CollectionPath $collectionPath
-        ) {
+        string $subscriptionId,
+        CollectionPath $collectionPath
+    ) {
         return $this->fitbit->delete(implode('/', [
-                    $collectionPath,
-                    'apiSubscriptions',
-                    $subscriptionId,
-                ]) . '.json');
+            $collectionPath,
+            'apiSubscriptions',
+            $subscriptionId,
+        ]) . '.json');
     }
 }

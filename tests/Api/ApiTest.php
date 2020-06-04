@@ -15,10 +15,10 @@ class ApiTest extends TestCase
     {
         parent::setUp();
         $this->api = new Api(
-          'clientId',
-          'clientSecret',
-          'redirectUrl',
-          'tokenPath'
+            'clientId',
+            'clientSecret',
+            'redirectUrl',
+            'tokenPath'
         );
     }
 
@@ -35,12 +35,12 @@ class ApiTest extends TestCase
     public function testGettingAnAuthorizationUrl()
     {
         $this->assertEquals(
-          'https://www.fitbit.com/oauth2/authorize?' .
+            'https://www.fitbit.com/oauth2/authorize?' .
           'client_id=clientId' .
           '&scope=activity+nutrition+heartrate+location+nutrition+' .
           'profile+settings+sleep+social+weight' .
           '&response_type=code&redirect_uri=redirectUrl&expires_in=604800',
-          $this->api->getAuthUri()
+            $this->api->getAuthUri()
         );
     }
 

@@ -41,7 +41,7 @@ class SubscriptionsTest extends TestCase
             ->andReturn('foodsSubscriptionsList');
         $this->assertEquals(
             'foodsSubscriptionsList',
-                        $this->subscriptions->getCollection(
+            $this->subscriptions->getCollection(
                             new CollectionPath(CollectionPath::FOODS)
                         )
         );
@@ -55,7 +55,7 @@ class SubscriptionsTest extends TestCase
             ->andReturn('addedSubscription');
         $this->assertEquals(
             'addedSubscription',
-                        $this->subscriptions->addAll(
+            $this->subscriptions->addAll(
                             'subscriptionId'
                         )
         );
@@ -69,7 +69,7 @@ class SubscriptionsTest extends TestCase
             ->andReturn('addedSubscription');
         $this->assertEquals(
             'addedSubscription',
-                        $this->subscriptions->addCollection(
+            $this->subscriptions->addCollection(
                             'subscriptionId',
                             new CollectionPath(CollectionPath::FOODS)
                         )
@@ -84,7 +84,7 @@ class SubscriptionsTest extends TestCase
             ->andReturn('');
         $this->assertEquals(
             '',
-                        $this->subscriptions->removeAll(
+            $this->subscriptions->removeAll(
                             'subscriptionId'
                         )
         );
@@ -98,7 +98,7 @@ class SubscriptionsTest extends TestCase
             ->andReturn('');
         $this->assertEquals(
             '',
-                        $this->subscriptions->removeCollection(
+            $this->subscriptions->removeCollection(
                             'subscriptionId',
                             new CollectionPath(CollectionPath::FOODS)
                         )
