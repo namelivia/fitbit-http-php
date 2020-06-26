@@ -56,7 +56,7 @@ class BodyGoalsTest extends TestCase
             ->andReturn('weightGoal');
         $this->assertEquals(
             'weightGoal',
-                        $this->goals->updateWeight(
+            $this->goals->updateWeight(
                             new WeightGoal(Carbon::now(), 6530, 6390)
                         )
         );

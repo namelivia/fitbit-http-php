@@ -46,7 +46,7 @@ class WaterLogsTest extends TestCase
             ->andReturn('addedLog');
         $this->assertEquals(
             'addedLog',
-                        $this->logs->add(
+            $this->logs->add(
                             new Log(Carbon::now(), 12, new Unit(Unit::MILIMETER))
                         )
         );
@@ -60,7 +60,7 @@ class WaterLogsTest extends TestCase
             ->andReturn('updatedLog');
         $this->assertEquals(
             'updatedLog',
-                        $this->logs->update(
+            $this->logs->update(
                             'logId',
                             new UpdatedLog(12, new Unit(Unit::MILIMETER))
                         )

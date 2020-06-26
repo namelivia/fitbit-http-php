@@ -35,13 +35,13 @@ class Intraday
         DetailLevel $detailLevel = null
     ) {
         return $this->fitbit->get(
-          implode('/', array_filter([
-            $resource,
-            'date',
-            $date->format('Y-m-d'),
-            '1d',
-            $detailLevel,
-          ])) . '.json'
+            implode('/', array_filter([
+                $resource,
+                'date',
+                $date->format('Y-m-d'),
+                '1d',
+                $detailLevel,
+            ])) . '.json'
         );
     }
 
@@ -67,16 +67,16 @@ class Intraday
         DetailLevel $detailLevel = null
     ) {
         return $this->fitbit->get(
-          implode('/', array_filter([
-            $resource,
-            'date',
-            $date->format('Y-m-d'),
-            '1d',
-            $detailLevel,
-            'time',
-            $startTime->format('H:i'),
-            $endTime->format('H:i'),
-          ])) . '.json'
+            implode('/', array_filter([
+                $resource,
+                'date',
+                $date->format('Y-m-d'),
+                '1d',
+                $detailLevel,
+                'time',
+                $startTime->format('H:i'),
+                $endTime->format('H:i'),
+            ])) . '.json'
         );
     }
 
@@ -98,12 +98,12 @@ class Intraday
         AbstractResource $resource
     ) {
         return $this->fitbit->get(
-          implode('/', array_filter([
-            $resource,
-            'date',
-            $startDate->format('Y-m-d'),
-            $endDate->format('Y-m-d'),
-          ])) . '.json'
+            implode('/', array_filter([
+                $resource,
+                'date',
+                $startDate->format('Y-m-d'),
+                $endDate->format('Y-m-d'),
+            ])) . '.json'
         );
     }
 
@@ -127,16 +127,16 @@ class Intraday
         DetailLevel $detailLevel = null
     ) {
         return $this->fitbit->get(
-          implode('/', array_filter([
-            $resource,
-            'date',
-            $startDateTime->format('Y-m-d'),
-            $endDateTime->format('Y-m-d'),
-            $detailLevel,
-            'time',
-            $startDateTime->format('H:i'),
-            $endDateTime->format('H:i'),
-          ])) . '.json'
+            implode('/', array_filter([
+                $resource,
+                'date',
+                $startDateTime->format('Y-m-d'),
+                $endDateTime->format('Y-m-d'),
+                $detailLevel,
+                'time',
+                $startDateTime->format('H:i'),
+                $endDateTime->format('H:i'),
+            ])) . '.json'
         );
     }
 }

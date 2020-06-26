@@ -11,9 +11,9 @@ class WeekdaysTest extends TestCase
     public function testPrintingAWeekdayList()
     {
         $this->assertEquals(
-        'MONDAY,TUESDAY',
-        (string) new Weekdays([Weekdays::MONDAY, Weekdays::TUESDAY])
-      );
+            'MONDAY,TUESDAY',
+            (string) new Weekdays([Weekdays::MONDAY, Weekdays::TUESDAY])
+        );
     }
 
     /**

@@ -33,7 +33,7 @@ class Fat
             'fat',
             'date',
             $date->format('Y-m-d'),
-          ]) . '.json');
+        ]) . '.json');
     }
 
     /**
@@ -53,7 +53,7 @@ class Fat
             'date',
             $date->format('Y-m-d'),
             $period,
-          ]) . '.json');
+        ]) . '.json');
     }
 
     /**
@@ -73,7 +73,7 @@ class Fat
             'date',
             $baseDate->format('Y-m-d'),
             $endDate->format('Y-m-d'),
-          ]) . '.json');
+        ]) . '.json');
     }
 
     /**
@@ -87,7 +87,7 @@ class Fat
             'body',
             'log',
             'fat',
-          ]) . '.json?' . $log->asUrlParam());
+        ]) . '.json?' . $log->asUrlParam());
     }
 
     /**
@@ -102,6 +102,6 @@ class Fat
             'log',
             'fat',
             $logId,
-          ]) . '.json');
+        ]) . '.json');
     }
 }

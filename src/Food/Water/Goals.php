@@ -25,7 +25,7 @@ class Goals
             'log',
             'water',
             'goal',
-          ]) . '.json');
+        ]) . '.json');
     }
 
     /**
@@ -39,6 +39,6 @@ class Goals
             'log',
             'water',
             'goal',
-          ]) . '.json?' . $goal->asUrlParam());
+        ]) . '.json?' . $goal->asUrlParam());
     }
 }

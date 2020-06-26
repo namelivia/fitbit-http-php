@@ -53,14 +53,14 @@ class Food
                 $this->nutritionalValues->toArray();
 
         return http_build_query(
-                    array_merge([
-            'name' => $this->name,
-            'defaultFoodMeasurementUnitId' => $this->defaultFoodMeasurementUnitId,
-            'defaultServingSize' => $this->defaultServingSize,
-            'calories' => $this->calories,
-            'formType' => is_null($this->formType) ? null : (string) $this->formType,
-            'description' => $this->description,
-                    ], $nutritionalValues)
-                );
+            array_merge([
+                'name' => $this->name,
+                'defaultFoodMeasurementUnitId' => $this->defaultFoodMeasurementUnitId,
+                'defaultServingSize' => $this->defaultServingSize,
+                'calories' => $this->calories,
+                'formType' => is_null($this->formType) ? null : (string) $this->formType,
+                'description' => $this->description,
+            ], $nutritionalValues)
+        );
     }
 }

@@ -27,7 +27,7 @@ class Goals
             'log',
             $type,
             'goal',
-          ]) . '.json');
+        ]) . '.json');
     }
 
     /**
@@ -44,7 +44,7 @@ class Goals
             'log',
             'fat',
             'goal',
-          ]) . '.json?fat=' . $newValue);
+        ]) . '.json?fat=' . $newValue);
     }
 
     /**
@@ -59,6 +59,6 @@ class Goals
             'log',
             'weight',
             'goal',
-          ]) . '.json?' . $goal->asUrlParam());
+        ]) . '.json?' . $goal->asUrlParam());
     }
 }
