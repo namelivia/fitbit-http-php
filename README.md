@@ -95,3 +95,7 @@ Also you can refer to the [official Fitbit Web API documentation](https://dev.fi
 ## Contributing
 Any suggestion, bug reports, prs or any other kind enhacements are welcome. Just [open an
 issue first](https://github.com/namelivia/fitbit-http-php/issues/new), for creating a PR remember this project has linting checkings and unit tests so any PR should comply with both before beign merged, this checks will be automatically applied when opening or modifying the PR's.
+
+## Local development
+
+This project comes with a `docker-compose.yml` file so if you use Docker and docker-compose you can develop without installing anything on your local environment. Just run `docker-compose up --build` for the first time to setup the container and launch the tests. PHPUnit is configured as the entrypoint so just run `docker-compose up` everytime you want the tests to execute on the Dockerized PHP development container.

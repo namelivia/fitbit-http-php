@@ -1,0 +1,18 @@
+version: '3'
+services:
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: php:7.4
+    container_name: app
+    entrypoint: "vendor/bin/phpunit"
+    tty: false
+    working_dir: /usr/src/app
+    volumes:
+      - ./:/usr/src/app
+      - vendor:/usr/src/app/vendor
+
+volumes:
+  vendor:
