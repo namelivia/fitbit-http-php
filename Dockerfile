@@ -5,8 +5,7 @@ RUN apt-get update && apt-get install -y \
     git
 
 # Copy composer.lock and composer.json
-# COPY composer.lock composer.json /app
-COPY composer.json /app
+ COPY composer.lock composer.json /app
 
 # Set working directory
 WORKDIR /usr/src/app
