@@ -2,7 +2,12 @@ FROM php:7.4
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
-    git
+    git \
+    libzip-dev \
+    zip
+
+# Install extensions
+RUN docker-php-ext-install zip
 
 # Copy composer.lock and composer.json
  COPY composer.lock composer.json /app
