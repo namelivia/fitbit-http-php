@@ -9,9 +9,6 @@ RUN apt-get update && apt-get install -y \
 # Install extensions
 RUN docker-php-ext-install zip
 
-# Copy composer.lock and composer.json
- COPY composer.lock composer.json /app
-
 # Set working directory
 WORKDIR /usr/src/app
 

@@ -4,18 +4,15 @@ declare(strict_types=1);
 
 namespace Namelivia\Fitbit\Api;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\HandlerStack;
-use kamermans\OAuth2\GrantType\AuthorizationCode;
-use kamermans\OAuth2\GrantType\RefreshToken;
-use kamermans\OAuth2\OAuth2Middleware;
 use kamermans\OAuth2\Persistence\FileTokenPersistence;
+use Namelivia\Fitbit\OAuth\Factory\Factory;
 
 class Api
 {
     private $client;
     private $config;
     private $tokenPersistence;
+    private $factory;
     private $initialized;
     private $tokenUrl = 'https://api.fitbit.com/oauth2/token';
     private $authorizeUrl = 'https://www.fitbit.com/oauth2/authorize';
@@ -24,8 +21,10 @@ class Api
         string $clientId,
         string $clientSecret,
         string $redirectUrl,
-        string $tokenPath
+        string $tokenPath,
+        Factory $factory
     ) {
+        $this->factory = $factory;
         $this->config = [
             'code' => null,
             'client_id' => $clientId,
@@ -78,18 +77,11 @@ class Api
     public function initialize()
     {
         if (!$this->initialized) {
-            $reauthClient = new Client(['base_uri' => $this->tokenUrl]);
-            $oauth = new OAuth2Middleware(
-                new AuthorizationCode($reauthClient, $this->config),
-                new RefreshToken($reauthClient, $this->config)
+            $this->client = $this->factory->createClient(
+                $this->tokenUrl,
+                $this->tokenPersistence,
+                $this->config
             );
-            $oauth->setTokenPersistence($this->tokenPersistence);
-            $stack = HandlerStack::create();
-            $stack->push($oauth);
-            $this->client = new Client([
-                'handler' => $stack,
-                'auth' => 'oauth',
-            ]);
             $this->initialized = true;
         }
     }

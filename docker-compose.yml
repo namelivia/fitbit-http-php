@@ -5,7 +5,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: php:7.4
     container_name: app
     entrypoint: "vendor/bin/phpunit"
     tty: false

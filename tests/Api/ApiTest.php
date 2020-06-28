@@ -6,19 +6,24 @@ namespace Namelivia\Fitbit\Tests;
 
 use GuzzleHttp\Client;
 use Namelivia\Fitbit\Api\Api;
+use Namelivia\Fitbit\OAuth\Factory\Factory;
+use Mockery;
 
 class ApiTest extends TestCase
 {
     private $api;
+    private $factory;
 
     public function setUp()
     {
         parent::setUp();
+        $this->factory = Mockery::mock(Factory::class);
         $this->api = new Api(
           'clientId',
           'clientSecret',
           'redirectUrl',
-          'tokenPath'
+          'tokenPath',
+          $this->factory
         );
     }
 
@@ -46,10 +51,16 @@ class ApiTest extends TestCase
 
     public function testInitializingTheApi()
     {
+        $clientMock = Mockery::mock(Client::class);
+        //TODO: Check mock params
+        $this->factory->shouldReceive('createClient')
+            ->once()
+            //->with()
+            ->andReturn($clientMock);
         $this->assertNull($this->api->getClient());
         $this->api->initialize();
         $this->assertTrue($this->api->isInitialized());
-        $this->assertTrue(is_a($this->api->getClient(), Client::class));
+        $this->assertEquals($this->api->getClient(), $clientMock);
     }
 
     public function testAuthorizingTheApiBySettingACode()
