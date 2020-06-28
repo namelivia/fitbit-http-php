@@ -6,16 +6,18 @@ namespace Namelivia\Fitbit\Api;
 
 use kamermans\OAuth2\Persistence\FileTokenPersistence;
 use Namelivia\Fitbit\OAuth\Factory\Factory;
+use Namelivia\Fitbit\OAuth\Config\Config;
 
 class Api
 {
+    private $tokenUrl = 'https://api.fitbit.com/oauth2/token';
+    private $authorizeUrl = 'https://www.fitbit.com/oauth2/authorize';
+
     private $client;
     private $config;
     private $tokenPersistence;
     private $factory;
     private $initialized;
-    private $tokenUrl = 'https://api.fitbit.com/oauth2/token';
-    private $authorizeUrl = 'https://www.fitbit.com/oauth2/authorize';
 
     public function __construct(
         string $clientId,
@@ -25,12 +27,7 @@ class Api
         Factory $factory
     ) {
         $this->factory = $factory;
-        $this->config = [
-            'code' => null,
-            'client_id' => $clientId,
-            'client_secret' => $clientSecret,
-            'redirect_uri' => $redirectUrl,
-        ];
+        $this->config = new Config($clientId, $clientSecret, $redirectUrl);
         $this->tokenPersistence = new FileTokenPersistence($tokenPath);
         $this->initialized = false;
     }
@@ -38,7 +35,7 @@ class Api
     public function getAuthUri()
     {
         return $this->authorizeUrl . '?' . http_build_query([
-            'client_id' => $this->config['client_id'],
+            'client_id' => $this->config->getClientId(),
             'scope' => implode(' ', [
                 'activity',
                 'nutrition',
@@ -52,21 +49,21 @@ class Api
                 'weight',
             ]),
             'response_type' => 'code',
-            'redirect_uri' => $this->config['redirect_uri'],
+            'redirect_uri' => $this->config->getRedirectUrl(),
             'expires_in' => '604800',
         ]);
     }
 
     public function setAuthorizationCode(string $code)
     {
-        $this->config['code'] = $code;
+        $this->config->setCode($code);
 
         return $this;
     }
 
     public function isAuthorized()
     {
-        return $this->tokenPersistence->hasToken() || !is_null($this->config['code']);
+        return $this->tokenPersistence->hasToken() || $this->config->hasCode();
     }
 
     public function isInitialized()
@@ -80,7 +77,7 @@ class Api
             $this->client = $this->factory->createClient(
                 $this->tokenUrl,
                 $this->tokenPersistence,
-                $this->config
+                $this->config->toArray()
             );
             $this->initialized = true;
         }
