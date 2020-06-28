@@ -32,7 +32,8 @@ class ApiTest extends TestCase
         $this->assertFalse($this->api->isInitialized());
     }
 
-    public function testAnApiStartsUnauthorized()
+    //TODO: This goes to the authorizator now
+    /*public function testAnApiStartsUnauthorized()
     {
         $this->assertFalse($this->api->isAuthorized());
     }
@@ -47,7 +48,7 @@ class ApiTest extends TestCase
           '&response_type=code&redirect_uri=redirectUrl&expires_in=604800',
           $this->api->getAuthUri()
         );
-    }
+    }*/
 
     public function testInitializingTheApi()
     {
@@ -63,10 +64,11 @@ class ApiTest extends TestCase
         $this->assertEquals($this->api->getClient(), $clientMock);
     }
 
-    public function testAuthorizingTheApiBySettingACode()
+    //TODO: This goes to the authorizator now
+    /*public function testAuthorizingTheApiBySettingACode()
     {
         $this->assertFalse($this->api->isAuthorized());
         $this->api->setAuthorizationCode('authCode');
         $this->assertTrue($this->api->isAuthorized());
-    }
+    }*/
 }
