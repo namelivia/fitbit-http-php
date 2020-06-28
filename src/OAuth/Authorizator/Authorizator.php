@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Namelivia\Fitbit\OAuth\Authorizator;
 
-use kamermans\OAuth2\Persistence\FileTokenPersistence;
+use kamermans\OAuth2\Persistence\TokenPersistenceInterface;
 use Namelivia\Fitbit\OAuth\Config\Config;
 
 class Authorizator
 {
     public function __construct(
         Config $config,
-        FileTokenPersistence $tokenPersistence
+        TokenPersistenceInterface $tokenPersistence
     ) {
         $this->config = $config;
         $this->tokenPersistence = $tokenPersistence;
