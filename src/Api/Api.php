@@ -6,13 +6,11 @@ namespace Namelivia\Fitbit\Api;
 
 use kamermans\OAuth2\Persistence\FileTokenPersistence;
 use Namelivia\Fitbit\OAuth\Factory\Factory;
+use Namelivia\Fitbit\OAuth\Constants\Constants;
 use Namelivia\Fitbit\OAuth\Config\Config;
 
 class Api
 {
-    private $tokenUrl = 'https://api.fitbit.com/oauth2/token';
-    private $authorizeUrl = 'https://www.fitbit.com/oauth2/authorize';
-
     private $client;
     private $config;
     private $tokenPersistence;
@@ -34,7 +32,7 @@ class Api
 
     public function getAuthUri()
     {
-        return $this->authorizeUrl . '?' . http_build_query([
+        return Constants::AUTHORIZE_URL . '?' . http_build_query([
             'client_id' => $this->config->getClientId(),
             'scope' => implode(' ', [
                 'activity',
@@ -75,7 +73,6 @@ class Api
     {
         if (!$this->initialized) {
             $this->client = $this->factory->createClient(
-                $this->tokenUrl,
                 $this->tokenPersistence,
                 $this->config->toArray()
             );

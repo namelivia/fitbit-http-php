@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Namelivia\Fitbit\OAuth\Config;
 
+use GuzzleHttp\Client as OAuthClient;
+use GuzzleHttp\HandlerStack;
+
 class Config
 {
     private $clientId;
