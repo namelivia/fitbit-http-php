@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Namelivia\Fitbit\Tests;
 
-use Namelivia\Fitbit\Api\Api;
-use Namelivia\Fitbit\Api\Fitbit;
-use Namelivia\Fitbit\OAuth\Factory\Factory;
+use Namelivia\Fitbit\ServiceProvider;
 
 class FeatureTest extends TestCase
 {
@@ -18,29 +16,13 @@ class FeatureTest extends TestCase
     /**
      * @expectedException kamermans\OAuth2\Exception\AccessTokenRequestException
      */
-    public function testFeature()
+    public function testUnauthorizedApi()
     {
-        $factory = new Factory();
-        $api = New Api(
-            'someClientId',
-            'someClientSecret',
-            'https://myapp.com/authorized',
-            '/tmp/token',
-            $factory
-        );
-
-        /*if (!$api->isAuthorized()) {
-            echo 'Go to: ' . $api->getAuthUri() . "\n";
-            echo "Enter verification code: \n";
-            $code = trim(fgets(STDIN, 1024));
-            $api->setAuthorizationCode($code);
-        }*/
-
-        if (!$api->isInitialized()) {
-            $api->initialize();
-        }
-
-        $fitbit = new \Namelivia\Fitbit\Api\Fitbit($api);
-        $fitbit->activities()->favorites()->get();
+		$clientId = 'clientId';
+		$clientSecret = 'clientSecret';
+		$redirectUrl = 'redirectUrl';
+		$tokenPath = '/tmp/token';
+		$fitbit = (new ServiceProvider())->build($tokenPath, $clientId, $clientSecret, $redirectUrl);
+		$fitbit->activities()->favorites()->get();
     }
 }

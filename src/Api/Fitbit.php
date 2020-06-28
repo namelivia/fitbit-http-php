@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Namelivia\Fitbit\Api;
 
+use Namelivia\Fitbit\OAuth\Client\Client;
+
 class Fitbit
 {
     private $nonUserUrl = 'https://api.fitbit.com/1/';
@@ -22,9 +24,9 @@ class Fitbit
     private $food;
     private $subscriptions;
 
-    public function __construct(Api $api)
+    public function __construct(Client $client)
     {
-        $this->client = $api->getClient();
+        $this->client = $client;
         $this->activities = new Activities($this);
         $this->user = new User($this);
         $this->heartRate = new HeartRate($this);
