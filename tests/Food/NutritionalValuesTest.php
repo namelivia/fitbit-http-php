@@ -10,7 +10,7 @@ class NutritionalValuesTest extends TestCase
 {
     private $nutritionalValues;
 
-    public function setUp()
+    public function setUp():void
     {
         parent::setUp();
         $this->nutritionalValues = new NutritionalValues();

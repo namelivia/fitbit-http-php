@@ -20,7 +20,7 @@ class FoodLogsTest extends TestCase
     private $fitbit;
     private $logs;
 
-    public function setUp()
+    public function setUp():void
     {
         parent::setUp();
         $this->fitbit = Mockery::mock(Fitbit::class);

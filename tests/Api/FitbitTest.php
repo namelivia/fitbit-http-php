@@ -13,7 +13,7 @@ class FitbitTest extends TestCase
     private $client;
     private $fitbit;
 
-    public function setUp()
+    public function setUp():void
     {
         parent::setUp();
         $this->client = Mockery::mock(Client::class);

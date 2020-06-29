@@ -13,7 +13,7 @@ class ApiSubscriptionsTest extends TestCase
     private $fitbit;
     private $subscriptions;
 
-    public function setUp()
+    public function setUp():void
     {
         parent::setUp();
         $this->fitbit = Mockery::mock(Fitbit::class);
