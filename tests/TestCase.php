@@ -13,7 +13,7 @@ use Carbon\Carbon;
  */
 class TestCase extends \PHPUnit\Framework\TestCase
 {
-    public function setUp()
+    public function setUp():void
     {
         Carbon::setTestNow(Carbon::create('2019', '03', '21', '10', '25', '40'));
     }

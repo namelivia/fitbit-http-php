@@ -17,7 +17,7 @@ class UserTest extends TestCase
     private $fitbit;
     private $user;
 
-    public function setUp()
+    public function setUp():void
     {
         parent::setUp();
         $this->fitbit = Mockery::mock(Fitbit::class);

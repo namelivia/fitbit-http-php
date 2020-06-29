@@ -17,7 +17,7 @@ class WaterLogsTest extends TestCase
     private $fitbit;
     private $water;
 
-    public function setUp()
+    public function setUp():void
     {
         parent::setUp();
         $this->fitbit = Mockery::mock(Fitbit::class);

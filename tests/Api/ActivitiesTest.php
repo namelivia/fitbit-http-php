@@ -13,7 +13,7 @@ class ActivitiesTest extends TestCase
     private $fitbit;
     private $activities;
 
-    public function setUp()
+    public function setUp():void
     {
         parent::setUp();
         $this->fitbit = Mockery::mock(Fitbit::class);
