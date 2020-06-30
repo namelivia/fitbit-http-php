@@ -38,6 +38,16 @@ class Fitbit
         $this->subscriptions = new Subscriptions($this);
     }
 
+    public function getAuthUri()
+    {
+        return $this->client->getAuthUri();
+    }
+
+    public function setAuthorizationCode(string $code)
+    {
+        $this->client->setAuthorizationCode($code);
+    }
+
     public function get($url)
     {
         return $this->client->get(
