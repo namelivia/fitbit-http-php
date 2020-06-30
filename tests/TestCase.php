@@ -19,7 +19,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
         Carbon::setTestNow(Carbon::create('2019', '03', '21', '10', '25', '40'));
     }
 
-    public function tearDown() {
+    public function tearDown():void {
         Mockery::close();
         parent::tearDown();
     }

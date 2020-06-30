@@ -16,11 +16,9 @@ class WeekdaysTest extends TestCase
       );
     }
 
-    /**
-     * @expectedException Namelivia\Fitbit\Exceptions\InvalidConstantValueException
-     */
     public function testValidatingAllWeekdayList()
     {
+        $this->expectException(\Namelivia\Fitbit\Exceptions\InvalidConstantValueException::class);
         new Weekdays([Weekdays::MONDAY, 'INVALID_STRING']);
     }
 }

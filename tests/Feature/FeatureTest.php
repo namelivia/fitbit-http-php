@@ -16,9 +16,6 @@ class FeatureTest extends TestCase
         parent::setUp();
     }
 
-    /**
-     * @expectedException \Namelivia\Fitbit\OAuth\MissingCodeException
-     */
     public function testNoTokenOrCode()
     {
 		//As there is no token and no code,
@@ -33,13 +30,11 @@ class FeatureTest extends TestCase
 		$clientSecret = 'clientSecret';
 		$redirectUrl = 'redirectUrl';
 		$fitbit = (new ServiceProvider())->build($tokenPersistence, $clientId, $clientSecret, $redirectUrl);
+		$this->expectException(\Namelivia\Fitbit\OAuth\MissingCodeException::class);
 		$fitbit->activities()->favorites()->get();
     }
 
 	//TODO: This test is actually making an HTTP request. And fails as the access token is just a mock.
-    /**
-     * @expectedException GuzzleHttp\Exception\ClientException
-     */
     public function testTokenIsPersisted()
     {
 		$tokenPersistence = Mockery::mock(TokenPersistenceInterface::class);
@@ -69,14 +64,12 @@ class FeatureTest extends TestCase
 		$clientSecret = 'clientSecret';
 		$redirectUrl = 'redirectUrl';
 		$fitbit = (new ServiceProvider())->build($tokenPersistence, $clientId, $clientSecret, $redirectUrl);
+		$this->expectException(\GuzzleHttp\Exception\ClientException::class);
 		$fitbit->activities()->favorites()->get();
     }
 
 	//TODO: This test is actually making an HTTP request
 	//TODO: So as the code is not set yet and the stack re-created, this is failing.
-    /**
-     * @expectedException kamermans\OAuth2\Exception\AccessTokenRequestException
-     */
     public function testCodeIsSet()
     {
 		$tokenPersistence = Mockery::mock(TokenPersistenceInterface::class);
@@ -98,6 +91,7 @@ class FeatureTest extends TestCase
 		$fitbit = (new ServiceProvider())->build($tokenPersistence, $clientId, $clientSecret, $redirectUrl);
 		//Authorization code is set
 		$fitbit->setAuthorizationCode('AuthorizationCode');
+		$this->expectException(\kamermans\OAuth2\Exception\AccessTokenRequestException::class);
 		$fitbit->activities()->favorites()->get();
     }
 }

@@ -16,11 +16,9 @@ class TrackerResourceTest extends TestCase
         );
     }
 
-    /**
-     * @expectedException Namelivia\Fitbit\Exceptions\InvalidConstantValueException
-     */
     public function testWhenAnInvalidPeriodIsPassedAnExceptionWillBeThrown()
     {
+        $this->expectException(\Namelivia\Fitbit\Exceptions\InvalidConstantValueException::class);
         new TrackerResource('invalidString');
     }
 }
