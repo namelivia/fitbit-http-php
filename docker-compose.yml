@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: app
-    entrypoint: "vendor/bin/phpunit"
+    entrypoint: "composer update"
     tty: false
     working_dir: /usr/src/app
     volumes:
