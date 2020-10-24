@@ -9,6 +9,7 @@ use Namelivia\Fitbit\OAuth\Authorizator\Authorizator;
 use GuzzleHttp\HandlerStack;
 use Namelivia\Fitbit\OAuth\MissingCodeException;
 use Namelivia\Fitbit\OAuth\Middleware\MiddlewareFactory;
+use Psr\Http\Message\ResponseInterface;
 
 class Client extends OAuthClient
 {
@@ -49,14 +50,16 @@ class Client extends OAuthClient
     }
 
     //Before each method I will check if I am authorized
-    public function get($url) {
+    public function get($uri, array $options = []): ResponseInterface
+    {
         $this->checkAuthorized();
-        return parent::get($url);
+        return parent::get($uri, $options);
     }
 
-    public function post($url) {
+    public function post($uri, array $options = []): ResponseInterface
+    {
         $this->checkAuthorized();
-        return parent::post($url);
+        return parent::post($uri, $options);
     }
 
 }
