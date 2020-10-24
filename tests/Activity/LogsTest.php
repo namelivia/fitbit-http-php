@@ -16,7 +16,7 @@ class LogsTest extends TestCase
     private $fitbit;
     private $logs;
 
-    public function setUp():void
+    public function setUp(): void
     {
         parent::setUp();
         $this->fitbit = Mockery::mock(Fitbit::class);

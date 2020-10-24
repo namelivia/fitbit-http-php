@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Namelivia\Fitbit\Tests;
 
 use Mockery;
-use Namelivia\Fitbit\OAuth\Client\Client;
 use Namelivia\Fitbit\Api\Fitbit;
+use Namelivia\Fitbit\OAuth\Client\Client;
 use Psr\Http\Message\ResponseInterface;
 
 class FitbitTest extends TestCase
@@ -14,7 +14,7 @@ class FitbitTest extends TestCase
     private $client;
     private $fitbit;
 
-    public function setUp():void
+    public function setUp(): void
     {
         parent::setUp();
         $this->client = Mockery::mock(Client::class);

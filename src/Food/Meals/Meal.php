@@ -34,9 +34,9 @@ class Meal
     public function toArray()
     {
         return [
-                    'name' => $this->name,
-                    'description' => $this->description,
-                    'mealFoods' => $this->mealFoods->toArray(),
+            'name' => $this->name,
+            'description' => $this->description,
+            'mealFoods' => $this->mealFoods->toArray(),
         ];
     }
 }

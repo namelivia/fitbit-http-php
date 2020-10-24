@@ -24,7 +24,7 @@ class Favorites
             'foods',
             'log',
             'favorite',
-          ]) . '.json');
+        ]) . '.json');
     }
 
     /**
@@ -39,7 +39,7 @@ class Favorites
             'log',
             'favorite',
             $foodId,
-          ]) . '.json');
+        ]) . '.json');
     }
 
     /**
@@ -54,6 +54,6 @@ class Favorites
             'log',
             'favorite',
             $foodId,
-          ]) . '.json');
+        ]) . '.json');
     }
 }

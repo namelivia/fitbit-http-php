@@ -19,7 +19,7 @@ class ProfileTest extends TestCase
 {
     private $profile;
 
-    public function setUp():void
+    public function setUp(): void
     {
         parent::setUp();
         $this->profile = new Profile($this->profile);

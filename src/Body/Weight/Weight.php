@@ -33,7 +33,7 @@ class Weight
             'weight',
             'date',
             $date->format('Y-m-d'),
-          ]) . '.json');
+        ]) . '.json');
     }
 
     /**
@@ -53,7 +53,7 @@ class Weight
             'date',
             $date->format('Y-m-d'),
             $period,
-          ]) . '.json');
+        ]) . '.json');
     }
 
     /**
@@ -73,7 +73,7 @@ class Weight
             'date',
             $baseDate->format('Y-m-d'),
             $endDate->format('Y-m-d'),
-          ]) . '.json');
+        ]) . '.json');
     }
 
     /**
@@ -87,7 +87,7 @@ class Weight
             'body',
             'log',
             'weight',
-          ]) . '.json?' . $log->asUrlParam());
+        ]) . '.json?' . $log->asUrlParam());
     }
 
     /**
@@ -102,6 +102,6 @@ class Weight
             'log',
             'weight',
             $logId,
-          ]) . '.json');
+        ]) . '.json');
     }
 }

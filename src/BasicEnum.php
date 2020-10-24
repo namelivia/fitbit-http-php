@@ -31,7 +31,7 @@ abstract class BasicEnum
         $constants = self::getConstants();
         if (!in_array($value, $constants)) {
             throw new InvalidConstantValueException(
-              'The value ' . $value . ' is not a valid ' . get_called_class() . ' value'
+                'The value ' . $value . ' is not a valid ' . get_called_class() . ' value'
             );
         }
     }
