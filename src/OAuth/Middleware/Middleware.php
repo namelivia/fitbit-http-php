@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Namelivia\Fitbit\OAuth\Middleware;
 
 use GuzzleHttp\Client;
-use kamermans\OAuth2\OAuth2Middleware;
 use kamermans\OAuth2\GrantType\AuthorizationCode;
 use kamermans\OAuth2\GrantType\RefreshToken;
+use kamermans\OAuth2\OAuth2Middleware;
 
 class Middleware extends OAuth2Middleware
 {
@@ -21,7 +21,8 @@ class Middleware extends OAuth2Middleware
         );
     }
 
-    public function setTokenPersistence($tokenPersistence) {
+    public function setTokenPersistence($tokenPersistence)
+    {
         return parent::setTokenPersistence($tokenPersistence);
     }
 }

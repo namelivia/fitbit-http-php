@@ -26,9 +26,9 @@ class MealFood
     public function toArray()
     {
         return [
-                    'foodId' => $this->foodId,
-                    'amount' => $this->amount,
-                    'unitId' => $this->unitId,
+            'foodId' => $this->foodId,
+            'amount' => $this->amount,
+            'unitId' => $this->unitId,
         ];
     }
 }

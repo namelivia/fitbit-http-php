@@ -29,7 +29,7 @@ class Logs
             'water',
             'date',
             $date->format('Y-m-d'),
-          ]) . '.json');
+        ]) . '.json');
     }
 
     /**
@@ -43,7 +43,7 @@ class Logs
             'foods',
             'log',
             'water',
-          ]) . '.json?' . $log->asUrlParam());
+        ]) . '.json?' . $log->asUrlParam());
     }
 
     /**
@@ -59,7 +59,7 @@ class Logs
             'log',
             'water',
             $logId,
-          ]) . '.json?' . $log->asUrlParam());
+        ]) . '.json?' . $log->asUrlParam());
     }
 
     /**
@@ -70,10 +70,10 @@ class Logs
     public function remove(string $logId)
     {
         return $this->fitbit->delete(implode('/', [
-                'foods',
-                'log',
-                'water',
-                $logId,
-            ]) . '.json');
+            'foods',
+            'log',
+            'water',
+            $logId,
+        ]) . '.json');
     }
 }

@@ -14,12 +14,13 @@ use Mockery;
  */
 class TestCase extends \PHPUnit\Framework\TestCase
 {
-    public function setUp():void
+    public function setUp(): void
     {
         Carbon::setTestNow(Carbon::create('2019', '03', '21', '10', '25', '40'));
     }
 
-    public function tearDown():void {
+    public function tearDown(): void
+    {
         Mockery::close();
         parent::tearDown();
     }

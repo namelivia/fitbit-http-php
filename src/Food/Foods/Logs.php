@@ -28,7 +28,7 @@ class Logs
             'log',
             'date',
             $date->format('Y-m-d'),
-          ]) . '.json');
+        ]) . '.json');
     }
 
     /**
