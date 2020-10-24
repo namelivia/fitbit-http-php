@@ -17,7 +17,7 @@ class WaterLogsTest extends TestCase
     private $fitbit;
     private $water;
 
-    public function setUp():void
+    public function setUp(): void
     {
         parent::setUp();
         $this->fitbit = Mockery::mock(Fitbit::class);
@@ -27,9 +27,9 @@ class WaterLogsTest extends TestCase
     public function testGettingLogs()
     {
         $this->fitbit->shouldReceive('get')
-            ->once()
-            ->with('foods/log/water/date/2019-03-21.json')
-            ->andReturn('waterLogs');
+             ->once()
+             ->with('foods/log/water/date/2019-03-21.json')
+             ->andReturn('waterLogs');
         $this->assertEquals(
             'waterLogs',
             $this->logs->get(
@@ -41,38 +41,38 @@ class WaterLogsTest extends TestCase
     public function testAddingALogEntry()
     {
         $this->fitbit->shouldReceive('post')
-            ->once()
-            ->with('foods/log/water.json?date=2019-03-21&unit=ml&amount=1.2')
-            ->andReturn('addedLog');
+             ->once()
+             ->with('foods/log/water.json?date=2019-03-21&unit=ml&amount=1.2')
+             ->andReturn('addedLog');
         $this->assertEquals(
             'addedLog',
-                        $this->logs->add(
-                            new Log(Carbon::now(), 12, new Unit(Unit::MILIMETER))
-                        )
+            $this->logs->add(
+                new Log(Carbon::now(), 12, new Unit(Unit::MILIMETER))
+            )
         );
     }
 
     public function testUpdatingALogEntry()
     {
         $this->fitbit->shouldReceive('post')
-            ->once()
-            ->with('foods/log/water/logId.json?unit=ml&amount=1.2')
-            ->andReturn('updatedLog');
+             ->once()
+             ->with('foods/log/water/logId.json?unit=ml&amount=1.2')
+             ->andReturn('updatedLog');
         $this->assertEquals(
             'updatedLog',
-                        $this->logs->update(
-                            'logId',
-                            new UpdatedLog(12, new Unit(Unit::MILIMETER))
-                        )
+            $this->logs->update(
+                'logId',
+                new UpdatedLog(12, new Unit(Unit::MILIMETER))
+            )
         );
     }
 
     public function testDeletingALogEntry()
     {
         $this->fitbit->shouldReceive('delete')
-            ->once()
-            ->with('foods/log/water/logId.json')
-            ->andReturn('');
+             ->once()
+             ->with('foods/log/water/logId.json')
+             ->andReturn('');
         $this->assertEquals(
             '',
             $this->logs->remove('logId')

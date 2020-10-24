@@ -5,19 +5,21 @@ declare(strict_types=1);
 namespace Namelivia\Fitbit\Tests;
 
 use Mockery;
-use Namelivia\Fitbit\OAuth\Client\Client;
 use Namelivia\Fitbit\Api\Fitbit;
+use Namelivia\Fitbit\OAuth\Client\Client;
+use Psr\Http\Message\ResponseInterface;
 
 class FitbitTest extends TestCase
 {
     private $client;
     private $fitbit;
 
-    public function setUp():void
+    public function setUp(): void
     {
         parent::setUp();
         $this->client = Mockery::mock(Client::class);
         $this->fitbit = new Fitbit($this->client);
+        $this->responseMock = Mockery::mock(ResponseInterface::class);
     }
 
     public function testMakingAGetCall()
@@ -25,8 +27,8 @@ class FitbitTest extends TestCase
         $this->client->shouldReceive('get')
             ->once()
             ->with('https://api.fitbit.com/1/user/-/sampleurl')
-            ->andReturn($this->client);
-        $this->client->shouldReceive('getBody->getContents')
+            ->andReturn($this->responseMock);
+        $this->responseMock->shouldReceive('getBody->getContents')
             ->once()
             ->with()
             ->andReturn('responseContent');
@@ -41,8 +43,8 @@ class FitbitTest extends TestCase
         $this->client->shouldReceive('get')
             ->once()
             ->with('https://api.fitbit.com/1/sampleurl')
-            ->andReturn($this->client);
-        $this->client->shouldReceive('getBody->getContents')
+            ->andReturn($this->responseMock);
+        $this->responseMock->shouldReceive('getBody->getContents')
             ->once()
             ->with()
             ->andReturn('responseContent');
@@ -61,8 +63,8 @@ class FitbitTest extends TestCase
                             'https://api.fitbit.com/1/user/-/sampleurl',
                             ['json' => $body]
                         )
-            ->andReturn($this->client);
-        $this->client->shouldReceive('getBody->getContents')
+            ->andReturn($this->responseMock);
+        $this->responseMock->shouldReceive('getBody->getContents')
             ->once()
             ->with()
             ->andReturn('responseContent');
@@ -77,8 +79,8 @@ class FitbitTest extends TestCase
         $this->client->shouldReceive('post')
             ->once()
             ->with('https://api.fitbit.com/1/sampleurl')
-            ->andReturn($this->client);
-        $this->client->shouldReceive('getBody->getContents')
+            ->andReturn($this->responseMock);
+        $this->responseMock->shouldReceive('getBody->getContents')
             ->once()
             ->with()
             ->andReturn('responseContent');
@@ -93,8 +95,8 @@ class FitbitTest extends TestCase
         $this->client->shouldReceive('get')
             ->once()
             ->with('https://api.fitbit.com/1.1/user/-/sampleurl')
-            ->andReturn($this->client);
-        $this->client->shouldReceive('getBody->getContents')
+            ->andReturn($this->responseMock);
+        $this->responseMock->shouldReceive('getBody->getContents')
             ->once()
             ->with()
             ->andReturn('responseContent');
@@ -109,8 +111,8 @@ class FitbitTest extends TestCase
         $this->client->shouldReceive('post')
             ->once()
             ->with('https://api.fitbit.com/1.1/user/-/sampleurl')
-            ->andReturn($this->client);
-        $this->client->shouldReceive('getBody->getContents')
+            ->andReturn($this->responseMock);
+        $this->responseMock->shouldReceive('getBody->getContents')
             ->once()
             ->with()
             ->andReturn('responseContent');
@@ -125,8 +127,8 @@ class FitbitTest extends TestCase
         $this->client->shouldReceive('get')
             ->once()
             ->with('https://api.fitbit.com/1.2/user/-/sampleurl')
-            ->andReturn($this->client);
-        $this->client->shouldReceive('getBody->getContents')
+            ->andReturn($this->responseMock);
+        $this->responseMock->shouldReceive('getBody->getContents')
             ->once()
             ->with()
             ->andReturn('responseContent');
@@ -141,8 +143,8 @@ class FitbitTest extends TestCase
         $this->client->shouldReceive('post')
             ->once()
             ->with('https://api.fitbit.com/1.2/user/-/sampleurl')
-            ->andReturn($this->client);
-        $this->client->shouldReceive('getBody->getContents')
+            ->andReturn($this->responseMock);
+        $this->responseMock->shouldReceive('getBody->getContents')
             ->once()
             ->with()
             ->andReturn('responseContent');
@@ -157,8 +159,8 @@ class FitbitTest extends TestCase
         $this->client->shouldReceive('post')
             ->once()
             ->with('https://api.fitbit.com/1/user/-/sampleurl')
-            ->andReturn($this->client);
-        $this->client->shouldReceive('getBody->getContents')
+            ->andReturn($this->responseMock);
+        $this->responseMock->shouldReceive('getBody->getContents')
             ->once()
             ->with()
             ->andReturn('responseContent');
@@ -173,8 +175,8 @@ class FitbitTest extends TestCase
         $this->client->shouldReceive('delete')
             ->once()
             ->with('https://api.fitbit.com/1/user/-/sampleurl')
-            ->andReturn($this->client);
-        $this->client->shouldReceive('getBody->getContents')
+            ->andReturn($this->responseMock);
+        $this->responseMock->shouldReceive('getBody->getContents')
             ->once()
             ->with()
             ->andReturn('responseContent');
@@ -190,12 +192,12 @@ class FitbitTest extends TestCase
         $this->client->shouldReceive('delete')
             ->once()
             ->with('https://api.fitbit.com/1/user/23/sampleurl')
-            ->andReturn($this->client);
+            ->andReturn($this->responseMock);
         $this->client->shouldReceive('delete')
             ->once()
             ->with('https://api.fitbit.com/1/user/-/sampleurl')
-            ->andReturn($this->client);
-        $this->client->shouldReceive('getBody->getContents')
+            ->andReturn($this->responseMock);
+        $this->responseMock->shouldReceive('getBody->getContents')
             ->twice()
             ->with()
             ->andReturn('responseContent');

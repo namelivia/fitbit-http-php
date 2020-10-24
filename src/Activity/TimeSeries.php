@@ -33,7 +33,7 @@ class TimeSeries
             'date',
             $date->format('Y-m-d'),
             $period,
-          ]) . '.json');
+        ]) . '.json');
     }
 
     /**
@@ -55,6 +55,6 @@ class TimeSeries
             'date',
             $baseDate->format('Y-m-d'),
             $endDate->format('Y-m-d'),
-          ]) . '.json');
+        ]) . '.json');
     }
 }

@@ -69,10 +69,10 @@ class Logs
         return $this->fitbit->get(
             'activities/list.json?' .
             http_build_query([
-              'afterDate' => $date->format('Y-m-d'),
-              'sort' => $sort,
-              'limit' => $limit,
-              'offset' => 0,
+                'afterDate' => $date->format('Y-m-d'),
+                'sort' => $sort,
+                'limit' => $limit,
+                'offset' => 0,
             ])
         );
     }
@@ -94,10 +94,10 @@ class Logs
         return $this->fitbit->get(
             'activities/list.json?' .
             http_build_query([
-              'beforeDate' => $date->format('Y-m-d'),
-              'sort' => $sort,
-              'limit' => $limit,
-              'offset' => 0,
+                'beforeDate' => $date->format('Y-m-d'),
+                'sort' => $sort,
+                'limit' => $limit,
+                'offset' => 0,
             ])
         );
     }

@@ -24,7 +24,7 @@ class Goals
             'foods',
             'log',
             'goal',
-          ]) . '.json');
+        ]) . '.json');
     }
 
     /**
@@ -37,6 +37,6 @@ class Goals
             'foods',
             'log',
             'goal',
-          ]) . '.json?' . $goal->asUrlParam());
+        ]) . '.json?' . $goal->asUrlParam());
     }
 }

@@ -17,7 +17,7 @@ class AlarmsTest extends TestCase
     private $fitbit;
     private $alarms;
 
-    public function setUp():void
+    public function setUp(): void
     {
         parent::setUp();
         $this->fitbit = Mockery::mock(Fitbit::class);
@@ -27,9 +27,9 @@ class AlarmsTest extends TestCase
     public function testGettingTheAlarmsListForADevice()
     {
         $this->fitbit->shouldReceive('get')
-            ->once()
-            ->with('devices/tracker/TrackerId/alarms.json')
-            ->andReturn('AlarmsList');
+             ->once()
+             ->with('devices/tracker/TrackerId/alarms.json')
+             ->andReturn('AlarmsList');
         $this->assertEquals(
             'AlarmsList',
             $this->alarms->get('TrackerId')
@@ -39,15 +39,15 @@ class AlarmsTest extends TestCase
     public function testAddingAnAlarmForADevice()
     {
         $this->fitbit->shouldReceive('post')
-            ->once()
-            ->with('devices/tracker/TrackerId/alarms.json?' .
-            'time=10%3A03%2B00%3A00&enabled=true&recurring=false&weekDays=MONDAY')
-            ->andReturn('AddedAlarm');
+             ->once()
+             ->with('devices/tracker/TrackerId/alarms.json?' .
+             'time=10%3A03%2B00%3A00&enabled=true&recurring=false&weekDays=MONDAY')
+             ->andReturn('AddedAlarm');
         $this->assertEquals(
             'AddedAlarm',
             $this->alarms->add(
-              'TrackerId',
-              new Alarm(Carbon::now(), true, false, new Weekdays([Weekdays::MONDAY]))
+                'TrackerId',
+                new Alarm(Carbon::now(), true, false, new Weekdays([Weekdays::MONDAY]))
             )
         );
     }
@@ -55,24 +55,24 @@ class AlarmsTest extends TestCase
     public function testUpdatingAnAlarmForADevice()
     {
         $this->fitbit->shouldReceive('post')
-            ->once()
-            ->with('devices/tracker/TrackerId/alarms/AlarmId.json?' .
-            'time=10%3A03%2B00%3A00&enabled=true&recurring=false&' .
-            'weekDays=SATURDAY%2CSUNDAY&snoozeLength=20&snoozeCount=30')
-            ->andReturn('UpdatedAlarm');
+             ->once()
+             ->with('devices/tracker/TrackerId/alarms/AlarmId.json?' .
+             'time=10%3A03%2B00%3A00&enabled=true&recurring=false&' .
+             'weekDays=SATURDAY%2CSUNDAY&snoozeLength=20&snoozeCount=30')
+             ->andReturn('UpdatedAlarm');
         $this->assertEquals(
             'UpdatedAlarm',
             $this->alarms->update(
-              'TrackerId',
-              'AlarmId',
-              new UpdatingAlarm(
-                Carbon::now(),
-                true,
-                false,
-                new Weekdays([Weekdays::SATURDAY, Weekdays::SUNDAY]),
-                20,
-                30
-              )
+                'TrackerId',
+                'AlarmId',
+                new UpdatingAlarm(
+                    Carbon::now(),
+                    true,
+                    false,
+                    new Weekdays([Weekdays::SATURDAY, Weekdays::SUNDAY]),
+                    20,
+                    30
+                )
             )
         );
     }
@@ -80,14 +80,14 @@ class AlarmsTest extends TestCase
     public function testDeletingAnAlarmForADevice()
     {
         $this->fitbit->shouldReceive('delete')
-            ->once()
-            ->with('devices/tracker/TrackerId/alarms/AlarmId.json')
-            ->andReturn('DeletedAlarm');
+             ->once()
+             ->with('devices/tracker/TrackerId/alarms/AlarmId.json')
+             ->andReturn('DeletedAlarm');
         $this->assertEquals(
             'DeletedAlarm',
             $this->alarms->remove(
-              'TrackerId',
-              'AlarmId'
+                'TrackerId',
+                'AlarmId'
             )
         );
     }

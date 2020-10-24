@@ -32,7 +32,7 @@ class HeartRate
             'date',
             $date->format('Y-m-d'),
             $period,
-          ]) . '.json');
+        ]) . '.json');
     }
 
     /**
@@ -53,6 +53,6 @@ class HeartRate
             'date',
             $baseDate->format('Y-m-d'),
             $endDate->format('Y-m-d'),
-          ]) . '.json');
+        ]) . '.json');
     }
 }

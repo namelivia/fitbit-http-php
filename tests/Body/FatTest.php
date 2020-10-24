@@ -16,7 +16,7 @@ class FatTest extends TestCase
     private $fitbit;
     private $fat;
 
-    public function setUp():void
+    public function setUp(): void
     {
         parent::setUp();
         $this->fitbit = Mockery::mock(Fitbit::class);

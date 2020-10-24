@@ -48,7 +48,7 @@ class SleepLogs
     public function getByDateRange(Carbon $startDate, Carbon $endDate)
     {
         return $this->fitbit->getv12Endpoint(
-          implode('/', ['sleep', 'date', $startDate->format('Y-m-d'), $endDate->format('Y-m-d')]) . '.json'
+            implode('/', ['sleep', 'date', $startDate->format('Y-m-d'), $endDate->format('Y-m-d')]) . '.json'
         );
     }
 
@@ -87,17 +87,17 @@ class SleepLogs
      * @param int $limit
      */
     public function listAfter(
-      Carbon $date,
-      string $sort,
-      int $limit
+        Carbon $date,
+        string $sort,
+        int $limit
     ) {
         return $this->fitbit->getv12Endpoint(
             'sleep/list.json?' .
             http_build_query([
-              'afterDate' => $date->format('Y-m-d'),
-              'sort' => $sort,
-              'limit' => $limit,
-              'offset' => 0,
+                'afterDate' => $date->format('Y-m-d'),
+                'sort' => $sort,
+                'limit' => $limit,
+                'offset' => 0,
             ])
         );
     }
@@ -112,17 +112,17 @@ class SleepLogs
      * @param int $limit
      */
     public function listBefore(
-      Carbon $date,
-      string $sort,
-      int $limit
+        Carbon $date,
+        string $sort,
+        int $limit
     ) {
         return $this->fitbit->getv12Endpoint(
             'sleep/list.json?' .
             http_build_query([
-              'beforeDate' => $date->format('Y-m-d'),
-              'sort' => $sort,
-              'limit' => $limit,
-              'offset' => 0,
+                'beforeDate' => $date->format('Y-m-d'),
+                'sort' => $sort,
+                'limit' => $limit,
+                'offset' => 0,
             ])
         );
     }
