@@ -228,16 +228,16 @@
         },
         {
             "name": "kamermans/guzzle-oauth2-subscriber",
-            "version": "v1.0.7",
+            "version": "v1.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kamermans/guzzle-oauth2-subscriber.git",
-                "reference": "f5b4f8ceab18bfeeb7933e5b86affbaa39d89482"
+                "reference": "18fb67c97f38c6b463f1ccdcad95b641666e42c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kamermans/guzzle-oauth2-subscriber/zipball/f5b4f8ceab18bfeeb7933e5b86affbaa39d89482",
-                "reference": "f5b4f8ceab18bfeeb7933e5b86affbaa39d89482",
+                "url": "https://api.github.com/repos/kamermans/guzzle-oauth2-subscriber/zipball/18fb67c97f38c6b463f1ccdcad95b641666e42c1",
+                "reference": "18fb67c97f38c6b463f1ccdcad95b641666e42c1",
                 "shasum": ""
             },
             "require": {
@@ -265,7 +265,7 @@
                 "Guzzle",
                 "oauth"
             ],
-            "time": "2020-09-15T19:21:48+00:00"
+            "time": "2020-12-10T00:38:57+00:00"
         },
         {
             "name": "nesbot/carbon",
