@@ -45,13 +45,14 @@ class Subscriptions
      * with a particular user stream in your application.
      *
      * @param string $subscriptionId
+     * @param string $subscriberId
      */
-    public function addAll(string $subscriptionId)
+    public function addAll(string $subscriptionId, string $subscriberId)
     {
         return $this->fitbit->post(implode('/', [
             'apiSubscriptions',
             $subscriptionId,
-        ]) . '.json');
+        ]) . '.json?subscriberId=' . $subscriberId);
     }
 
     /**
@@ -62,30 +63,33 @@ class Subscriptions
      * with a particular user stream in your application.
      *
      * @param string $subscriptionId
+     * @param string $subscriberId
      * @param CollectionPath $collectionPath
      */
     public function addCollection(
         string $subscriptionId,
+        string $subscriberId,
         CollectionPath $collectionPath
     ) {
         return $this->fitbit->post(implode('/', [
             $collectionPath,
             'apiSubscriptions',
             $subscriptionId,
-        ]) . '.json');
+        ]) . '.json?subscriberId=' . $subscriberId);
     }
 
     /**
      * Deletes all user's subscriptions for your application.
      *
      * @param string $subscriptionId
+     * @param string $subscriberId
      */
-    public function removeAll(string $subscriptionId)
+    public function removeAll(string $subscriptionId, string $subscriberId)
     {
         return $this->fitbit->delete(implode('/', [
             'apiSubscriptions',
             $subscriptionId,
-        ]) . '.json');
+        ]) . '.json?subscriberId=' . $subscriberId);
     }
 
     /**
@@ -93,16 +97,18 @@ class Subscriptions
      * for your application.
      *
      * @param string $subscriptionId
+     * @param string $subscriberId
      * @param CollectionPath $collectionPath
      */
     public function removeCollection(
         string $subscriptionId,
+        string $subscriberId,
         CollectionPath $collectionPath
     ) {
         return $this->fitbit->delete(implode('/', [
             $collectionPath,
             'apiSubscriptions',
             $subscriptionId,
-        ]) . '.json');
+        ]) . '.json?subscriberId=' . $subscriberId);
     }
 }
