@@ -6,6 +6,7 @@ namespace Namelivia\Fitbit\OAuth\Authorizator;
 
 use kamermans\OAuth2\Persistence\TokenPersistenceInterface;
 use Namelivia\Fitbit\OAuth\Config\Config;
+use Namelivia\Fitbit\OAuth\Constants\Constants;
 
 class Authorizator
 {

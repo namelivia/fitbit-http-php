@@ -48,7 +48,7 @@ class Config
             'code' => $this->code,
             'client_id' => $this->clientId,
             'client_secret' => $this->clientSecret,
-            'redirect_url' => $this->redirectUrl,
+            'redirect_uri' => $this->redirectUrl,
         ];
     }
 }
