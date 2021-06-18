@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: app
+    container_name: fitbit-http-php-app
     entrypoint: "vendor/bin/phpunit"
     tty: false
     working_dir: /usr/src/app

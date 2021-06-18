@@ -1,3 +1,4 @@
 phpunit.xml
 vendor
-test.php
+tags
+.phpunit.result.cache
