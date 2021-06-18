@@ -25,7 +25,6 @@ jobs:
         with:
           push: false
           builder: ${{ steps.development_builder.outputs.name }}
-          target: development
           load: true
           tags: fitbit-http-php-testing:latest
       -
