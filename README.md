@@ -7,7 +7,7 @@
 # Disclaimer
 
 This project is not maintained anymore and therefore it will be archived.
-I'm abandoning it because I don't own any Fitbit product anymore so I can't do testing.
+I'm abandoning it because I don't own any Fitbit product anymore so I can't do testing, and as far as I know it is not being used by anyone else.
 
 If you are interested in this project feel free to contact me.
 
