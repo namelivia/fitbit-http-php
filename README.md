@@ -4,6 +4,13 @@
   <img src="https://user-images.githubusercontent.com/1571416/58320709-9675d700-7e1c-11e9-8a4f-c082d68a7499.png" alt="Fitbit PHP SDK" />
 </p>
 
+# Disclaimer
+
+This project is not maintained anymore and therefore it will be archived.
+I'm abandoning it because I don't own any Fitbit product anymore so I can't do testing.
+
+If you are interested in this project feel free to contact me.
+
 ## About
 
 This is a package for acessing the [Fitbit official Web API](https://dev.fitbit.com/build/reference/web-api/) from your PHP language project. It is designed so you can easily query and retrieve
